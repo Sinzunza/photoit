@@ -1,0 +1,16 @@
+{
+  "name": "photoit110",
+  "version": "1.0.0",
+  "description": "photo sharing web app",
+  "main": "Firebase.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase": "^8.5.0"
+  }
+}
