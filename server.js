@@ -1,23 +1,30 @@
-// 5-6
-"user strict"; // ECMA Script VS
+// import dependencies
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const path = require('path');
 
-const express = require("express");
+// import handlers
+const firebaseHandler = require('./firebase.js'); // home.js
+
+
+// create server
 const app = express();
-const port = process.env.port || 8081;
+const port = 8081;
 
-app.get("/", (req,res) => {
-    res.send("Hello World");
-    console.log("landing page");
-});
+// add stuff to server
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get("/GetUsername", (req, res) =>{
-    res.send("inzomniac");
-    console.log("things cars");
-});
+// Create post handlers
+app.post('/SignIn', firebaseHandler.postCreateUser);
 
-app.listen(port, err => {
-    if (err) {
-        return console.log("ERROR", err);
-    }
-    console.log("listening on port " + port);
-});
+// start listening on server
+app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
+
+
+
+// username
+// email
+// password

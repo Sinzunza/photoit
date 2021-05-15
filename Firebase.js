@@ -14,21 +14,12 @@ firebase.initializeApp({
 });
 
 
-// express
-"user strict"; // ECMA Script VS
+function postCreateUser(request, response){
 
-const express = require("express");
-const app = express();
-const port = process.env.port || 8081;
-
-
-// code
-
-app.get("/", (req,res) => {
-    res.send("Hello World FB");
     console.log("landing page");
-    var email = "email@live.com";
-    var password = "password";
+    var email = request.body.email;
+    var password = request.body.password;
+    
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in 
@@ -40,16 +31,11 @@ app.get("/", (req,res) => {
         var errorMessage = error.message;
         console.log(errorMessage + "\n");
       });
-});
 
-app.get("/temp", (req, res) =>{
-    res.send("inzomniac");
-    console.log("temp page");
-});
+}
 
-app.listen(port, err => {
-    if (err) {
-        return console.log("ERROR", err);
-    }
-    console.log("listening on port " + port);
-});
+module.exports = {
+  postCreateUser
+};
+
+
