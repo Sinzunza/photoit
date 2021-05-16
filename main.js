@@ -47,7 +47,7 @@ registerForm.addEventListener("submit", (e) => {
     let userID = document.getElementById("register-id").value;
     let userPassword = document.getElementById("register-password").value;
     let userEmail = document.getElementById("register-email").value;
-    sendLoginRequest(userID, userPassword, userEmail);
+    sendRegisterRequest(userID, userPassword, userEmail);
 });
 
 function sendRegisterRequest(userID, userPassword, userEmail) {
@@ -57,7 +57,7 @@ function sendRegisterRequest(userID, userPassword, userEmail) {
 
         }
     };
-    xhttp.open("POST", "http://localhost:8081/SignIn", true);
+    xhttp.open("POST", "http://localhost:8081/CreateUser", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
 
 
