@@ -5,7 +5,15 @@ const path = require('path');
 var cors = require('cors');
 // import handlers
 const firebaseHandler = require('./createUser.js'); // home.js
-
+firebase.initializeApp({
+    apiKey: "AIzaSyCOetUOyMKkAt_P_9xUWkcRB8J5ernXM10",
+    authDomain: "photoit110.firebaseapp.com",
+    projectId: "photoit110",
+    storageBucket: "photoit110.appspot.com",
+    messagingSenderId: "17838263350",
+    appId: "1:17838263350:web:b780ca82fda263eb549c97",
+    measurementId: "G-VC0GJ2GXLT"
+});
 
 // create server
 const app = express();
