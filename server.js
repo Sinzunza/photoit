@@ -21,7 +21,7 @@ firebase.initializeApp({
 
 // import handlers
 const postsHandler = require('./posts.js'); // home.js
-
+const createUserHandler = require('./createUser.js');
 // create server
 const app = express();
 const port = 8081;
@@ -35,6 +35,7 @@ app.use(cors())
 
 // Create post handlers
 app.post('/CreatePost', postsHandler.postCreatePost);
+app.post('/SignIn', createUserHandler.postCreateUser);
 
 // start listening on server
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

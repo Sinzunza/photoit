@@ -20,11 +20,10 @@ function postCreateUser(request, response){
       .then((userCredential) => {
         // Signed in 
         var rootRef = firebase.database().ref();
-        var userRef = rootRef.child('Users');
-        var newUser = userRef.push();
-        newUser.set({
-          UserName: "user2", 
-          ProfilePic: "http://"
+        var userRef = rootRef.child('Users/' + firebase.auth().currentUser.uid);
+        userRef.set({
+          UserName: request.body.userName,
+          ProfilePic: "https://firebasestorage.googleapis.com/v0/b/photoit110.appspot.com/o/profilePhotos%2FdefaultProfilePhoto.png?alt=media&token=3a7c1bcd-7e36-404f-b7b8-3438549c4885"
         });
         console.log("new user created");
       })
