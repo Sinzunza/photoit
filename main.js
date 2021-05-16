@@ -51,13 +51,14 @@ registerForm.addEventListener("submit", (e) => {
 });
 
 function sendRegisterRequest(userID, userPassword, userEmail) {
+    
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
 
         }
     };
-    xhttp.open("POST", "http://localhost:8081/SignIn", true);
+    xhttp.open("POST", "http://localhost:8081/CreateUser", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
 
 
