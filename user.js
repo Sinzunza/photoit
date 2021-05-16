@@ -35,8 +35,27 @@ function postCreateUser(request, response){
 
 }
 
+function postSignIn(request, response){
+
+  var email = request.body.email;
+  var password = request.body.password;
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+
+}
+
 module.exports = {
-  postCreateUser
+  postCreateUser,
+  postSignIn
 };
 
 

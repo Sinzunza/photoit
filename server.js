@@ -19,9 +19,6 @@ firebase.initializeApp({
     measurementId: "G-VC0GJ2GXLT"
 });
 
-// import handlers
-const postsHandler = require('./posts.js'); // home.js
-const createUserHandler = require('./createUser.js');
 // create server
 const app = express();
 const port = 8081;
@@ -31,11 +28,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors())
+app.use(cors());
+
+// import handlers
+const postsHandler = require('./posts.js');
+const createUserHandler = require('./user.js');
 
 // Create post handlers
 app.post('/CreatePost', postsHandler.postCreatePost);
-app.post('/SignIn', createUserHandler.postCreateUser);
+app.post('/CreateUser', createUserHandler.postCreateUser);
+app.post('/SignIn', createUserHandler.postSignIn);
 
 // start listening on server
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
