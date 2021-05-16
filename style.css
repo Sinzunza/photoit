@@ -14,6 +14,7 @@
 }
 
 .login-box{
+    opacity: .90;
     width: 380px;
     height: 480px;
     position: relative;
@@ -21,7 +22,7 @@
     background: white;
     padding: 5px;
     overflow: hidden;
-    top:10%
+    top:10%;
 }
 
 .button-box{

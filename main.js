@@ -47,7 +47,7 @@ registerForm.addEventListener("submit", (e) => {
     let userID = document.getElementById("register-id").value;
     let userPassword = document.getElementById("register-password").value;
     let userEmail = document.getElementById("register-email").value;
-    sendLoginRequest(userID, userPassword, userEmail);
+    sendRegisterRequest(userID, userPassword, userEmail);
 });
 
 function sendRegisterRequest(userID, userPassword, userEmail) {
