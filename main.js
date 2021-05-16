@@ -23,9 +23,10 @@ loginForm.addEventListener("submit", (e) => {
     let userID = document.getElementById("login-id").value;
     let userPassword = document.getElementById("login-password").value;
     sendLoginRequest(userID, userPassword);
+    event.preventDefault();
 });
 
-function sendLoginRequest(user, pw) {
+function sendLoginRequest(userEmail, userPassword) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
@@ -37,7 +38,7 @@ function sendLoginRequest(user, pw) {
 
 
     
-    var data = {userName: user, password: pw};
+    var data = {email: userEmail, password: userPassword};
     
     xhttp.send(JSON.stringify(data));
 }
@@ -48,9 +49,12 @@ registerForm.addEventListener("submit", (e) => {
     let userPassword = document.getElementById("register-password").value;
     let userEmail = document.getElementById("register-email").value;
     sendRegisterRequest(userID, userPassword, userEmail);
+    event.preventDefault();
 });
 
 function sendRegisterRequest(userID, userPassword, userEmail) {
+
+    console.log("HERE!");
     
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

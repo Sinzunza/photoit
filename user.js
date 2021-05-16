@@ -44,9 +44,11 @@ function postSignIn(request, response){
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
+    console.log("sign in successful.");
     // ...
   })
   .catch((error) => {
+    console.log("sign in unsuccessful.");
     var errorCode = error.code;
     var errorMessage = error.message;
   });
