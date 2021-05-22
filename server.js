@@ -34,6 +34,9 @@ app.use(cors());
 const postsHandler = require('./posts.js');
 const createUserHandler = require('./user.js');
 
+// Get Request
+app.get('/GetUserProfile', createUserHandler.getUserName);
+
 // Create post handlers
 app.post('/CreatePost', postsHandler.postCreatePost);
 app.post('/CreateUser', createUserHandler.postCreateUser);

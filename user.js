@@ -3,11 +3,18 @@ var firebase = require('firebase/app');
   require('firebase/auth');
   require('firebase/database');
 
-function getUserName(){
-    var db = firebase.database();
-    var ref = db.ref("Users");
-    console.log("getting username");
+function getUserName(request, response){
 
+    // var userID = request.params.userID;
+    var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
+
+    var target = 'Users/' + tempUserID; 
+    var ref = firebase.database().ref(target);
+
+    ref.once('value', function(snapshot){
+      console.log(snapshot);
+      response.json(snapshot);
+    });
 }
 
 function postCreateUser(request, response){
@@ -56,6 +63,7 @@ function postSignIn(request, response){
 }
 
 module.exports = {
+  getUserName,
   postCreateUser,
   postSignIn
 };
