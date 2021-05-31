@@ -16,7 +16,6 @@ function getUserName(request, response){
     console.log(snapshot);
     response.json(snapshot);
   });
-
 }
 
 // post functions
