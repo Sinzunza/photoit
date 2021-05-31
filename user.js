@@ -7,13 +7,13 @@ var firebase = require('firebase/app');
 function getUserName(request, response){
 
   // var userID = request.params.userID;
-  var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
-
-  var target = 'Users/' + tempUserID; 
+  // var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
+  var userID = firebase.auth().currentUser.uid;
+  var target = 'Users/' + userID; 
   var ref = firebase.database().ref(target);
 
   ref.once('value', function(snapshot){
-    console.log(snapshot);
+    // console.log(snapshot);
     response.json(snapshot);
   });
 }
