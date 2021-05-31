@@ -3,13 +3,23 @@ var firebase = require('firebase/app');
   require('firebase/auth');
   require('firebase/database');
 
-function getUserName(){
-    var db = firebase.database();
-    var ref = db.ref("Users");
-    console.log("getting username");
+// get functions
+function getUserName(request, response){
+
+  // var userID = request.params.userID;
+  var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
+
+  var target = 'Users/' + tempUserID; 
+  var ref = firebase.database().ref(target);
+
+  ref.once('value', function(snapshot){
+    console.log(snapshot);
+    response.json(snapshot);
+  });
 
 }
 
+// post functions
 function postCreateUser(request, response){
 
     console.log("landing page");
@@ -42,20 +52,22 @@ function postSignIn(request, response){
 
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
-    // Signed in
     var user = userCredential.user;
     console.log("sign in successful.");
-    // ...
+    response.send("successful");
   })
   .catch((error) => {
-    console.log("sign in unsuccessful.");
     var errorCode = error.code;
     var errorMessage = error.message;
+    console.log("sign in unsuccessful.");
+    console.log("Error " + errorCode + ": " + errorMessage + ".\n");
+    response.send("unsuccessful");
   });
 
 }
 
 module.exports = {
+  getUserName,
   postCreateUser,
   postSignIn
 };

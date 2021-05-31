@@ -53,8 +53,6 @@ registerForm.addEventListener("submit", (e) => {
 });
 
 function sendRegisterRequest(userID, userPassword, userEmail) {
-
-    console.log("HERE!");
     
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

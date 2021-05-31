@@ -33,11 +33,20 @@ app.use(cors());
 // import handlers
 const postsHandler = require('./posts.js');
 const createUserHandler = require('./user.js');
+const commentHandler = require('./comments.js');
 
-// Create post handlers
+// get handlers
+app.get('/GetPost', postsHandler.getPost);
+app.get('/GetUsersPosts', postsHandler.getUsersPosts);
+app.get('/GetUserProfile', createUserHandler.getUserName);
+app.get('/getComments', commentHandler.getComments);
+
+
+// post handlers
 app.post('/CreatePost', postsHandler.postCreatePost);
 app.post('/CreateUser', createUserHandler.postCreateUser);
 app.post('/SignIn', createUserHandler.postSignIn);
+app.post('/postComments', commentHandler.postComments);
 
 // start listening on server
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
