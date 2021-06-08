@@ -181,6 +181,11 @@ body{
     background:linear-gradient(235deg, #772aff, #010615, #2196f3);
 }
 
+.box:nth-child(10):before,
+.box:nth-child(10):after{
+    background:linear-gradient(235deg, #89ff00, #010615, #00bcd4);
+}
+
 .box .content{
     position: absolute;
     bottom: 0;

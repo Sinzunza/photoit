@@ -1,7 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+
 *{
     margin: 0;
     padding: 0;
-    font-family: sans-serif
+    font-family: 'Poppins', sans-serif;
+}
+
+a{
+text-decoration: none;
+}
+header{
+display: -webkit-flex;
+display: -moz-flex;
+display: -ms-flex;
+display: -o-flex;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 30px 70px;
+}
+
+header img{
+width: 150px;
+height: 150px;
+}
+
+.logo{
+cursor: pointer;
+}
+
+.nav-area{
+list-style: none;
+}
+
+.nav-area li{
+display: inline-block;
+padding: 0 15px;
+text-transform: uppercase;
+}
+
+.nav-area li a{
+transition: .3s;
+color: #fff;
+}
+
+.nav-area li a:hover{
+color: #75849d
+}
+
+#navbar{
+max-width: 1000px;
+margin:auto;
+}
+
+.btn-area{
+cursor: pointer;
+color: #fff;
+font-size: 16px;
+letter-spacing: 2px;
+text-transform: uppercase;
+padding: 10px 30px;
+border-radius: 5px;
+background: #75849d;
 }
 
 .login-page{
@@ -18,11 +78,10 @@
     width: 380px;
     height: 480px;
     position: relative;
-    margin: 6% auto;
+    margin: 2% auto;
     background: white;
     padding: 5px;
     overflow: hidden;
-    top:10%;
 }
 
 .button-box{
