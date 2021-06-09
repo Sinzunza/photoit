@@ -51,7 +51,6 @@ header img{
 
 #navbar{
     width: 1200px;
-    
 }
 
 .btn-area{
@@ -65,10 +64,20 @@ header img{
     background: #75849d;
 }
 
+.user_info{
+    margin: auto;
+    margin-bottom: 50px;
+    width: 50%;
+}
+
+.user_info p{
+    color: white;
+}
+
+
 body{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     min-height: 100vh;
     background: #010615;
@@ -139,17 +148,17 @@ body{
 
 .box:nth-child(3n):before,
 .box:nth-child(3n):after{
-    background:linear-gradient(235deg, #89ff00, #010615, #00bcd4);
+    background:linear-gradient(235deg, #C0C0C0, #010615, #C0C0C0);
 }
 
 .box:nth-child(3n+1):before,
 .box:nth-child(3n+1):after{
-    background:linear-gradient(235deg, #ff005e, #010615, #fbff00);
+    background:linear-gradient(235deg, #CD7F32, #010615, #CD7F32);
 }
 
 .box:nth-child(3n+2):before,
 .box:nth-child(3n+2):after{
-    background:linear-gradient(235deg, #772aff, #010615, #2196f3);
+    background:linear-gradient(235deg, 	#FFD700, #010615, 	#FFD700);
 }
 
 .box .content{
@@ -185,4 +194,8 @@ body{
     color: #fff;
     font-weight: 200;
     letter-spacing: 2px;
+}
+
+.user_info{
+    text-align:center;
 }

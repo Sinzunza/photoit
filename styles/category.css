@@ -51,7 +51,6 @@ header img{
 
 #navbar{
     width: 1200px;
-    
 }
 
 .btn-area{
@@ -68,7 +67,6 @@ header img{
 body{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     min-height: 100vh;
     background: #010615;

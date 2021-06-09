@@ -51,7 +51,6 @@ header img{
 
 #navbar{
     width: 1200px;
-    
 }
 
 .btn-area{
@@ -65,10 +64,20 @@ header img{
     background: #75849d;
 }
 
+.user_info{
+    margin: auto;
+    margin-bottom: 50px;
+    width: 50%;
+}
+
+.user_info p{
+    color: white;
+}
+
+
 body{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     min-height: 100vh;
     background: #010615;
