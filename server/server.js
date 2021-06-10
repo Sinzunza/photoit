@@ -31,21 +31,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 // import handlers
+const redirectHandler = require('./redirect.js');
 const postsHandler = require('./posts.js');
-const createUserHandler = require('./user.js');
+const userHandler = require('./user.js');
 const commentHandler = require('./comments.js');
+const searchHandler = require('./searchDataBase.js');
+
+//redirect
+app.get('/', redirectHandler.getHome);
+
+
 // get handlers
 app.get('/GetPost', postsHandler.getPost);
 app.get('/GetUsersPosts', postsHandler.getUsersPosts);
 app.get('/GetCategoryPosts', postsHandler.getCategoryPosts);
-app.get('/GetUserName', createUserHandler.getUserName);
+app.get('/GetUserName', userHandler.getUserName);
 app.get('/getComments', commentHandler.getComments);
 app.get('/searchDataBase', createUserHandler.searchDataBase); 
 
 // post handlers
 app.post('/CreatePost', postsHandler.postCreatePost);
-app.post('/CreateUser', createUserHandler.postCreateUser);
-app.post('/SignIn', createUserHandler.postSignIn);
+app.post('/CreateUser', userHandler.postCreateUser);
+app.post('/SignIn', userHandler.postSignIn);
 app.post('/postComments', commentHandler.postComments);
 app.post('/PostAddLike', postsHandler.postAddLike);
 app.post('/PostRemoveLike', postsHandler.postRemoveLike);

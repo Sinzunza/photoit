@@ -36,13 +36,20 @@ function sendLoginRequest(userEmail, userPassword) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+            var result = this.response;
+            if (result == "successful") {
+                // do something
+                window.location.href = "http://localhost:8081/" + this.response;
+            }
+            else if (result == "unsuccessful") {
+                // do something
+                console.log("signin unsuccessful");
+            }
 
         }
     };
     xhttp.open("POST", "http://localhost:8081/SignIn", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
-
-
     
     var data = {email: userEmail, password: userPassword};
     
