@@ -3,7 +3,7 @@ var firebase = require('firebase/app');
   require('firebase/auth');
   require('firebase/database');
 
-// get functions
+///////////////////////////////////////////////////////////////////////// get functions
 function getUserName(request, response){
 
   var userID = request.query.userID;
@@ -17,7 +17,23 @@ function getUserName(request, response){
   });
 }
 
-// post functions
+function getUserAuthentication(request, response){
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      console.log("user signed in");
+      response.send("true");
+    } else {
+      // No user is signed in.
+      console.log("user not signed in");
+      response.send("false");
+    }
+  });
+
+}
+
+/////////////////////////////////////////////////////////////////////////// post functions
 function postCreateUser(request, response){
 
     var email = request.body.email;
@@ -65,6 +81,8 @@ function postSignIn(request, response){
 
 }
 
+
+///////////////////////////////////////////////////////////////////////// other
 function searchDataBase(request, response) {
   var query = "inzomniac";//request.query.userNameToLookFor; 
   var ref = firebase.database().ref('Users'); //.ref(target); 
@@ -77,6 +95,7 @@ function searchDataBase(request, response) {
 
 module.exports = {
   getUserName,
+  getUserAuthentication,
   postCreateUser,
   postSignIn, 
   searchDataBase

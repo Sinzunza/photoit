@@ -35,7 +35,6 @@ const redirectHandler = require('./redirect.js');
 const postsHandler = require('./posts.js');
 const userHandler = require('./user.js');
 const commentHandler = require('./comments.js');
-const searchHandler = require('./searchDataBase.js');
 
 //redirect
 app.get('/', redirectHandler.getHome);
@@ -45,6 +44,7 @@ app.get('/', redirectHandler.getHome);
 app.get('/GetPost', postsHandler.getPost);
 app.get('/GetUsersPosts', postsHandler.getUsersPosts);
 app.get('/GetCategoryPosts', postsHandler.getCategoryPosts);
+app.get('/GetUserAuthentication', userHandler.getUserAuthentication);
 app.get('/GetUserName', userHandler.getUserName);
 app.get('/getComments', commentHandler.getComments);
 app.get('/searchDataBase', userHandler.searchDataBase); 
