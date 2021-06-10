@@ -1,0 +1,1 @@
+import globalVal from './globalVar';

@@ -63,10 +63,21 @@ function postSignIn(request, response){
 
 }
 
+function searchDataBase(request, response) {
+  var query = "inzomniac";//request.query.userNameToLookFor; 
+  var ref = firebase.database().ref('Users'); //.ref(target); 
+  ref.orderByChild("UserName").equalTo(query).on("value", function(snapshot){
+      const obj = snapshot.val();
+      console.log(obj);
+      response.send(obj);
+  })
+}
+
 module.exports = {
   getUserName,
   postCreateUser,
-  postSignIn
+  postSignIn, 
+  searchDataBase
 };
 
 
