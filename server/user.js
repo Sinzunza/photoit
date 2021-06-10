@@ -33,6 +33,7 @@ function postCreateUser(request, response){
           UserName: request.body.userName,
           ProfilePic: "https://firebasestorage.googleapis.com/v0/b/photoit110.appspot.com/o/profilePhotos%2FdefaultProfilePhoto.png?alt=media&token=3a7c1bcd-7e36-404f-b7b8-3438549c4885"
         });
+        console.log("create user successful");
         response.send("successful");
       })
       .catch((error) => {
@@ -52,6 +53,7 @@ function postSignIn(request, response){
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     var user = userCredential.user;
+    console.log("login successful");
     response.send("successful");
   })
   .catch((error) => {

@@ -47,7 +47,7 @@ app.get('/GetUsersPosts', postsHandler.getUsersPosts);
 app.get('/GetCategoryPosts', postsHandler.getCategoryPosts);
 app.get('/GetUserName', userHandler.getUserName);
 app.get('/getComments', commentHandler.getComments);
-app.get('/searchDataBase', createUserHandler.searchDataBase); 
+app.get('/searchDataBase', userHandler.searchDataBase); 
 
 // post handlers
 app.post('/CreatePost', postsHandler.postCreatePost);

@@ -1,4 +1,4 @@
-import globalVal from './globalVar';
+//import globalVal from './globalVar';
 
 function register(){
     let button = document.getElementById("button1");
@@ -20,17 +20,27 @@ function login(){
     button1.style.left = "0px";
 }
 
-var loginForm;
-function setLoginForm(){
-    loginForm = document.getElementById("login");
-}
-document.onload = setLoginForm();
-loginForm.addEventListener("submit", (e) => {
-    let userID = document.getElementById("login-id").value;
-    let userPassword = document.getElementById("login-password").value;
-    sendLoginRequest(userID, userPassword);
-    event.preventDefault();
-});
+window.onload = function() {
+
+    var loginForm = document.getElementById("login");
+    loginForm.addEventListener("submit", (e) => {
+        console.log("HERE");
+        let userID = document.getElementById("login-id").value;
+        let userPassword = document.getElementById("login-password").value;
+        sendLoginRequest(userID, userPassword);
+        event.preventDefault();
+    });
+
+    const registerForm = document.getElementById("register");
+    registerForm.addEventListener("submit", (e) => {
+        let userID = document.getElementById("register-id").value;
+        let userPassword = document.getElementById("register-password").value;
+        let userEmail = document.getElementById("register-email").value;
+        sendRegisterRequest(userID, userPassword, userEmail);
+        event.preventDefault();
+    });
+
+};
 
 function sendLoginRequest(userEmail, userPassword) {
     var xhttp = new XMLHttpRequest();
@@ -39,7 +49,8 @@ function sendLoginRequest(userEmail, userPassword) {
             var result = this.response;
             if (result == "successful") {
                 // do something
-                window.location.href = "http://localhost:8081/" + this.response;
+                console.log("login successful");
+                window.location.href = "../views/home.html";
             }
             else if (result == "unsuccessful") {
                 // do something
@@ -55,15 +66,6 @@ function sendLoginRequest(userEmail, userPassword) {
     
     xhttp.send(JSON.stringify(data));
 }
-
-const registerForm = document.getElementById("register");
-registerForm.addEventListener("submit", (e) => {
-    let userID = document.getElementById("register-id").value;
-    let userPassword = document.getElementById("register-password").value;
-    let userEmail = document.getElementById("register-email").value;
-    sendRegisterRequest(userID, userPassword, userEmail);
-    event.preventDefault();
-});
 
 function sendRegisterRequest(userID, userPassword, userEmail) {
     
