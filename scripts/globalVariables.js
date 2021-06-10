@@ -1,4 +1,4 @@
 export default {
-    loggedIn: false;
-    userName: "";
+    loggedIn: false,
+    userName: ""
 };

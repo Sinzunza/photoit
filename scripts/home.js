@@ -2,6 +2,8 @@ window.onload = function() {
     getUserAuthentication();
 }
 
+var loggedIn = false;
+
 function getUserAuthentication() {
     
     var xhttp = new XMLHttpRequest();
@@ -12,8 +14,7 @@ function getUserAuthentication() {
             if (result == "true") {
                 console.log("user signed in");
                 // set login button to sign out
-                var userStateBtn = document.getElementById("userStateBtn");
-                userStateBtn.innerHTML = "Sign Out";
+                userState();
 
             }
             else {
@@ -27,4 +28,15 @@ function getUserAuthentication() {
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     xhttp.send();
+}
+
+function userState(){
+    if(!loggedIn){
+        var userStateBtn = document.getElementById("userStateBtn");
+        userStateBtn.innerHTML = "Sign Out";
+    }
+    else{
+        var userStateBtn = document.getElementById("userStateBtn");
+        userStateBtn.innerHTML = "Login";
+    }
 }
