@@ -1,3 +1,5 @@
+import globalVal from './globalVar';
+
 function register(){
     let button = document.getElementById("button1");
     let register = document.getElementById("register");
