@@ -14,17 +14,16 @@ function getUserAuthentication() {
                 // set login button to sign out
                 var userStateBtn = document.getElementById("userStateBtn");
                 userStateBtn.innerHTML = "Sign Out";
-
             }
             else {
-                console.log("user signed in");
+                console.log("user not signed in");
                 // add login button function to route to login page
             }
-
         }
     };
     xhttp.open("GET", "http://localhost:8081/GetUserAuthentication", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     xhttp.send();
+    
 }
