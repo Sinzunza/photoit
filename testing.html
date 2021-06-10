@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title> Test </title>
+  </head>
+  <body>
+
+    <script>
+
+        function doThis() {
+            //postLogin("random20@live.com", "password");
+           // postCreateUser("randomUser", "random20@live.com", "password");
+           //postCreatePost("in n out", "some-url", "Food");
+           // getPost("-MazWSnU6rPF60dwRJhup");
+            //getUsersPosts("7Mqy6lZfcIQVBLMeQ044HcRzGR72");
+
+
+
+          // getCategoryPosts("Food", "day");
+           //getUserName('7Mqy6lZfcIQVBLMeQ044HcRzGR72');
+           //postAddLike("-MazWSnU6rPF60dwRJhu");
+          // postRemoveLike("-MazWSnU6rPF60dwRJhu");
+        }
+
+        function postLogin(emailUser, passwordUser) {
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    var result = this.response;
+                    if (result == "successful") {
+                        // do something
+                        console.log("signin successful");
+                    }
+                    else if (result == "unsuccessful") {
+                        // do something
+                        console.log("signin unsuccessful");
+                    }
+                }
+            };
+
+            xhttp.open("POST", "http://localhost:8081/SignIn", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+    
+            var data = {email: emailUser, password: passwordUser};
+            
+            xhttp.send(JSON.stringify(data));
+        }
+
+        function postCreateUser(userNameUser, emailUser, passwordUser) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    var result = this.response;
+                    if (result == "successful") {
+                        // do something
+                        console.log("create user successful");
+                    }
+                    else if (result == "unsuccessful") {
+                        // do something
+                        console.log("create user unsuccessful");
+                    }
+                }
+            };
+            xhttp.open("POST", "http://localhost:8081/CreateUser", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            
+            var data = {userName: userNameUser, email: emailUser, password: passwordUser};
+            
+            xhttp.send(JSON.stringify(data));
+        }
+
+        function postCreatePost(captionUser, imageURLUser, categoryUser) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    var result = this.response;
+                    if (result == "successful") {
+                        // do something
+                        console.log("create post successful");
+                    }
+                    else if (result == "unsuccessful") {
+                        // do something
+                        console.log("create post unsuccessful");
+                    }
+                }
+            };
+            xhttp.open("POST", "http://localhost:8081/CreatePost", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            
+            var data = {caption: captionUser, imageURL: imageURLUser, category: categoryUser};
+            
+            xhttp.send(JSON.stringify(data));
+        }
+
+        function postAddLike(postIDUser) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    
+                }
+            };
+            xhttp.open("POST", "http://localhost:8081/PostAddLike", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            
+            var data = {postID: postIDUser};
+            
+            xhttp.send(JSON.stringify(data));
+        }
+
+        function postRemoveLike(postIDUser) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    
+                }
+            };
+            xhttp.open("POST", "http://localhost:8081/PostRemoveLike", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            
+            var data = {postID: postIDUser};
+            
+            xhttp.send(JSON.stringify(data));
+        }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function getPost(postIDUser) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    var result = this.response;
+                    if (result == "unsuccessful") {
+                        // do something
+                        console.log("get post unsuccessful");
+                    }
+                    else {
+                        result = JSON.parse(this.response);
+                        var dateTemp = new Date(result.date);
+                        console.log(dateTemp.toLocaleDateString());
+                    }
+
+                }
+            };
+            var params = "?" + "postID=" + postIDUser;
+            xhttp.open("GET", "http://localhost:8081/GetPost" + params, true);
+            
+            xhttp.send();
+        }
+
+        function getUsersPosts(userUser) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    var result = this.response;
+                    if (result == "empty") {
+                        // do something
+                        console.log("no posts exists");
+                    }
+                    else {
+                        // do something
+                        result = JSON.parse(this.response);
+                        console.log("posts exists");
+                    }
+                }
+            };
+            var params = "?" + "user=" + userUser;
+            xhttp.open("GET", "http://localhost:8081/GetUsersPosts" + params, true);
+            
+            xhttp.send();
+        }
+
+        function getCategoryPosts(categoryUser, filterTypeUser) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    var result = this.response;
+                    if (result == "unsuccessful") {
+                        // do something
+                        console.log("unsuccessful");
+                    }
+                    else if (result == "empty") {
+                        // do something
+                        console.log("no posts exists");
+                    }
+                    else {
+                        // do something
+                        result = JSON.parse(this.response);
+                        console.log("posts exists");
+                    }
+                    
+                }
+            };
+            var params = "?" + "category=" + categoryUser + "&filterType=" + filterTypeUser;
+            xhttp.open("GET", "http://localhost:8081/GetCategoryPosts" + params, true);
+            
+            xhttp.send();
+        }
+
+        function getUserName(userIDUser) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                    
+                }
+            };
+            var params = "?" + "userID=" + userIDUser;
+            xhttp.open("GET", "http://localhost:8081/getUserName" + params, true);
+            
+            xhttp.send();
+        }
+
+    </script>
+    
+    <h1> Test </h1>
+
+    <button type="button" onClick="doThis()">Test</button>
+
+  </body>
+</html>

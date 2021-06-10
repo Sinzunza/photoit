@@ -14,22 +14,16 @@ function getComments(reequest, response) {
 }
 function postComments(request, response) {
     // var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
-    var tempPostID = '-MaufwbI_kZpTGMGpqL4'; 
+    var tempPostID = request.body.postID; 
     var target = 'Posts/' + tempPostID; 
     var ref = firebase.database().ref(target);
 
-    // var tempPostData = {
-    //     user: 'UserID???', 
-    //     imageURL: 'someURL', 
-    //     date: 'Yesterday', 
-    //     likes: 10, 
-    //     category: 'Funny', 
-    // }
+    var userID = firebase.auth().currentUser.uid;
 
     var newComments = {
-        user: 'me the person who post the comment', 
+        user: userID, 
         content: 'comment content 2', 
-        date: 'Date.date'
+        date: Date.now()
     }
     
     ref.child('comments').push(newComments, function(err){

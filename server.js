@@ -38,7 +38,8 @@ const commentHandler = require('./comments.js');
 // get handlers
 app.get('/GetPost', postsHandler.getPost);
 app.get('/GetUsersPosts', postsHandler.getUsersPosts);
-app.get('/GetUserProfile', createUserHandler.getUserName);
+app.get('/GetCategoryPosts', postsHandler.getCategoryPosts);
+app.get('/GetUserName', createUserHandler.getUserName);
 app.get('/getComments', commentHandler.getComments);
 
 
@@ -47,6 +48,9 @@ app.post('/CreatePost', postsHandler.postCreatePost);
 app.post('/CreateUser', createUserHandler.postCreateUser);
 app.post('/SignIn', createUserHandler.postSignIn);
 app.post('/postComments', commentHandler.postComments);
+app.post('/PostAddLike', postsHandler.postAddLike);
+app.post('/PostRemoveLike', postsHandler.postRemoveLike);
+
 
 // start listening on server
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
