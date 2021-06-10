@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhotoIT - Homepage</title>
+<link rel="stylesheet" type="text/css" href="../styles/upload.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="../scripts/upload.js"></script>
+</head>
+<body>
+    <div id="navbar">
+        <header nav-bar>
+            <img src="../photos/PhotoIt_Logo.png" alt="" class="logo">
+            <nav>
+                <ul class="nav-area">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Appreciated</a></li>
+                    <li><a href="#">Upload</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-area">Login</a>
+        </header>
+        <div class="category_info">
+            <b id="category_name" style="color:white;">UPLOAD A PHOTO</b>
+            <form action="">
+                <div><input type="file" id="myFile" name="filename" style="color:white;"></div>
+                <div><p style="color:white;">Title <input type="text" id="photoname" name="Name"></p></div>
+                <div><p style="color:white;">Description <input type="text" id="photodesc" name="Description"></p></div>
+                <div><input type="submit"></div>
+              </form>
+        </div>
+    </div>
+</body>
+</html>
