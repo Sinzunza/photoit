@@ -20,7 +20,11 @@ function login(){
     button1.style.left = "0px";
 }
 
-const loginForm = document.getElementById("login");
+var loginForm;
+function setLoginForm(){
+    loginForm = document.getElementById("login");
+}
+document.onload = setLoginForm();
 loginForm.addEventListener("submit", (e) => {
     let userID = document.getElementById("login-id").value;
     let userPassword = document.getElementById("login-password").value;
