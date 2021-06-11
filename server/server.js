@@ -58,6 +58,5 @@ app.post('/postComments', commentHandler.postComments);
 app.post('/PostAddLike', postsHandler.postAddLike);
 app.post('/PostRemoveLike', postsHandler.postRemoveLike);
 
-
 // start listening on server
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

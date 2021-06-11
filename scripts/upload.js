@@ -1,33 +1,36 @@
-// firebase
-// var firebase = require('firebase/app');
-// const { type } = require('os');
-//   require('firebase/auth');
-//   require('firebase/database');
 
-firebase.initializeApp({
+
+var firebaseConfig = {
     apiKey: "AIzaSyCOetUOyMKkAt_P_9xUWkcRB8J5ernXM10",
     authDomain: "photoit110.firebaseapp.com",
+    databaseURL: "https://photoit110-default-rtdb.firebaseio.com",
     projectId: "photoit110",
     storageBucket: "photoit110.appspot.com",
     messagingSenderId: "17838263350",
     appId: "1:17838263350:web:b780ca82fda263eb549c97",
     measurementId: "G-VC0GJ2GXLT"
-});
+};
 
-function uploadPicture()
-{
-    console.log("Uploading a file");
-    var storageRef = firebase.storage().ref(); 
-    var myFile = document.getElementById("myFile"); 
-    // console.log(typeof(myFile));
-    // console.log("My File: " + myFile); 
-    storageRef.put(myFile).then((snapshot) => {
-        console.log('Uploaded a File!');
-    });
+firebase.initializeApp(firebaseConfig);
 
+var file = {};
+
+function chooseFile(e) {
+    file = e.target.files[0];
 }
 
+function uploadPicture() {
 
+    var storageRef = firebase.storage().ref("posts/" + create_UUID() + ".jpg");
+
+    storageRef.put(file).then(function() {
+        console.log("upload successful");
+    }).catch(error => {
+        console.log("upload failed");
+        console.log("Error: " + error);
+    })
+
+}
 
 function postCreatePost(captionUser, imageURLUser, categoryUser) {
     var xhttp = new XMLHttpRequest();
@@ -50,4 +53,14 @@ function postCreatePost(captionUser, imageURLUser, categoryUser) {
     var data = {caption: captionUser, imageURL: imageURLUser, category: categoryUser};
     
     xhttp.send(JSON.stringify(data));
+}
+
+function create_UUID(){
+    var dt = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (dt + Math.random()*16)%16 | 0;
+        dt = Math.floor(dt/16);
+        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+    });
+    return uuid;
 }
