@@ -118,15 +118,14 @@ function getCategoryPosts(request, response){
 
 //////////////////////////////////////////////////////////////////////////// posts functions
 function postCreatePost(request, response){
-
+  console.log("Create Post");
   var postsDB =  firebase.database().ref('Posts/');
   var userID = firebase.auth().currentUser.uid;
-  var ref = firebase.database().ref('Users'); //.ref(target); 
+  var ref = firebase.database().ref('Users/' + userID); //.ref(target); 
   var userName; 
-  ref.orderByChild("UserName").equalTo(userID).once("value", function(snapshot){
-    userName = snapshot.val().userName; 
-  }); 
-  postsDB.push().set({
+  ref.once("value", function(snapshot){
+    userName = snapshot.val().UserName; 
+    postsDB.push().set({
       userName: userName,
       imageURL: request.body.imageURL,
       category: request.body.category,
@@ -136,7 +135,7 @@ function postCreatePost(request, response){
   });
 
   response.send("successful");
-
+  }); 
 }
 
 function postAddLike(request, response){

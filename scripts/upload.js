@@ -20,11 +20,19 @@ function chooseFile(e) {
 }
 
 function uploadPicture() {
-
-    var storageRef = firebase.storage().ref("posts/" + create_UUID() + ".jpg");
+    var createID = create_UUID(); 
+    var storageRef = firebase.storage().ref("posts/" + createID);
 
     storageRef.put(file).then(function() {
         console.log("upload successful");
+        // uploaded, get URL
+        firebase.storage().ref('posts/' + createID).getDownloadURL().then(imgUrl => {
+            var captionUser = document.getElementById("photoname").value; 
+            var category = document.getElementById("categorymenu").value;
+            // console.log(imgUrl, captionUser, category);
+            postCreatePost(captionUser, imgUrl, category);
+        }); 
+
     }).catch(error => {
         console.log("upload failed");
         console.log("Error: " + error);
