@@ -14,7 +14,7 @@ function getUser() {
             else {
                 // user found, display
                 let userFound = document.getElementById("foundUser");
-                let userLink = ""
+                let userLink = "../views/profile/" + result[Object.keys(result)[0]].UserName
                 userFound.innerHTML = "<div class=\"imgBox\">" +
                                             "<a href=\"" + userLink + "\" >" +
                                             "<img src=\"" + result[Object.keys(result)[0]].ProfilePic + "\">" +
