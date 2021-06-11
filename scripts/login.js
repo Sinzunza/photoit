@@ -93,3 +93,24 @@ function sendRegisterRequest(userID, userPassword, userEmail) {
     
     xhttp.send(JSON.stringify(data));
 }
+
+function showLoginPassword(){
+    var passwordBox = document.getElementById("login-password");
+    if(passwordBox.type === "password"){
+        passwordBox.type = "text";
+    }
+    else{
+        passwordBox.type = "password";
+    }
+}
+
+
+function showRegisterPassword(){
+    var passwordBox = document.getElementById("register-password");
+    if(passwordBox.type === "password"){
+        passwordBox.type = "text";
+    }
+    else{
+        passwordBox.type = "password";
+    }
+}

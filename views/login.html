@@ -13,7 +13,7 @@
     <div class="login-page">
         <div id="navbar">
             <header nav-bar>
-                <img src="../photos/PhotoIt_Logo.png" alt="" class="logo">
+                <a href="../views/home.html"> <img src="../photos/PhotoIt_Logo.png" alt="" class="logo"></a>
                 <nav>
                     <ul class="nav-area">
                         <li><a href="../views/home.html">Home</a></li>
@@ -34,13 +34,15 @@
             </div>
             <form id="login" class="input-container">
                 <input type="text" class="input-field" id="login-id" placeholder="E-mail" required>
-                <input type="text" class="input-field" id="login-password" placeholder="Password" required>
+                <input type="password" class="input-field" id="login-password" placeholder="Password" required>
+                <input id="passwordInput" type="checkbox" onclick="showLoginPassword()">&ensp;Show Password
                 <button type="submit" class="button-submit">Login</button>
             </form>
             <form id="register" class="input-container">
                 <input type="text" id="register-id" class="input-field" placeholder="User ID" required>
                 <input type="text" id="register-email" class="input-field" placeholder="Email Address" required>
-                <input type="text" id="register-password" class="input-field" placeholder="Password" required>
+                <input type="password" id="register-password" class="input-field" placeholder="Password" required>
+                <input id="registerInput" type="checkbox" onclick="showRegisterPassword()">&ensp;Show Passwords
                 <button type="submit" class="button-submit">Register</button>
             </form>
         </div>
