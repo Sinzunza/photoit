@@ -10,9 +10,25 @@ function getUser() {
             if (result == null) {
                 // no user found
                 console.log("no user found");
+
+                var box = document.getElementsByClassName("box")[0];
+                if (box) {
+                    box.remove();
+                }
+
+                let userFound = document.getElementById("foundUser");
+                userFound.innerHTML =   "<div class=\"noUser\">" +
+                                            "<p> no user found </p>" +
+                                        "</div>"
+
             }
             else {
                 // user found, display
+                var noUser = document.getElementsByClassName("noUser")[0];
+                if (noUser) {
+                    noUser.remove();
+                }
+
                 let userFound = document.getElementById("foundUser");
                 let userLink = "../views/profile/" + result[Object.keys(result)[0]].UserName
                 userFound.innerHTML =   "<div class=\"box\">" +

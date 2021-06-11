@@ -128,8 +128,9 @@ function searchDataBase(request, response) {
   var ref = firebase.database().ref('Users'); //.ref(target); 
   ref.orderByChild("UserName").equalTo(query).on("value", function(snapshot){
 
+    const obj = snapshot.val();
+
     if (snapshot.numChildren() >= 1) {
-      const obj = snapshot.val();
       console.log(obj);
       response.send(obj);
     }

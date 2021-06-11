@@ -11,18 +11,17 @@ function getUserAuthentication() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
 
-            if (result == "true") {
-                console.log("user signed in");
-                // set login button to sign out
-                loggedIn = true;
-                userState();
-
-            }
-            else {
+            if (result == "false") {
                 console.log("user not signed in");
                 loggedIn = false;
                 userState();
                 // add login button function to route to login page
+            }
+            else {
+                console.log("user signed in");
+                // set login button to sign out
+                loggedIn = true;
+                userState();
             }
         }
     };
