@@ -5,8 +5,12 @@
 <title>PhotoIT - Homepage</title>
 <link rel="stylesheet" type="text/css" href="../styles/upload.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
 <script src="../scripts/userAuth.js"></script>
 <script src="../scripts/upload.js"></script>
+
 </head>
 <body>
     <div id="navbar">
@@ -26,7 +30,7 @@
         <div class="category_info">
             <b id="category_name" style="color:white;">UPLOAD A PHOTO</b>
             <form action="">
-                <div><input type="file" id="myFile" name="filename" style="color:white;"></div>
+                <div><input type="file" id="myFile" name="filename" onchange="chooseFile(event)" style="color:white;"></div>
                 <div><p style="color:white;">Title <input type="text" id="photoname" name="Name"></p></div>
                 <label for="categories" style="color:white;">Choose a category:</label>
                 <select id="categorymenu" name="categories">
@@ -40,7 +44,7 @@
                   <option value="Funny">Tech</option>
                   <option value="Funny">Gaming</option>
                 </select>
-                <div><input type="submit"></div>
+                <div><button type="button" onclick="uploadPicture()">Upload</button></div>
               </form>
         </div>
     </div>
