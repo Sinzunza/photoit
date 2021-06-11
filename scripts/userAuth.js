@@ -20,6 +20,8 @@ function getUserAuthentication() {
             }
             else {
                 console.log("user not signed in");
+                loggedIn = false;
+                userState();
                 // add login button function to route to login page
             }
         }

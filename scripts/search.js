@@ -13,7 +13,17 @@ function getUser() {
             }
             else {
                 // user found, display
-                console.log(result);
+                let userFound = document.getElementById("foundUser");
+                let userLink = ""
+                userFound.innerHTML = "<div class=\"imgBox\">" +
+                                            "<a href=\"" + userLink + "\" >" +
+                                            "<img src=\"" + result[Object.keys(result)[0]].ProfilePic + "\">" +
+                                            "</a>" +
+                                        "</div>" +
+                                        "<div class=\"content\">" +
+                                            "<h2>" + result[Object.keys(result)[0]].UserName + "</h2>" +
+                                        "</div>"
+                console.log(result[Object.keys(result)[0]]);
             }
         }
     };
