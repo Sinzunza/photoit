@@ -4,6 +4,21 @@ var firebase = require('firebase/app');
   require('firebase/database');
 
 ///////////////////////////////////////////////////////////////////////// get functions
+function getUserInfo(request, response){
+
+  var userID = request.query.userID;
+
+  var refUser = firebase.database().ref('Users/' + userID);
+
+  refUser.once('value', function(snapshot){
+
+    const obj = snapshot.val();
+    response.send(obj);
+
+  });
+
+}
+
 function getUserName(request, response){
 
   var userID = request.query.userID;
@@ -23,7 +38,8 @@ function getUserAuthentication(request, response){
     if (user) {
       // User is signed in.
       console.log("user signed in");
-      response.send("true");
+      var uid = firebase.auth().currentUser.uid;
+      response.send(uid);
     } else {
       // No user is signed in.
       console.log("user not signed in");
@@ -126,6 +142,7 @@ function searchDataBase(request, response) {
 }
 
 module.exports = {
+  getUserInfo,
   getUserName,
   getUserAuthentication,
   postCreateUser,

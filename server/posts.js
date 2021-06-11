@@ -32,11 +32,11 @@ function getPost(request, response){
 
 function getUsersPosts(request, response){
 
-  var user = request.query.user;
+  var userName = request.query.userName;
 
-  var queryUsersPosts = firebase.database().ref("Posts").orderByChild("user").equalTo(user);
+  var queryUsersPosts = firebase.database().ref("Posts").orderByChild("userName").equalTo(userName);
 
-  queryUsersPosts.on('value', function(snapshot) {
+  queryUsersPosts.once('value', function(snapshot) {
 
     if (snapshot.numChildren() >= 1) {
       response.send(snapshot.val());
