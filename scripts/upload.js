@@ -20,14 +20,19 @@ function chooseFile(e) {
 }
 
 function uploadPicture() {
-
     var storageRef = firebase.storage().ref("posts/" + create_UUID() + ".jpg");
 
+    var uploadMessage = document.getElementById("category_info");
     storageRef.put(file).then(function() {
         console.log("upload successful");
+        document.getElementById("uploadForm").remove()
+        uploadMessage.innerHTML = uploadMessage.innerHTML + "<p style=\"color: green;\"> Upload Successful </p>";
+
     }).catch(error => {
         console.log("upload failed");
         console.log("Error: " + error);
+        document.getElementById("uploadForm").remove()
+        uploadMessage.innerHTML = uploadMessage.innerHTML + "<p style=\"color: red;\"> Upload Unsuccessful </p>";
     })
 
 }
