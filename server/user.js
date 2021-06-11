@@ -108,7 +108,7 @@ function searchDataBase(request, response) {
     }
     else {
       console.log("no user found")
-      response.send("empty");
+      response.send(obj);
     }
 
   })
