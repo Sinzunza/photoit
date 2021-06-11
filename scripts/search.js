@@ -1,3 +1,10 @@
+var userSearch;
+
+function searchUser(){
+    userSearch = document.getElementById("searchID").value;
+    //SEARCH BAR VALUE IS STORED IN userSearch
+}
+
 function getUser(userNameUser) {
     
     var xhttp = new XMLHttpRequest();
