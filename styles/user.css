@@ -195,3 +195,7 @@ body{
     font-weight: 200;
     letter-spacing: 2px;
 }
+
+#container{
+    display: flex;
+}
