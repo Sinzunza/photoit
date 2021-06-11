@@ -111,12 +111,29 @@ function getUsersPosts(userNameUser) {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
 
-            console.log(result);
-            
+            var pictures = Object.values(result);
+            //console.log(pictures)
+            var container = document.getElementById("container");
+            container.innerHTML = "";
             var numPhotos = document.getElementById("num_photos");
-
-            //numPhotos.innerHTML += result.UserName;
-
+            numPhotos.innerHTML = "Number of Photos: " + pictures.length.toString();
+            var picLink;
+            var picHostedLink;
+            var picTitle;
+            for(let i = 0; i < pictures.length; i++){
+                picHostedLink = pictures[i].imageURL;
+                picTitle = pictures[i].caption;
+                container.innerHTML += "<div class=\"box\">" +
+                                        "<div class=\"imgBox\">" +
+                                            "<a href=\"" + picLink + "\">" +
+                                                "<img src=\"" + picHostedLink + "\">" +
+                                            "</a>" +
+                                        "</div>" +
+                                        "<div class=\"content\">" +
+                                            "<h2>" + picTitle + "</h2>" +
+                                        "</div>";
+            }
+            
 
         }
     };
