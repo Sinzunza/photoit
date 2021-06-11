@@ -27,19 +27,24 @@
             </nav>
             <button id="userStateBtn" class="btn-area">Login</button>
         </header>
-        <div class="category_info">
+        <div class="category_info" id="category_info">
             <b id="category_name" style="color:white;">UPLOAD A PHOTO</b>
-            <form action="">
+            <form id="uploadForm" action="">
                 <div><input type="file" id="myFile" name="filename" onchange="chooseFile(event)" style="color:white;"></div>
                 <div><p style="color:white;">Title <input type="text" id="photoname" name="Name"></p></div>
                 <label for="categories" style="color:white;">Choose a category:</label>
                 <select id="categorymenu" name="categories">
                   <option value="Car">Car</option>
                   <option value="Food">Food</option>
-                  <option value="Fashion">POPULATE FROM SERVER</option>
-                  <option value="Funny">POPULATE FROM SERVER</option>
+                  <option value="Fashion">Fashion</option>
+                  <option value="Funny">Funny</option>
+                  <option value="Car">Sports</option>
+                  <option value="Food">Science</option>
+                  <option value="Fashion">Scenery</option>
+                  <option value="Funny">Tech</option>
+                  <option value="Funny">Gaming</option>
                 </select>
-                <div><button type="button" onclick="uploadPicture()">Upload</button></div>
+                <div><button id="uploadButton" type="button" onclick="uploadPicture()">Upload</button></div>
               </form>
         </div>
     </div>
