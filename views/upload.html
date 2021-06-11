@@ -7,6 +7,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="../scripts/userAuth.js"></script>
 <script src="../scripts/upload.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+
 </head>
 <body>
     <div id="navbar">
@@ -35,7 +37,7 @@
                   <option value="Fashion">POPULATE FROM SERVER</option>
                   <option value="Funny">POPULATE FROM SERVER</option>
                 </select>
-                <div><input type="submit"></div>
+                <div><button type="button" onclick="uploadPicture()">Upload</button></div>
               </form>
         </div>
     </div>
