@@ -121,9 +121,13 @@ function postCreatePost(request, response){
 
   var postsDB =  firebase.database().ref('Posts/');
   var userID = firebase.auth().currentUser.uid;
-
+  var ref = firebase.database().ref('Users'); //.ref(target); 
+  var userName; 
+  ref.orderByChild("UserName").equalTo(userID).once("value", function(snapshot){
+    userName = snapshot.val().userName; 
+  }); 
   postsDB.push().set({
-      user: userID,
+      userName: userName,
       imageURL: request.body.imageURL,
       category: request.body.category,
       caption: request.body.caption,
@@ -157,6 +161,14 @@ function postAddLike(request, response){
   var updateData = {
     likes: oldLikes + 1
   };
+
+  // Update app.point
+  var target = 'Users/' + userID; 
+  var ref = firebase.database().ref(target);
+
+  ref.once('value', function(snapshot){
+    const obj = snapshot.val();
+  });
 
   var postDB = firebase.database().ref('Posts/' + postID);
   postDB.update(updateData);

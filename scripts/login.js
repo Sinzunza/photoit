@@ -72,7 +72,16 @@ function sendRegisterRequest(userID, userPassword, userEmail) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
-
+            var result = this.response;
+            if (result == "successful") {
+                // do something
+                console.log("Register successful");
+                window.location.href = "../views/home.html";
+            }
+            else {
+                // do something
+                console.log(result);
+            }
         }
     };
     xhttp.open("POST", "http://localhost:8081/CreateUser", true);
