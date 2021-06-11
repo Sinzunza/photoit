@@ -81,15 +81,36 @@ function postSignIn(request, response){
 
 }
 
+function postSignOut(request, response){
+
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+    console.log("user signed out successfully");
+    response.send("true");
+  }).catch((error) => {
+    // An error happened.
+    console.log("user sign out failed");
+    response.send("false");
+  });
+
+}
 
 ///////////////////////////////////////////////////////////////////////// other
 function searchDataBase(request, response) {
-  var query = "inzomniac";//request.query.userNameToLookFor; 
+  var query = request.query.userName; 
   var ref = firebase.database().ref('Users'); //.ref(target); 
   ref.orderByChild("UserName").equalTo(query).on("value", function(snapshot){
+
+    if (snapshot.numChildren() >= 1) {
       const obj = snapshot.val();
       console.log(obj);
       response.send(obj);
+    }
+    else {
+      console.log("no user found")
+      response.send("empty");
+    }
+
   })
 }
 
@@ -97,7 +118,8 @@ module.exports = {
   getUserName,
   getUserAuthentication,
   postCreateUser,
-  postSignIn, 
+  postSignIn,
+  postSignOut,
   searchDataBase
 };
 

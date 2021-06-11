@@ -53,6 +53,7 @@ app.get('/searchDataBase', userHandler.searchDataBase);
 app.post('/CreatePost', postsHandler.postCreatePost);
 app.post('/CreateUser', userHandler.postCreateUser);
 app.post('/SignIn', userHandler.postSignIn);
+app.post('/SignOut', userHandler.postSignOut);
 app.post('/postComments', commentHandler.postComments);
 app.post('/PostAddLike', postsHandler.postAddLike);
 app.post('/PostRemoveLike', postsHandler.postRemoveLike);
