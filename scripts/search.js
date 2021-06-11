@@ -14,14 +14,16 @@ function getUser() {
             else {
                 // user found, display
                 let userFound = document.getElementById("foundUser");
-                let userLink = ""
-                userFound.innerHTML = "<div class=\"imgBox\">" +
-                                            "<a href=\"" + userLink + "\" >" +
-                                            "<img src=\"" + result[Object.keys(result)[0]].ProfilePic + "\">" +
-                                            "</a>" +
-                                        "</div>" +
-                                        "<div class=\"content\">" +
-                                            "<h2>" + result[Object.keys(result)[0]].UserName + "</h2>" +
+                let userLink = "../views/profile/" + result[Object.keys(result)[0]].UserName
+                userFound.innerHTML =   "<div class=\"box\">" +
+                                            "<div class=\"imgBox\">" +
+                                                "<a href=\"" + userLink + "\" >" +
+                                                "<img src=\"" + result[Object.keys(result)[0]].ProfilePic + "\">" +
+                                                "</a>" +
+                                            "</div>" +
+                                            "<div class=\"content\">" +
+                                                "<h2>" + result[Object.keys(result)[0]].UserName + "</h2>" +
+                                            "</div>" +
                                         "</div>"
                 console.log(result[Object.keys(result)[0]]);
             }
