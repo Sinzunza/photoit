@@ -51,7 +51,7 @@ function postComments(request, response) {
           console.log("user not signed in");
           response.send(null);
         }
-      });
+    });
 }
 
 module.exports = {

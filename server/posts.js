@@ -138,67 +138,201 @@ function postCreatePost(request, response){
   }); 
 }
 
-function postAddLike(request, response){
+// function postLike(request, response){
+//   firebase.auth().onAuthStateChanged(function(user) {
 
-  var oldLikes = 0;
-  var postID = request.body.postID;
+//     if (user) {
 
-  // get old likes
-  var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
+//         // get userName  
+//         var userID = firebase.auth().currentUser.uid;
+//         var refUser = firebase.database().ref('Users/' + userID);
 
-  likesDB.once('value', (snapshot) => {
+//         refUser.once('value', function(snapshot){
+//           var userName = snapshot.val().UserName;
 
-    oldLikes = snapshot.val();
+//           var tempPostID = request.body.postID; 
+//           var refLikedByUser = firebase.database().ref('Posts/' + tempPostID + "/likedBy/" + userName);
 
-  }, (errorObject) => {
+//           // check if liked
+//           refLikedByUser.once('value', function(snapshot){
 
-    console.log('The read failed: ' + errorObject.name);
+//             if (snapshot.numChildren() >= 1) { // if is liked
+//               var postID = request.body.postID;
 
-  }); 
+//               // get old likes
+//               var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
 
-  // post new likes
-  var updateData = {
-    likes: oldLikes + 1
-  };
+//               likesDB.once('value', (snapshot) => {
 
-  // Update app.point
-  var target = 'Users/' + userID; 
-  var ref = firebase.database().ref(target);
+//                 var oldLikes = parseInt(snapshot.val());
 
-  ref.once('value', function(snapshot){
-    const obj = snapshot.val();
+//                 var newLikes = oldLikes - 1; // add like
+
+//                 // post new likes
+//                 var updateData = {
+//                   likes: newLikes
+//                 };
+
+//                 var postDB = firebase.database().ref('Posts/' + postID);
+//                 postDB.update(updateData);
+//                 response.send(newLikes.toString());
+
+//                 var refLikedBy = firebase.database().ref('Posts/' + postID + "/likedBy");
+
+//                 refLikedBy.child(userName).remove();     
+
+//               }, (errorObject) => {
+
+//                 console.log('The read failed: ' + errorObject.name);
+
+//               });
+
+//             }
+//             else { // if is not liked
+//               var postID = request.body.postID;
+
+//               // get old likes
+//               var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
+
+//               likesDB.once('value', (snapshot) => {
+
+//                 var oldLikes = parseInt(snapshot.val());
+
+//                 var newLikes = oldLikes + 1; // add like
+
+//                 // post new likes
+//                 var updateData = {
+//                   likes: newLikes
+//                 };
+
+//                 var postDB = firebase.database().ref('Posts/' + postID);
+//                 postDB.update(updateData);
+//                 response.send(newLikes.toString());
+
+//                 var refLikedBy = firebase.database().ref('Posts/' + postID + "/likedBy");
+
+//                 refLikedBy.child(userName).set({
+//                   liked: ""
+//                 });
+
+//               }, (errorObject) => {
+
+//                 console.log('The read failed: ' + errorObject.name);
+
+//               });
+      
+//             }
+
+//           });
+
+            
+//         });
+
+//     } else {
+//       // No user is signed in.
+//       console.log("user not signed in");
+//       response.send(null);
+//     }
+//   });
+
+// }
+
+function postLike(request, response){
+  firebase.auth().onAuthStateChanged(function(user) {
+
+    if (user) {
+
+        // get userName  
+        var userID = firebase.auth().currentUser.uid;
+        var refUser = firebase.database().ref('Users/' + userID);
+
+        refUser.once('value', function(snapshot){
+          var userName = snapshot.val().UserName;
+
+          var tempPostID = request.body.postID; 
+          var refLikedByUser = firebase.database().ref('Posts/' + tempPostID + "/likedBy/" + userName);
+
+          // check if liked
+          refLikedByUser.once('value', function(snapshot){
+
+            if (snapshot.numChildren() >= 1) { // if is liked
+              var postID = request.body.postID;
+
+              // get old likes
+              var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
+
+              likesDB.once('value', (snapshot) => {
+
+                var oldLikes = parseInt(snapshot.val());
+
+                var newLikes = oldLikes - 1; // add like
+
+                // post new likes
+                var updateData = {
+                  likes: newLikes
+                };
+
+                var postDB = firebase.database().ref('Posts/' + postID);
+                postDB.update(updateData);
+                response.send(newLikes.toString());
+
+                var refLikedBy = firebase.database().ref('Posts/' + postID + "/likedBy");
+
+                refLikedBy.child(userName).remove();                
+
+              }, (errorObject) => {
+
+                console.log('The read failed: ' + errorObject.name);
+
+              });
+
+            }
+            else { // if is not liked
+              var postID = request.body.postID;
+
+              // get old likes
+              var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
+
+              likesDB.once('value', (snapshot) => {
+
+                var oldLikes = parseInt(snapshot.val());
+
+                var newLikes = oldLikes + 1; // add like
+
+                // post new likes
+                var updateData = {
+                  likes: newLikes
+                };
+
+                var postDB = firebase.database().ref('Posts/' + postID);
+                postDB.update(updateData);
+                response.send(newLikes.toString());
+
+                var refLikedBy = firebase.database().ref('Posts/' + postID + "/likedBy");
+
+                refLikedBy.child(userName).set({
+                  liked: ""
+                });
+
+              }, (errorObject) => {
+
+                console.log('The read failed: ' + errorObject.name);
+
+              });
+      
+            }
+
+          });
+
+            
+        });
+
+    } else {
+      // No user is signed in.
+      console.log("user not signed in");
+      response.send(null);
+    }
   });
-
-  var postDB = firebase.database().ref('Posts/' + postID);
-  postDB.update(updateData);
-
-}
-
-function postRemoveLike(request, response){
-
-  var oldLikes = 0;
-  var postID = request.body.postID;
-
-  // get old likes
-  var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
-
-  likesDB.once('value', (snapshot) => {
-
-    oldLikes = snapshot.val();
-
-  }, (errorObject) => {
-
-    console.log('The read failed: ' + errorObject.name);
-
-  }); 
-
-  // post new likes
-  var updateData = {
-    likes: oldLikes - 1
-  };
-
-  var postDB = firebase.database().ref('Posts/' + postID);
-  postDB.update(updateData);
 
 }
 
@@ -208,6 +342,5 @@ module.exports = {
   getUsersPosts,
   getCategoryPosts,
   postCreatePost,
-  postAddLike,
-  postRemoveLike
+  postLike
 };

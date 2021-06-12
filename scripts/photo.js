@@ -84,39 +84,22 @@ function getUserName() {
     xhttp.send();
 }
 
-function appreciate(){
-//    if () {
 
-//    }
-//    else {
-
-//    }
-}
-
-function postComment() {
+function postLike() {
     var xhttp = new XMLHttpRequest();
-    xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
-            if (result == null) {
-                // do something
-                console.log("error posting comment");
-            }
-            else {
-                // do something
-                console.log("create post unsuccessful");
-                console.log(result);
-            }
+
+            var likesDoc = document.getElementById("likes");
+            likesDoc.innerHTML = result; 
+            
         }
     };
-    xhttp.open("POST", "http://localhost:8081/PostComments", true);
+    xhttp.open("POST", "http://localhost:8081/PostLike", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
-
-    var contentUser = document.getElementById("userMessage").value;
     
-    var data = {postID: postIDUser, content: contentUser};
+    var data = {postID: postIDUser};
     
     xhttp.send(JSON.stringify(data));
 }
-

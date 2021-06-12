@@ -56,8 +56,7 @@ app.post('/CreateUser', userHandler.postCreateUser);
 app.post('/SignIn', userHandler.postSignIn);
 app.post('/SignOut', userHandler.postSignOut);
 app.post('/postComments', commentHandler.postComments);
-app.post('/PostAddLike', postsHandler.postAddLike);
-app.post('/PostRemoveLike', postsHandler.postRemoveLike);
+app.post('/PostLike', postsHandler.postLike);
 
 // start listening on server
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
