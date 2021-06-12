@@ -84,3 +84,12 @@ function getUserName() {
     
     xhttp.send();
 }
+
+function appreciate(){
+    console.log("appreciate called");
+    document.getElementById("likeBtn").remove();
+    var appreciateNum = document.getElementById("likes")
+    var appreciateFeedback = document.getElementById("appreciatedMessage");
+    appreciateFeedback.innerHTML = "Photo Appreciated!"
+
+}
