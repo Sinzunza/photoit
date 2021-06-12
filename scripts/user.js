@@ -79,10 +79,7 @@ function getUserInfo(userIDUser) {
     xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
-            var result = this.response;
-
-            console.log(result);
-            
+            var result = this.response;            
             var userName = document.getElementById("user_name");
             var numLikes = document.getElementById("num_likes");
             var awards = document.getElementById("awards");
@@ -109,32 +106,43 @@ function getUsersPosts(userNameUser) {
     xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
-            var result = this.response;
+            var result = this.response; 
 
-            var pictures = Object.values(result);
-
-            var container = document.getElementById("container");
-            container.innerHTML = "";
-            var numPhotos = document.getElementById("num_photos");
-            numPhotos.innerHTML = "Number of Photos: " + pictures.length.toString();
-            var picLink;
-            var picHostedLink;
-            var picTitle;
-            for(let i = 0; i < pictures.length; i++){
-                picHostedLink = pictures[i].imageURL;
-                picTitle = pictures[i].caption;
-                container.innerHTML += "<div class=\"box\">" +
-                                        "<div class=\"imgBox\">" +
-                                            "<a href=\"" + picLink + "\">" +
-                                                "<img src=\"" + picHostedLink + "\">" +
-                                            "</a>" +
-                                        "</div>" +
-                                        "<div class=\"content\">" +
-                                            "<h2>" + picTitle + "</h2>" +
-                                        "</div>";
+            if (result == "unsuccessful") {
+                console.log("Error: occurred in getting posts");
             }
-            
+            else if (result == null) {
+                console.log("no posts exists");
+            }
+            else {
+                var picturesID = Object.keys(this.response); 
+                var pictures = Object.values(this.response);
 
+                var container = document.getElementById("container");
+                container.innerHTML = "";
+                var numPhotos = document.getElementById("num_photos");
+                numPhotos.innerHTML = "Number of Photos: " + pictures.length.toString();
+                var picHostedLink;
+                var picTitle;
+                var postID; 
+                for(let i = 0; i < pictures.length; i++){
+                    picHostedLink = pictures[i].imageURL;
+                    picTitle = pictures[i].caption;
+                    postID = picturesID[i]; 
+                    container.innerHTML += "<div class=\"box\">" +
+                                                "<div class=\"imgBox\">" +
+                                                    "<form action=\"../views/photo.html\">" + 
+                                                        "<input type=\"hidden\" name=\"postID\" value=\"" + postID + "\"/>" +
+                                                            "<button type=\"submit\" id=\"categoryButton\">" + 
+                                                                "<img src=\"" + picHostedLink + "\">" + 
+                                                            "</button>" + 
+                                                    "</form>" +
+                                                "</div>" +
+                                                "<div class=\"content\">" +
+                                                    "<h2>" + picTitle + "</h2>" +
+                                                "</div>";
+                }
+            }
         }
     };
     var params = "?userName=" + userNameUser;
