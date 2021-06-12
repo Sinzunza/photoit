@@ -201,9 +201,9 @@ body{
 }
 
 #likes{
-    position: absolute;
-    bottom: -35px;
-    right: 30px;
+    position: relative;
+    bottom: -170px;
+    left: 135px;
 }
 
 #commentBox{
@@ -212,4 +212,11 @@ body{
 
 #photoContainer{
     display:flex;
+}
+
+#appreciatedMessage{
+    color: green;
+    position: absolute;
+    bottom: -35px;
+    left: -0px;
 }
