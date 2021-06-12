@@ -13,6 +13,7 @@ function getComments(reequest, response) {
     });
 }
 
+
 function postComments(request, response) {
 
     firebase.auth().onAuthStateChanged(function(user) {
@@ -22,22 +23,28 @@ function postComments(request, response) {
             var tempPostID = request.body.postID; 
             var target = 'Posts/' + tempPostID + "/comments"; 
             var ref = firebase.database().ref(target);
-
+            
             var userID = firebase.auth().currentUser.uid;
-            var contentUser = request.body.content;
-            var currDate = Date.now();
+            var userSnap = 'Users/' + userID; 
+            var refUser = firebase.database().ref(userSnap);
 
-            var newComment = {
-                user: userID, 
-                content: contentUser, 
-                date: currDate
-            }
+            refUser.once('value', function(snapshot){
+                var userName = snapshot.val().UserName;
 
-            ref.push().set(newComment);
+                var contentUser = request.body.content;
 
-            response.send(newComment);
+                var newComment = {
+                    user: userName, 
+                    content: contentUser, 
+                    date: Date.now()
+                }
+
+                ref.push().set(newComment);
+
+                response.send(newComment);
+            });
         
-            //var commentID = newComments.key; // retrive the comment unique ID
+            //var commentID = newComments.key;
     
         } else {
           // No user is signed in.

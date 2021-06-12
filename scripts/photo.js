@@ -85,10 +85,38 @@ function getUserName() {
 }
 
 function appreciate(){
-    console.log("appreciate called");
-    document.getElementById("likeBtn").remove();
-    var appreciateNum = document.getElementById("likes")
-    var appreciateFeedback = document.getElementById("appreciatedMessage");
-    appreciateFeedback.innerHTML = "Photo Appreciated!"
+//    if () {
 
+//    }
+//    else {
+
+//    }
 }
+
+function postComment() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.responseType = 'json';
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+            var result = this.response;
+            if (result == null) {
+                // do something
+                console.log("error posting comment");
+            }
+            else {
+                // do something
+                console.log("create post unsuccessful");
+                console.log(result);
+            }
+        }
+    };
+    xhttp.open("POST", "http://localhost:8081/PostComments", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+
+    var contentUser = document.getElementById("userMessage").value;
+    
+    var data = {postID: postIDUser, content: contentUser};
+    
+    xhttp.send(JSON.stringify(data));
+}
+
