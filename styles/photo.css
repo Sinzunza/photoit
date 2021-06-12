@@ -205,3 +205,11 @@ body{
     bottom: -35px;
     right: 30px;
 }
+
+#commentBox{
+    display:flex;
+}
+
+#photoContainer{
+    display:flex;
+}
