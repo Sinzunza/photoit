@@ -16,7 +16,7 @@ function getMostLike(request, response){
     if (snapshot.numChildren() >= 1) 
     {
       var result = snapshot.val(); 
-      result = sorting.sortByProperty([result], 'attributes.AppreciatedPoint', -1);
+      // result = sorting.sortByProperty([result], 'attributes.AppreciatedPoint', -1);
 
       response.send(result);
     }

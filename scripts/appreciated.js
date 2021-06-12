@@ -1,7 +1,16 @@
 window.onload = function() {
     getTopUser(); 
 }
-
+function GetSortOrder(prop) {    
+    return function(a, b) {    
+        if (a[prop] > b[prop]) {    
+            return 1;    
+        } else if (a[prop] < b[prop]) {    
+            return -1;    
+        }    
+        return 0;    
+    }    
+} 
 function getTopUser()
 {
     var xhttp = new XMLHttpRequest();
@@ -16,8 +25,9 @@ function getTopUser()
                 console.log("no users exists");
             }
             else {
-                console.log(result); 
-    
+                value = Object.values(result); 
+                value.sort(GetSortOrder("AppreciatedPoint")); 
+                console.log(value); 
     //            console.log(result);
                 // var container = document.getElementById("container");
                 // container.innerHTML = "";
