@@ -13,7 +13,21 @@ function getPost(postIDUser) {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
 
-             console.log(result);
+            if(result['comments'] == null){
+                console.log("no comments")
+            }
+            else{
+                //console.log(result);
+                var comments = result['comments']
+                var commentBox = document.getElementById("commentList");
+                comments = Object.values(comments)
+                console.log(comments)
+                for(let i = 0; i < comments.length; i++){
+                    commentBox.innerHTML += "<div class=\"comment\">" + comments[i].user + ": " + comments[i].content + "</div>";
+                }
+            }
+
+
 
             var imgURLDoc = document.getElementById("imgURL");
             var captionDoc = document.getElementById("caption");
@@ -94,6 +108,23 @@ function postLike() {
             var likesDoc = document.getElementById("likes");
             likesDoc.innerHTML = result; 
             
+            var commentFeedback = document.getElementById("commentFeedback");
+            var commentVal = document.getElementById("userMessage")
+            if (result == null) {
+                // do something
+                console.log("error posting comment");
+                commentFeedback.style.color = "red";
+                //commentFeedback.innerHTML = "Error posting comment";
+            }
+            else {
+                // do something
+                console.log("create post unsuccessful");
+                console.log(result);
+                location.reload();
+                //commentFeedback.style.color = "green";
+                //commentFeedback.innerHTML = "Comment Posted!";
+                //commentVal.value = "";
+            }
         }
     };
     xhttp.open("POST", "http://localhost:8081/PostLike", true);

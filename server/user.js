@@ -2,8 +2,35 @@
 var firebase = require('firebase/app');
   require('firebase/auth');
   require('firebase/database');
+const sorting = require('../sorting.js');
 
+function reverseObject(object) {
+  
+
+  return newObject;
+}
 ///////////////////////////////////////////////////////////////////////// get functions
+function getMostLike(request, response){
+
+  firebase.database().ref("Users").once('value', function(snapshot){
+    if (snapshot.numChildren() >= 1) 
+    {
+      var result = snapshot.val(); 
+      // result = sorting.sortByProperty([result], 'attributes.AppreciatedPoint', -1);
+
+      response.send(result);
+    }
+
+    else 
+    {
+      console.log("getMostLike() - found no user"); 
+      response.send(); 
+    }
+  }); 
+  // queryAllUsers.once('value', function(snapshot) {
+    
+  // })
+}
 function getUserInfo(request, response){
 
   var userID = request.query.userID;
@@ -154,6 +181,7 @@ function searchDataBase(request, response) {
 }
 
 module.exports = {
+  getMostLike,
   getUserInfo,
   getUserName,
   getUserAuthentication,

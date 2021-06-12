@@ -39,13 +39,17 @@
             <div id="appreciatedMessage"></div>
         </div>
         <div id="commentBox">
-            <div class="comments">
-                <div class="comment">Johnny: Cool car bro!!</div>
+            <div id="commentContainer">
+                <div class="comments" id="commentList">
+                </div>
             </div>
-            <div id="textBox">
-                <p> <b>Posting comment as: </b> <span id="username"> </span> </p>
-                <textarea id="userMessage" rows="2" cols="50"> </textarea>
-                <button type="button" onclick="postComment()"> Post </button>
+            <div id="textContainer">
+                <div id="textBox">
+                    <p> <b>Posting comment as: </b> <span id="username"> </span> </p>
+                    <textarea id="userMessage" rows="2" cols="50"> </textarea>
+                    <button id="commentBtn" type="button" onclick="postComment()"> Post </button>
+                    <p id="commentFeedback"></p>
+                </div>
             </div>
         </div>
     </div>
