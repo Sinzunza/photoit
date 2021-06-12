@@ -113,14 +113,22 @@ function postComment() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
+            var commentFeedback = document.getElementById("commentFeedback");
+            var commentVal = document.getElementById("userMessage")
             if (result == null) {
                 // do something
                 console.log("error posting comment");
+                commentFeedback.style.color = "red";
+                //commentFeedback.innerHTML = "Error posting comment";
             }
             else {
                 // do something
                 console.log("create post unsuccessful");
                 console.log(result);
+                location.reload();
+                //commentFeedback.style.color = "green";
+                //commentFeedback.innerHTML = "Comment Posted!";
+                //commentVal.value = "";
             }
         }
     };
