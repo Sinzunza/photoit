@@ -26,19 +26,24 @@ function getCategoryPosts(categoryUser, filterUser)
 
                 var container = document.getElementById("container");
                 container.innerHTML = "";
-
+                var picturesID = Object.keys(this.response[0]); 
                 var pictures = Object.values(this.response[0]);
-                var picLink;
+                // console.log(pictures); 
                 var picHostedLink;
                 var picTitle;
+                var postID; 
                 for(let i = 0; i < pictures.length; i++){
                     picHostedLink = pictures[i].imageURL;
                     picTitle = pictures[i].caption;
+                    postID = picturesID[i]; 
                     container.innerHTML += "<div class=\"box\">" +
                                             "<div class=\"imgBox\">" +
-                                                "<a href=\"" + picLink + "\">" +
-                                                    "<img src=\"" + picHostedLink + "\">" +
-                                                "</a>" +
+                                                "<form action=\"../views/photo.html\">" + 
+                                                    "<input type=\"hidden\" name=\"postID\" value=\"" + postID + "\"/>" +
+                                                        "<button type=\"submit\" id=\"categoryButton\">" + 
+                                                            "<img src=\"" + picHostedLink + "\">" + 
+                                                        "</button>" + 
+                                                "</form>" +
                                             "</div>" +
                                             "<div class=\"content\">" +
                                                 "<h2>" + picTitle + "</h2>" +
