@@ -28,7 +28,6 @@ function getPost(postIDUser) {
     };
     var params = "?postID=" + postIDUser;
     xhttp.open("GET", "http://localhost:8081/GetPost" + params, true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
     
     xhttp.send();
 }

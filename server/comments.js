@@ -20,7 +20,7 @@ function postComments(request, response) {
         if (user) {
             // var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
             var tempPostID = request.body.postID; 
-            var target = 'Posts/' + tempPostID; 
+            var target = 'Posts/' + tempPostID + "/comments"; 
             var ref = firebase.database().ref(target);
 
             var userID = firebase.auth().currentUser.uid;
