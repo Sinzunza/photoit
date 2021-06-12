@@ -13,7 +13,21 @@ function getPost(postIDUser) {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
 
-             console.log(result);
+            if(result['comments'] == null){
+                console.log("no comments")
+            }
+            else{
+                //console.log(result);
+                var comments = result['comments']
+                var commentBox = document.getElementById("commentList");
+                comments = Object.values(comments)
+                console.log(comments)
+                for(let i = 0; i < comments.length; i++){
+                    commentBox.innerHTML += "<div class=\"comment\">" + comments[i].user + ": " + comments[i].content + "</div>";
+                }
+            }
+
+
 
             var imgURLDoc = document.getElementById("imgURL");
             var captionDoc = document.getElementById("caption");
