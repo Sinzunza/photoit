@@ -1,5 +1,4 @@
 window.onload = function() {
-    console.log("HERE");
     getUserAuthentication();
 }
 

@@ -9,16 +9,20 @@ const sorting = require('../sorting.js');
 function getPost(request, response){
 
   var postID = request.query.postID;
+  console.log("postID = " + postID);
+
 
   var postDB = firebase.database().ref('Posts/' + postID);
 
-  postDB.on('value', (snapshot) => {
+  postDB.once('value', (snapshot) => {
 
     if (snapshot.numChildren() >= 1) {
+      console.log("post found");
       response.send(snapshot.val());
     }
     else {
-      response.send("unsuccessful");
+      console.log("getPost() - post not found");
+      response.send("not found");
     }
 
   }, (errorObject) => {

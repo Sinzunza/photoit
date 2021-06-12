@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/photo.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../scripts/userAuth.js"></script>
-    <script src="../scripts/main.js"></script>
+    <script src="../scripts/photo.js"></script>
 </head>
 <body>
     <div id="navbar">
@@ -27,13 +27,14 @@
     <div class="box">
         <div class ="imgBox">
             <a href="#cars">
-                <img src="../photos/cars/car1.jfif">
+                <img id="imgURL">
             </a>
         </div>
         <div class="content">
-            <h2>Check out my car!<br><span>Posted By: CarGuy200</span></h2>
+            <h2 id="caption"></h2>
         </div>
         <button class="like" type="button">Appreciate</button>
+        <span id="likes" style="color:white;"></span>
     </div>
     <div class="comments">
         <div class="comment">Johnny: Cool car bro!!</div>
