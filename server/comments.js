@@ -12,6 +12,7 @@ function getComments(reequest, response) {
         response.json(snapshot);
     });
 }
+
 function postComments(request, response) {
 
     firebase.auth().onAuthStateChanged(function(user) {
@@ -26,28 +27,22 @@ function postComments(request, response) {
             var contentUser = request.body.content;
             var currDate = Date.now();
 
-            var newComments = {
+            var newComment = {
                 user: userID, 
                 content: contentUser, 
                 date: currDate
             }
-            
-            ref.child('comments').push(newComments, function(err){
-                if (err) {
-                    console.log("Failed with Error: "  + err);
-                    response.send();
-                } else {
-                    console.log("Success in PostComments");
-                    response.send(JSON.stringify(newComments));
-                }
-            }); 
+
+            ref.push().set(newComment);
+
+            response.send(newComment);
         
             //var commentID = newComments.key; // retrive the comment unique ID
     
         } else {
           // No user is signed in.
           console.log("user not signed in");
-          response.send();
+          response.send(null);
         }
       });
 }

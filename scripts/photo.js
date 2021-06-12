@@ -18,7 +18,6 @@ function getPost(postIDUser) {
             var imgURLDoc = document.getElementById("imgURL");
             var captionDoc = document.getElementById("caption");
             var likesDoc = document.getElementById("likes");
-            var usernameDoc = document.getElementById("username");
 
             imgURLDoc.src = result.imageURL;
             captionDoc.innerHTML = result.caption +
@@ -44,7 +43,7 @@ function getPostID()
 
 function postComment() {
     var xhttp = new XMLHttpRequest();
-  //  xhttp.responseType = 'json';
+    xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;

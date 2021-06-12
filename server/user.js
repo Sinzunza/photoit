@@ -137,7 +137,7 @@ function postSignOut(request, response){
 function searchDataBase(request, response) {
   var query = request.query.userName; 
   var ref = firebase.database().ref('Users'); //.ref(target); 
-  ref.orderByChild("UserName").equalTo(query).on("value", function(snapshot){
+  ref.orderByChild("UserName").equalTo(query).once("value", function(snapshot){
 
     const obj = snapshot.val();
 

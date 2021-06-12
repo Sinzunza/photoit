@@ -79,12 +79,11 @@ function getCategoryPosts(request, response){
   else {
     console.log("Error: getCategoryPosts() - incorrect function call");
     response.send("unsuccessful");
-    return;
   }
 
   var queryUsersPosts = firebase.database().ref("Posts").orderByChild("category").equalTo(category);
 
-  queryUsersPosts.on('value', function(snapshot) {
+  queryUsersPosts.once('value', function(snapshot) {
 
     if (snapshot.numChildren() >= 1) {
 
@@ -133,7 +132,7 @@ function postCreatePost(request, response){
       caption: request.body.caption,
       date: Date.now(),
       likes: '0'
-  });
+    });
 
   response.send("successful");
   }); 
@@ -147,7 +146,7 @@ function postAddLike(request, response){
   // get old likes
   var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
 
-  likesDB.on('value', (snapshot) => {
+  likesDB.once('value', (snapshot) => {
 
     oldLikes = snapshot.val();
 
@@ -183,7 +182,7 @@ function postRemoveLike(request, response){
   // get old likes
   var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
 
-  likesDB.on('value', (snapshot) => {
+  likesDB.once('value', (snapshot) => {
 
     oldLikes = snapshot.val();
 
