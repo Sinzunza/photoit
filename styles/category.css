@@ -189,3 +189,6 @@ body{
     text-align:center;
 }
 
+.btn{
+    background-color: transparent;
+}

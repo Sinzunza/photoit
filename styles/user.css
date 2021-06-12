@@ -199,3 +199,7 @@ body{
 #container{
     display: flex;
 }
+
+.btn{
+    background-color: transparent;
+}
