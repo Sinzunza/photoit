@@ -1,6 +1,6 @@
 // call server to requst post of that category
-window.onload = function() {
 
+window.onload = function() {
     var category = getCategoryType();
     getCategoryPosts(category, "week"); 
 }

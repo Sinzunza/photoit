@@ -193,3 +193,9 @@ body{
     background-color: rgba(172, 172, 172, 0.1);
     color:white;
 }
+
+#textBox {
+    color:white;
+    position: relative; 
+    bottom:0;
+}

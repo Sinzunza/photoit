@@ -19,10 +19,11 @@ function postComments(request, response) {
     var ref = firebase.database().ref(target);
 
     var userID = firebase.auth().currentUser.uid;
+    var content = request.body.content;
 
     var newComments = {
         user: userID, 
-        content: 'comment content 2', 
+        content: content, 
         date: Date.now()
     }
     
@@ -34,7 +35,7 @@ function postComments(request, response) {
         }
     }); 
 
-    var commentID = newComments.key; // retrive the comment unique ID
+    //var commentID = newComments.key; // retrive the comment unique ID
 }
 
 module.exports = {

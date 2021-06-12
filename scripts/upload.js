@@ -1,5 +1,3 @@
-
-
 var firebaseConfig = {
     apiKey: "AIzaSyCOetUOyMKkAt_P_9xUWkcRB8J5ernXM10",
     authDomain: "photoit110.firebaseapp.com",
