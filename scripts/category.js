@@ -40,7 +40,7 @@ function getCategoryPosts(categoryUser, filterUser)
                                             "<div class=\"imgBox\">" +
                                                 "<form action=\"../views/photo.html\">" + 
                                                     "<input type=\"hidden\" name=\"postID\" value=\"" + postID + "\"/>" +
-                                                        "<button type=\"submit\" id=\"categoryButton\">" + 
+                                                        "<button class=\"btn\" type=\"submit\" id=\"categoryButton\">" + 
                                                             "<img src=\"" + picHostedLink + "\">" + 
                                                         "</button>" + 
                                                 "</form>" +
