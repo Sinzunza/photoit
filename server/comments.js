@@ -13,29 +13,43 @@ function getComments(reequest, response) {
     });
 }
 function postComments(request, response) {
-    // var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
-    var tempPostID = request.body.postID; 
-    var target = 'Posts/' + tempPostID; 
-    var ref = firebase.database().ref(target);
 
-    var userID = firebase.auth().currentUser.uid;
-    var content = request.body.content;
+    firebase.auth().onAuthStateChanged(function(user) {
 
-    var newComments = {
-        user: userID, 
-        content: content, 
-        date: Date.now()
-    }
+        if (user) {
+            // var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
+            var tempPostID = request.body.postID; 
+            var target = 'Posts/' + tempPostID; 
+            var ref = firebase.database().ref(target);
+
+            var userID = firebase.auth().currentUser.uid;
+            var contentUser = request.body.content;
+            var currDate = Date.now();
+
+            var newComments = {
+                user: userID, 
+                content: contentUser, 
+                date: currDate
+            }
+            
+            ref.child('comments').push(newComments, function(err){
+                if (err) {
+                    console.log("Failed with Error: "  + err);
+                    response.send();
+                } else {
+                    console.log("Success in PostComments");
+                    response.send(JSON.stringify(newComments));
+                }
+            }); 
+        
+            //var commentID = newComments.key; // retrive the comment unique ID
     
-    ref.child('comments').push(newComments, function(err){
-        if (err) {
-            console.log("Failed with Error: "  + err); 
         } else {
-            console.log("Success in PostComments"); 
+          // No user is signed in.
+          console.log("user not signed in");
+          response.send();
         }
-    }); 
-
-    //var commentID = newComments.key; // retrive the comment unique ID
+      });
 }
 
 module.exports = {

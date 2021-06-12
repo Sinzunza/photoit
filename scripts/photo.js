@@ -44,23 +44,25 @@ function getPostID()
 
 function postComment() {
     var xhttp = new XMLHttpRequest();
+  //  xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
-            if (result == "successful") {
+            if (result == null) {
                 // do something
-                console.log("create post successful");
+                console.log("error posting comment");
             }
-            else if (result == "unsuccessful") {
+            else {
                 // do something
                 console.log("create post unsuccessful");
+                console.log(result);
             }
         }
     };
     xhttp.open("POST", "http://localhost:8081/PostComments", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
 
-    var contentUser = document.getElementById("userMessage");
+    var contentUser = document.getElementById("userMessage").value;
     
     var data = {postID: postIDUser, content: contentUser};
     
@@ -69,13 +71,10 @@ function postComment() {
 
 function getUserName() {
     var xhttp = new XMLHttpRequest();
-    xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+
             var result = this.response;
-
-            console.log("username = " + result);
-
             var usernameDoc = document.getElementById("username");
             usernameDoc.innerHTML = result;           
 
