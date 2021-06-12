@@ -1,9 +1,9 @@
 // call server to requst post of that category
 
-window.onload = function() {
+window.addEventListener("load", function(evt) {
     var category = getCategoryType();
-    getCategoryPosts(category, "week"); 
-}
+    getCategoryPosts(category, "week");
+})
 
 function getCategoryPosts(categoryUser, filterUser)
 {

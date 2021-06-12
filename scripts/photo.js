@@ -1,9 +1,10 @@
 var postIDUser;
 
-window.onload = function() {
+window.addEventListener("load", function(evt) {
     postIDUser = getPostID();
     getPost(postIDUser);
-}
+    getUserName();
+})
 
 function getPost(postIDUser) {
     var xhttp = new XMLHttpRequest();
@@ -22,9 +23,7 @@ function getPost(postIDUser) {
             imgURLDoc.src = result.imageURL;
             captionDoc.innerHTML = result.caption +
                                    "<br><br><span>PostedBy: " + result.userName + "</span>";
-            likesDoc.innerHTML = ": " + result.likes;
-            usernameDoc.innerHTML = result.userName;
-                            
+            likesDoc.innerHTML = result.likes;                
 
         }
     };
@@ -66,4 +65,24 @@ function postComment() {
     var data = {postID: postIDUser, content: contentUser};
     
     xhttp.send(JSON.stringify(data));
+}
+
+function getUserName() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.responseType = 'json';
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+            var result = this.response;
+
+            console.log("username = " + result);
+
+            var usernameDoc = document.getElementById("username");
+            usernameDoc.innerHTML = result;           
+
+        }
+    };
+    xhttp.open("GET", "http://localhost:8081/GetUserName", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    
+    xhttp.send();
 }

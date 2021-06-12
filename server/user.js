@@ -27,8 +27,9 @@ function getUserName(request, response){
   var ref = firebase.database().ref(target);
 
   ref.once('value', function(snapshot){
-    const obj = snapshot.val();
-    response.send(obj);
+    console.log(snapshot.val());
+    //const userName = snapshot.val().UserName;
+    //response.send(userName);
   });
 }
 
