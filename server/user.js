@@ -21,16 +21,26 @@ function getUserInfo(request, response){
 
 function getUserName(request, response){
 
-  var userID = request.query.userID;
+  firebase.auth().onAuthStateChanged(function(user) {
 
-  var target = 'Users/' + userID; 
-  var ref = firebase.database().ref(target);
+    if (user) {
+      var userID = firebase.auth().currentUser.uid;
 
-  ref.once('value', function(snapshot){
-    console.log(snapshot.val());
-    //const userName = snapshot.val().UserName;
-    //response.send(userName);
+      var target = 'Users/' + userID; 
+      var ref = firebase.database().ref(target);
+
+      ref.once('value', function(snapshot){
+        const userName = snapshot.val().UserName;
+        response.send(userName);
+      });
+
+    } else {
+      // No user is signed in.
+      console.log("user not signed in");
+      response.send("false");
+    }
   });
+
 }
 
 function getUserAuthentication(request, response){
