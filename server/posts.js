@@ -52,27 +52,28 @@ function getUsersPosts(request, response){
 function getCategoryPosts(request, response){
 
   var category = request.query.category;
-  var filterType = request.query.filterType;
+  var filter = request.query.filter;
+
   var filterTime = 0;
   var currentDate = Date.now();
 
-  if (filterType == "hour") {
+  if (filter == "hour") {
     filterTime = currentDate - 3600000;
   }
-  else if (filterType == "day") {
+  else if (filter == "day") {
     filterTime = currentDate - 86400000;
   }
-  else if (filterType == "week") {
+  else if (filter == "week") {
     filterTime = currentDate - 604800000;
   }
-  else if (filterType == "month") {
+  else if (filter == "month") {
     filterTime = currentDate - 2592000000;
   }
-  else if (filterType == "year") {
+  else if (filter == "year") {
     filterTime = currentDate - 31556952000;
   }
   else {
-    console.log("Error: incorrect function call");
+    console.log("Error: getCategoryPosts() - incorrect function call");
     response.send("unsuccessful");
     return;
   }
@@ -85,8 +86,6 @@ function getCategoryPosts(request, response){
 
       var filteredJSON = snapshot.val();
 
-      console.log(snapshot.val());
-
       for (var key in filteredJSON) {
         if (filteredJSON.hasOwnProperty(key)) {
 
@@ -96,19 +95,17 @@ function getCategoryPosts(request, response){
 
         }
       }
+      
+      filteredJSON = sorting.sortByProperty([filteredJSON], 'attributes.likes', -1);
 
-      console.log("after -- \n\n\n");
-
-      console.log(snapshot.val());
-
-      filteredJSON = sorting.sortByProperty(filteredJSON.parse(), 'attributes.likes', -1);
-
+      console.log("getCategoryPosts() - found posts");
       response.send(filteredJSON);
 
     }
     else {
       
-      response.send("empty");
+      console.log("getCategoryPosts() - found no posts");
+      response.send(snapshot.val());
 
     }
 

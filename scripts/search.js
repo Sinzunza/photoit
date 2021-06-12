@@ -17,9 +17,9 @@ function getUser() {
                 }
 
                 let userFound = document.getElementById("foundUser");
-                userFound.innerHTML =   "<div class=\"noUser\">" +
-                                            "<p> no user found </p>" +
-                                        "</div>"
+                userFound.innerHTML =   "<div>" +
+                                            "<p style=\"color:white;\"> no user found </p>" +
+                                        "</div>";
 
             }
             else {

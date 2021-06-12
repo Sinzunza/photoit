@@ -1,37 +1,63 @@
-function getCategoryType()
-{
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    return url.searchParams.get("categoryType");
+// call server to requst post of that category
+window.onload = function() {
+
+    var category = getCategoryType();
+    getCategoryPosts(category, "week"); 
 }
-function getCategoryPosts()
+
+function getCategoryPosts(categoryUser, filterUser)
 {
-    // get current page category
-    var categoryType = getCategoryType()
 
     var xhttp = new XMLHttpRequest();
     xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() 
     {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+
             var result = this.response; 
-            console.log("Category search result: " + result); 
-            if (result == null)
-            {
-                // no posts under current category type
+
+            if (result == "unsuccessful") {
+                console.log("Error: occurred in getting posts");
             }
-            else 
-            {
-                // display posts
+            else if (result == null) {
+                console.log("no posts exists");
+            }
+            else {
+
+                var container = document.getElementById("container");
+                container.innerHTML = "";
+
+                var pictures = Object.values(this.response[0]);
+                var picLink;
+                var picHostedLink;
+                var picTitle;
+                for(let i = 0; i < pictures.length; i++){
+                    picHostedLink = pictures[i].imageURL;
+                    picTitle = pictures[i].caption;
+                    container.innerHTML += "<div class=\"box\">" +
+                                            "<div class=\"imgBox\">" +
+                                                "<a href=\"" + picLink + "\">" +
+                                                    "<img src=\"" + picHostedLink + "\">" +
+                                                "</a>" +
+                                            "</div>" +
+                                            "<div class=\"content\">" +
+                                                "<h2>" + picTitle + "</h2>" +
+                                            "</div>";
+                }
             }
         }
     };
-    var params = "?" + "category=" + categoryType + "&filterType=month"; 
+    var params = "?" + "category=" + categoryUser + "&filter=" + filterUser; 
     xhttp.open("GET", "http://localhost:8081/GetCategoryPosts" + params, true); 
     xhttp.send(); 
 }
 
-// call server to requst post of that category
-window.onload = function() {
-    getCategoryPosts(); 
+function getCategoryType()
+{
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var categoryName = url.searchParams.get("categoryType");
+    var categoryNameID = document.getElementById("category_name");
+    categoryNameID.innerHTML = categoryName;
+    return categoryName;
 }

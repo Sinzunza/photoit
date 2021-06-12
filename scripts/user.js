@@ -112,7 +112,7 @@ function getUsersPosts(userNameUser) {
             var result = this.response;
 
             var pictures = Object.values(result);
-            //console.log(pictures)
+
             var container = document.getElementById("container");
             container.innerHTML = "";
             var numPhotos = document.getElementById("num_photos");

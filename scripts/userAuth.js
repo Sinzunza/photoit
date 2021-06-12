@@ -1,4 +1,5 @@
 window.onload = function() {
+    console.log("HERE");
     getUserAuthentication();
 }
 
@@ -32,7 +33,7 @@ function getUserAuthentication() {
     
 }
 
-function userState(){
+function userState() {
     var userStateBtn = document.getElementById("userStateBtn");
     if(loggedIn){
 
