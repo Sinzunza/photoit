@@ -5,7 +5,7 @@
 * **Back-End Developer:** &nbsp; Ernie Hung
 ---
 # PhotoIt
-PhotoIt is a web-based photo sharing platform where users can post photos to share with friends, family, and even the public to see. Unlike many other photo sharing apps like instagram, PhotoIt will have a certain set of categories, but will only be limited to them. Under these categories will be the posts of the week filtered by most liked.
+PhotoIt is a dark themed photo sharing web application where users can post photos to share with friends, family, and even the public to see. Unlike many other photo sharing apps like instagram, PhotoIt will have a certain set of categories, but will only be limited to them. Under these categories will be the posts of the week filtered by most liked.
 
 * Users can register on the website with a username and password to make a profile
 * Users can navigate to certain categories (displayed on the homepage) that spark their interest
