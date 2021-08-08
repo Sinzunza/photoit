@@ -107,6 +107,7 @@ body {
 
 .box:hover {
     height: 400px;
+    cursor: pointer;
 }
 
 .box:hover .content {
@@ -159,12 +160,12 @@ header img {
     height: 150px;
 }
 
-.imgBox img {
-    width: 280px;
+img:hover {
+    cursor: pointer;
 }
 
-.logo {
-    cursor: pointer;
+.imgBox img {
+    width: 280px;
 }
 
 .nav-area {

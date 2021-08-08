@@ -107,6 +107,7 @@ body {
 
 .box:hover {
     height: 400px;
+    cursor: pointer;
 }
 
 .box:hover .content {
@@ -172,7 +173,7 @@ header img {
     height: 150px;
 }
 
-.logo {
+img:hover {
     cursor: pointer;
 }
 

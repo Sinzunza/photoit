@@ -29,11 +29,11 @@ function getPost(postIDUser) {
 
 
 
-            var imgURLDoc = document.getElementById("imgURL");
+            var userImgDoc = document.getElementById("userImg");
             var captionDoc = document.getElementById("caption");
             var likesDoc = document.getElementById("likes");
 
-            imgURLDoc.src = result.imageURL;
+            userImgDoc.src = result.imageURL;
             captionDoc.innerHTML = result.caption +
                                    "<br><br><span>PostedBy: " + result.userName + "</span>";
             likesDoc.innerHTML = result.likes;                
