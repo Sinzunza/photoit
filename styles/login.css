@@ -10,7 +10,7 @@ a {
 text-decoration: none;
 }
 
-.btn-area {
+#aLogin {
     cursor: pointer;
     color: #fff;
     font-size: 16px;
@@ -20,27 +20,8 @@ text-decoration: none;
     border-radius: 5px;
     background: #75849d;
 }
-
-#button1 {
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 110px;
-    height: 100%;
-    background: linear-gradient(to right, #3f63cc, #fa0bf3);
-    border-radius: 30px;
-    transition: .5s;
-}
-
-.button-box {
-    width: 220px;
-    margin: 35px auto;
-    position: relative;
-    box-shadow: 0 0 20px 9px #ff61241f;
-    border-radius: 30px;
-}
     
-.button-submit {
+.btnSubmit {
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;
@@ -51,6 +32,59 @@ text-decoration: none;
     outline: none;
     border-radius: 30px;
     margin-top: 10px;
+}
+
+.btnToggle {
+    padding: 10px 30px;
+    cursor:pointer;
+    background:transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+#divBody {
+    height: 100%;
+    width: 100%;
+    background-image: url(../photos/banner.jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+
+#divBtnToggle {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #ff61241f;
+    border-radius: 30px;
+}
+
+#divBtnType {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right, #3f63cc, #fa0bf3);
+    border-radius: 30px;
+    transition: .5s;
+}
+
+#divLogReg {
+    opacity: .90;
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 2% auto;
+    background: white;
+    padding: 5px;
+    overflow: hidden;
+}
+
+#divNavBar {
+    max-width: 1200px;
+    margin:auto;
 }
 
 header {
@@ -69,14 +103,7 @@ width: 150px;
 height: 150px;
 }
 
-.input-container {
-    top: 180px;
-    position: absolute;
-    width: 280px;
-    transition: .5s;
-}
-
-.input-field {
+.inputField {
     width: 100%;
     padding: 10px 0px;
     margin: 5px 0px;
@@ -88,67 +115,30 @@ height: 150px;
     background: transparent;
 }
 
-#login {
-    left: 50px;
-}
-
-.login-box {
-    opacity: .90;
-    width: 380px;
-    height: 480px;
-    position: relative;
-    margin: 2% auto;
-    background: white;
-    padding: 5px;
-    overflow: hidden;
-}
-
-.login-page {
-    height: 100%;
-    width: 100%;
-    background-image: url(../photos/banner.jpg);
-    background-position: center;
-    background-size: cover;
-    position: absolute;
-}
-
-.logo {
+#logo {
     cursor: pointer;
 }
 
-.nav-area {
+#divNavBar {
 list-style: none;
 }
 
-.nav-area li {
+#divNavBar li {
 display: inline-block;
 padding: 0 15px;
 text-transform: uppercase;
 }
 
-.nav-area li a {
+#divNavBar li a {
 transition: .3s;
 color: #fff;
 }
 
-.nav-area li a:hover {
+#divNavBar li a:hover {
 color: #75849d
 }
 
-#navbar {
-max-width: 1200px;
-margin:auto;
-}
-
-#register {
-    left: 450px;
-}
-
-.toggle-button {
-    padding: 10px 30px;
-    cursor:pointer;
-    background:transparent;
-    border: 0;
-    outline: none;
-    position: relative;
+.pErrors {
+    font-size: 16px;
+    color: red;
 }

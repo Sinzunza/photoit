@@ -53,8 +53,8 @@ app.get('/searchDataBase', userHandler.searchDataBase);
 
 // post handlers
 app.post('/CreatePost', postsHandler.postCreatePost);
-app.post('/CreateUser', userHandler.postCreateUser);
-app.post('/SignIn', userHandler.postSignIn);
+app.post('/PostRegister', userHandler.postRegister);
+app.post('/PostLogin', userHandler.postLogin);
 app.post('/SignOut', userHandler.postSignOut);
 app.post('/postComments', commentHandler.postComments);
 app.post('/PostLike', postsHandler.postLike);

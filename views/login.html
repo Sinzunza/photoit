@@ -10,12 +10,12 @@
     <script src="../scripts/login.js"></script>
 </head>
 <body>
-    <div class="login-page">
-        <div id="navbar">
+    <div id="divBody">
+        <div id="divNavBar">
             <header nav-bar>
-                <a href="../views/home.html"> <img src="../photos/PhotoIt_Logo.png" alt="" class="logo"></a>
+                <a href="../views/home.html"> <img src="../photos/PhotoIt_Logo.png" alt="" id="logo"></a>
                 <nav>
-                    <ul class="nav-area">
+                    <ul id="ulNavBar">
                         <li><a href="../views/home.html">Home</a></li>
                         <li><a href="../views/search.html">Search</a></li>
                         <li><a href="../views/user.html">Profile</a></li>
@@ -23,28 +23,30 @@
                         <li><a href="../views/upload.html">Upload</a></li>
                     </ul>
                 </nav>
-                <a href="../views/login.html" class="btn-area">Login</a>
+                <a href="../views/login.html" id="aLogin">Login</a>
             </header>
         </div>
-        <div class="login-box">
-            <div class="button-box">
-                <div id="button1"></div>
-                <button type="button" class="toggle-button" onclick="login()">Login</button>
-                <button type="button" class="toggle-button" onclick="register()">Register</button>
+        <div id="divLogReg">
+            <div id="divBtnToggle">
+                <div id="divBtnType"></div>
+                <button type="button" class="btnToggle" onclick="showLogin()">Login</button>
+                <button type="button" class="btnToggle" onclick="showRegister()">Register</button>
             </div>
-            <form id="login" class="input-container">
-                <input type="text" class="input-field" id="login-id" placeholder="E-mail" required>
-                <input type="password" class="input-field" id="login-password" placeholder="Password" required>
-                <input id="passwordInput" type="checkbox" onclick="showLoginPassword()">&ensp;Show Password
-                <button type="submit" class="button-submit">Login</button>
-            </form>
-            <form id="register" class="input-container">
-                <input type="text" id="register-id" class="input-field" placeholder="User ID" required>
-                <input type="text" id="register-email" class="input-field" placeholder="Email Address" required>
-                <input type="password" id="register-password" class="input-field" placeholder="Password" required>
-                <input id="registerInput" type="checkbox" onclick="showRegisterPassword()">&ensp;Show Password
-                <button type="submit" class="button-submit">Register</button>
-            </form>
+            <div id="loginDiv">
+                <p id="pLogError" class="pErrors"></p>
+                <input type="text" id="inputLogEmail" class="inputField" placeholder="E-mail" required>
+                <input type="password" id="inputLogPassword" class="inputField" placeholder="Password" required>
+                <input type="checkbox" onclick="showLoginPassword()">&ensp;Show Password
+                <button type="submit" class="btnSubmit" onclick="postLogin()">Login</button>
+            </div>
+            <div id="registerDiv">
+                <p id="pRegError" class="pErrors">Blah</p>
+                <input type="text" id="inputRegUsername" class="inputField" placeholder="Username" required>
+                <input type="text" id="inputRegEmail" class="inputField" placeholder="E-mail" required>
+                <input type="password" id="inputRegPassword" class="inputField" placeholder="Password" required>
+                <input type="checkbox" onclick="showRegisterPassword()">&ensp;Show Password
+                <button type="submit" class="btnSubmit" onclick="postRegister()">Register</button>
+            </div>
         </div>
     </div>
 </body>

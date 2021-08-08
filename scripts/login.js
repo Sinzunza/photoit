@@ -1,116 +1,136 @@
 //import globalVal from './globalVar';
 
-function register(){
-    let button = document.getElementById("button1");
-    let register = document.getElementById("register");
-    let login = document.getElementById("login");
-
-    login.style.left = "-400px";
-    register.style.left = "50px";
-    button1.style.left = "110px";
-}
-
-function login(){
-    let button = document.getElementById("button1");
-    let register = document.getElementById("register");
-    let login = document.getElementById("login");
-
-    login.style.left = "50px";
-    register.style.left = "450px";
-    button1.style.left = "0px";
-}
+var isLogin = false;  // set false because initially isn't login, although isn't register either
 
 window.onload = function() {
 
-    var loginForm = document.getElementById("login");
-    loginForm.addEventListener("submit", (e) => {
-        console.log("HERE");
-        let userID = document.getElementById("login-id").value;
-        let userPassword = document.getElementById("login-password").value;
-        sendLoginRequest(userID, userPassword);
-        event.preventDefault();
-    });
+    var pLogError = document.getElementById("pLogError");
+    var pRegError = document.getElementById("pRegError");
 
-    const registerForm = document.getElementById("register");
-    registerForm.addEventListener("submit", (e) => {
-        let userID = document.getElementById("register-id").value;
-        let userPassword = document.getElementById("register-password").value;
-        let userEmail = document.getElementById("register-email").value;
-        sendRegisterRequest(userID, userPassword, userEmail);
-        event.preventDefault();
-    });
+    pLogError.style.display = "none";
+    pRegError.style.display = "none";
+    
+    showLogin();
 
 };
 
-function sendLoginRequest(userEmail, userPassword) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
-            var result = this.response;
-            if (result == "successful") {
-                // do something
-                console.log("login successful");
-                window.location.href = "../views/home.html";
-            }
-            else if (result == "unsuccessful") {
-                // do something
-                console.log("signin unsuccessful");
-            }
+/* switch from displaying login to displaying registration */
+function showRegister(){
 
-        }
-    };
-    xhttp.open("POST", "http://localhost:8081/SignIn", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    
-    var data = {email: userEmail, password: userPassword};
-    
-    xhttp.send(JSON.stringify(data));
+    if (isLogin) {
+
+        var divBtnType = document.getElementById("divBtnType");
+        divBtnType.style.left = "110px";
+        var registerDiv = document.getElementById("registerDiv");
+        registerDiv.style.display = "block";
+        var loginDiv = document.getElementById("loginDiv");
+        loginDiv.style.display = "none"
+
+        isLogin = false;
+
+    }
+
 }
 
-function sendRegisterRequest(userID, userPassword, userEmail) {
-    
+/* switch from displaying registration to displaying login */
+function showLogin(){
+
+    if (!isLogin) {
+
+        var divBtnType = document.getElementById("divBtnType");
+        divBtnType.style.left = "0px";
+        var loginDiv = document.getElementById("loginDiv");
+        loginDiv.style.display = "block";
+        var registerDiv = document.getElementById("registerDiv");
+        registerDiv.style.display = "none"
+
+        isLogin = true;
+    }
+
+}
+
+function postLogin() {
+
     var xhttp = new XMLHttpRequest();
+
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
-            if (result == "successful") {
+            if (result == "Successful") {
                 // do something
-                console.log("Register successful");
                 window.location.href = "../views/home.html";
             }
             else {
                 // do something
-                console.log(result);
+                var pLogError = document.getElementById("pLogError");
+                pLogError.style.display = "block";
+            
+                pLogError.innerHTML = result;
+            }
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost:8081/PostLogin", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+
+    var inputLogEmail = document.getElementById("inputLogEmail").value;
+    var inputLogPassword = document.getElementById("inputLogPassword").value;
+    
+    var data = {email: inputLogEmail, password: inputLogPassword};
+    
+    xhttp.send(JSON.stringify(data));
+}
+
+function postRegister() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+            var result = this.response;
+            if (result == "Successful") {
+                // do something
+                window.location.href = "../views/home.html";
+            }
+            else {
+                // do something
+                var pRegError = document.getElementById("pRegError");
+                pRegError.style.display = "block";
+            
+                pRegError.innerHTML = result;
             }
         }
     };
-    xhttp.open("POST", "http://localhost:8081/CreateUser", true);
+
+    xhttp.open("POST", "http://localhost:8081/PostRegister", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
 
+    var inputRegUsername = document.getElementById("inputRegUsername").value;
+    var inputRegEmail = document.getElementById("inputRegEmail").value;
+    var inputRegPassword = document.getElementById("inputRegPassword").value;
 
-    
-    var data = {userName: userID, password: userPassword, email: userEmail};
+    var data = {username: inputRegUsername, email: inputRegEmail, password: inputRegPassword};
     
     xhttp.send(JSON.stringify(data));
 }
 
 function showLoginPassword(){
-    var passwordBox = document.getElementById("login-password");
-    if(passwordBox.type === "password"){
-        passwordBox.type = "text";
+    var inputLogPassword = document.getElementById("inputLogPassword");
+    if(inputLogPassword.type === "password"){
+        inputLogPassword.type = "text";
     }
     else{
-        passwordBox.type = "password";
+        inputLogPassword.type = "password";
     }
 }
 
-
 function showRegisterPassword(){
-    var passwordBox = document.getElementById("register-password");
-    if(passwordBox.type === "password"){
-        passwordBox.type = "text";
+    var inputRegPassword = document.getElementById("inputRegPassword");
+    if(inputRegPassword.type === "password"){
+        inputRegPassword.type = "text";
     }
     else{
-        passwordBox.type = "password";
+        inputRegPassword.type = "password";
     }
 }

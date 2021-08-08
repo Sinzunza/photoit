@@ -4,12 +4,8 @@ var firebase = require('firebase/app');
   require('firebase/database');
 const sorting = require('../sorting.js');
 
-function reverseObject(object) {
-  
-
-  return newObject;
-}
 ///////////////////////////////////////////////////////////////////////// get functions
+
 function getMostLike(request, response){
 
   firebase.database().ref("Users").once('value', function(snapshot){
@@ -27,10 +23,9 @@ function getMostLike(request, response){
       response.send(); 
     }
   }); 
-  // queryAllUsers.once('value', function(snapshot) {
-    
-  // })
+
 }
+
 function getUserInfo(request, response){
 
   var userID = request.query.userID;
@@ -88,60 +83,55 @@ function getUserAuthentication(request, response){
 }
 
 /////////////////////////////////////////////////////////////////////////// post functions
-function postCreateUser(request, response){
+
+function postRegister(request, response){
 
     var email = request.body.email;
     var password = request.body.password;
     var ref = firebase.database().ref('Users'); //.ref(target); 
-    var userName = request.body.userName; 
-    ref.orderByChild("UserName").equalTo(userName).once("value", function(snapshot){
+    var username = request.body.username; 
+    ref.orderByChild("Username").equalTo(username).once("value", function(snapshot){
       if (snapshot.numChildren() >= 1)
       {
-          // duplicate userName
-          response.send("User Name Already Exists");
+          // duplicate username
+          response.send("Username already exists.");
       }
       else 
       {
           firebase.auth().createUserWithEmailAndPassword(email, password)
           .then((userCredential) => {
             // Signed in 
-            var user = userCredential.user;
             var rootRef = firebase.database().ref();
             var userRef = rootRef.child('Users/' + firebase.auth().currentUser.uid);
             userRef.set({
-              UserName: request.body.userName,
+              Username: username,
               ProfilePic: "https://firebasestorage.googleapis.com/v0/b/photoit110.appspot.com/o/profilePhotos%2FdefaultProfilePhoto.png?alt=media&token=3a7c1bcd-7e36-404f-b7b8-3438549c4885", 
-              AppreciatedPoint: 0
+              AppreciationPoints: 0
             });
             console.log("create user successful");
-            response.send("successful");
+            response.send("Successful");
           })
           .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log("Error " + errorCode + ": " + errorMessage + ".\n");
-            response.send("unsuccessful");
+            console.log("Error " + error.code + ": " + error.message + ".\n");
+            response.send(error.message);
           });
       }
     }); 
 }
 
-function postSignIn(request, response){
+function postLogin(request, response){
 
   var email = request.body.email;
   var password = request.body.password;
 
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
-    var user = userCredential.user;
     console.log("login successful");
-    response.send("successful");
+    response.send("Successful");
   })
   .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log("Error " + errorCode + ": " + errorMessage + ".\n");
-    response.send("unsuccessful");
+    console.log("Error " + error.code + ": " + error.message + ".\n");
+    response.send(error.message);
   });
 
 }
@@ -160,7 +150,8 @@ function postSignOut(request, response){
 
 }
 
-///////////////////////////////////////////////////////////////////////// other
+///////////////////////////////////////////////////////////////////////// other functions
+
 function searchDataBase(request, response) {
   var query = request.query.userName; 
   var ref = firebase.database().ref('Users'); //.ref(target); 
@@ -185,8 +176,8 @@ module.exports = {
   getUserInfo,
   getUserName,
   getUserAuthentication,
-  postCreateUser,
-  postSignIn,
+  postRegister,
+  postLogin,
   postSignOut,
   searchDataBase
 };
