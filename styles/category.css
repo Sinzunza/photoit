@@ -199,3 +199,7 @@ img:hover {
 #navbar {
     width: 1200px;
 }
+
+.btn {
+    border-style: none;
+}

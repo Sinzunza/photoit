@@ -204,3 +204,7 @@ img:hover {
 .user_info p {
     color: white;
 }
+
+.btn {
+    border-style: none;
+}

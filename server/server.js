@@ -27,7 +27,7 @@ const port = 8081;
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../')));
 app.use(cors());
 
 // import handlers
