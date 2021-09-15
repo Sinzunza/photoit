@@ -84,13 +84,13 @@ function getUserInfo(userIDUser) {
             var numLikes = document.getElementById("num_likes");
             var awards = document.getElementById("awards");
 
-            userName.innerHTML += result.UserName;
-            numLikes.innerHTML += result.AppreciatedPoint;
+            userName.innerHTML += result.Username;
+            numLikes.innerHTML += result.AppreciationPoints;
             if (result.awards != null) {
                 awards.innerHTML += result.awards;
             }
 
-            getUsersPosts(result.UserName);
+            getUsersPosts(result.Username);
 
         }
     };
@@ -101,20 +101,18 @@ function getUserInfo(userIDUser) {
     xhttp.send();
 }
 
-function getUsersPosts(userNameUser) {
+function getUsersPosts(usernameUser) {
     var xhttp = new XMLHttpRequest();
     xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response; 
 
-            if (result == "unsuccessful") {
-                console.log("Error: occurred in getting posts");
-            }
-            else if (result == null) {
+            if (result == null) {
                 console.log("no posts exists");
             }
             else {
+                console.log("posts exists");
                 var picturesID = Object.keys(this.response); 
                 var pictures = Object.values(this.response);
 
@@ -126,8 +124,8 @@ function getUsersPosts(userNameUser) {
                 var picTitle;
                 var postID; 
                 for(let i = 0; i < pictures.length; i++){
-                    picHostedLink = pictures[i].imageURL;
-                    picTitle = pictures[i].caption;
+                    picHostedLink = pictures[i].ImageURL;
+                    picTitle = pictures[i].Caption;
                     postID = picturesID[i]; 
                     container.innerHTML += "<div class=\"box\">" +
                                                 "<div class=\"imgBox\">" +
@@ -145,7 +143,7 @@ function getUsersPosts(userNameUser) {
             }
         }
     };
-    var params = "?userName=" + userNameUser;
+    var params = "?username=" + usernameUser;
     xhttp.open("GET", "http://localhost:8081/GetUsersPosts" + params, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     

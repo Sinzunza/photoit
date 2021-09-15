@@ -36,9 +36,9 @@ function getPost(request, response){
 
 function getUsersPosts(request, response){
 
-  var userName = request.query.userName;
+  var username = request.query.username;
 
-  var queryUsersPosts = firebase.database().ref("Posts").orderByChild("userName").equalTo(userName);
+  var queryUsersPosts = firebase.database().ref("Posts").orderByChild("Username").equalTo(username);
 
   queryUsersPosts.once('value', function(snapshot) {
 
@@ -46,7 +46,7 @@ function getUsersPosts(request, response){
       response.send(snapshot.val());
     }
     else {
-      response.send("empty");
+      response.send(null);
     }
 
   });
@@ -81,7 +81,7 @@ function getCategoryPosts(request, response){
     response.send("unsuccessful");
   }
 
-  var queryUsersPosts = firebase.database().ref("Posts").orderByChild("category").equalTo(category);
+  var queryUsersPosts = firebase.database().ref("Posts").orderByChild("Category").equalTo(category);
 
   queryUsersPosts.once('value', function(snapshot) {
 
@@ -99,7 +99,7 @@ function getCategoryPosts(request, response){
         }
       }
       
-      filteredJSON = sorting.sortByProperty([filteredJSON], 'attributes.likes', -1);
+      filteredJSON = sorting.sortByProperty([filteredJSON], 'attributes.Likes', -1);
 
       console.log("getCategoryPosts() - found posts");
       response.send(filteredJSON);
@@ -144,17 +144,17 @@ function postLike(request, response){
 
     if (user) { // if a user is signed in
 
-        // get userName  
+        // get Username  
         var userID = firebase.auth().currentUser.uid;
         var refUser = firebase.database().ref('Users/' + userID);
 
         refUser.once('value', function(snapshot){
 
-          var userName = snapshot.val().UserName;
+          var username = snapshot.val().Username;
 
           // get number of likes
           var tempPostID = request.body.postID; 
-          var refLikedByUser = firebase.database().ref('Posts/' + tempPostID + "/likedBy/" + userName);
+          var refLikedByUser = firebase.database().ref('Posts/' + tempPostID + "/LikedBy/" + username);
 
           refLikedByUser.once('value', function(snapshot){
 
@@ -163,7 +163,7 @@ function postLike(request, response){
               // get old likes
               var postID = request.body.postID;
 
-              var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
+              var likesDB = firebase.database().ref('Posts/' + postID + "/Likes");
 
               likesDB.once('value', (snapshot) => {
 
@@ -173,16 +173,16 @@ function postLike(request, response){
 
                 // post new likes
                 var updateData = {
-                  likes: newLikes
+                  Likes: newLikes
                 };
 
                 var postDB = firebase.database().ref('Posts/' + postID);
                 postDB.update(updateData);
                 response.send(newLikes.toString());
 
-                var refLikedBy = firebase.database().ref('Posts/' + postID + "/likedBy");
+                var refLikedBy = firebase.database().ref('Posts/' + postID + "/LikedBy");
 
-                refLikedBy.child(userName).remove();                
+                refLikedBy.child(username).remove();                
 
               }, (errorObject) => {
 
@@ -196,7 +196,7 @@ function postLike(request, response){
               // get old likes
               var postID = request.body.postID;
 
-              var likesDB = firebase.database().ref('Posts/' + postID + "/likes");
+              var likesDB = firebase.database().ref('Posts/' + postID + "/Likes");
 
               likesDB.once('value', (snapshot) => {
 
@@ -206,17 +206,17 @@ function postLike(request, response){
 
                 // post new likes
                 var updateData = {
-                  likes: newLikes
+                  Likes: newLikes
                 };
 
                 var postDB = firebase.database().ref('Posts/' + postID);
                 postDB.update(updateData);
                 response.send(newLikes.toString());
 
-                var refLikedBy = firebase.database().ref('Posts/' + postID + "/likedBy");
+                var refLikedBy = firebase.database().ref('Posts/' + postID + "/LikedBy");
 
-                refLikedBy.child(userName).set({
-                  liked: ""
+                refLikedBy.child(username).set({
+                  Liked: ""
                 });
 
               }, (errorObject) => {

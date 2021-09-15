@@ -1,10 +1,11 @@
 var firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/database');
-function getComments(reequest, response) {
+
+function getComments(request, response) {
     // returns all commentsID and all its data as json
     var tempPostID = '-MaufwbI_kZpTGMGpqL4'; 
-    var target = 'Posts/' + tempPostID + '/comments'; 
+    var target = 'Posts/' + tempPostID + '/Comments'; 
     var ref = firebase.database().ref(target);
 
     ref.once('value', function(snapshot){
@@ -13,7 +14,6 @@ function getComments(reequest, response) {
     });
 }
 
-
 function postComments(request, response) {
 
     firebase.auth().onAuthStateChanged(function(user) {
@@ -21,7 +21,7 @@ function postComments(request, response) {
         if (user) {
             // var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
             var tempPostID = request.body.postID; 
-            var target = 'Posts/' + tempPostID + "/comments"; 
+            var target = 'Posts/' + tempPostID + "/Comments"; 
             var ref = firebase.database().ref(target);
             
             var userID = firebase.auth().currentUser.uid;
@@ -29,14 +29,14 @@ function postComments(request, response) {
             var refUser = firebase.database().ref(userSnap);
 
             refUser.once('value', function(snapshot){
-                var userName = snapshot.val().UserName;
+                var username = snapshot.val().Username;
 
                 var contentUser = request.body.content;
 
                 var newComment = {
-                    user: userName, 
-                    content: contentUser, 
-                    date: Date.now()
+                    Username: username, 
+                    Content: contentUser, 
+                    Date: Date.now()
                 }
 
                 ref.push().set(newComment);

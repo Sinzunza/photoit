@@ -33,10 +33,10 @@ function getPost(postIDUser) {
             var captionDoc = document.getElementById("caption");
             var likesDoc = document.getElementById("likes");
 
-            userImgDoc.src = result.imageURL;
-            captionDoc.innerHTML = result.caption +
-                                   "<br><br><span>PostedBy: " + result.userName + "</span>";
-            likesDoc.innerHTML = result.likes;                
+            userImgDoc.src = result.ImageURL;
+            captionDoc.innerHTML = result.Caption +
+                                   "<br><br><span>PostedBy: " + result.Username + "</span>";
+            likesDoc.innerHTML = result.Likes;                
 
         }
     };
@@ -66,7 +66,7 @@ function postComment() {
             }
             else {
                 // do something
-                console.log("create post unsuccessful");
+                console.log("create comment unsuccessful");
                 console.log(result);
             }
         }
@@ -87,6 +87,7 @@ function getUserName() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
 
             var result = this.response;
+            console.log("Username = " + result);
             var usernameDoc = document.getElementById("username");
             usernameDoc.innerHTML = result;           
 

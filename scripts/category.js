@@ -33,8 +33,8 @@ function getCategoryPosts(categoryUser, filterUser)
                 var picTitle;
                 var postID; 
                 for(let i = 0; i < pictures.length; i++){
-                    picHostedLink = pictures[i].imageURL;
-                    picTitle = pictures[i].caption;
+                    picHostedLink = pictures[i].ImageURL;
+                    picTitle = pictures[i].Caption;
                     postID = picturesID[i]; 
                     container.innerHTML += "<div class=\"box\">" +
                                             "<div class=\"imgBox\">" +
