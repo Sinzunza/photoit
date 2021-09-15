@@ -112,14 +112,11 @@ function postLike() {
             var commentVal = document.getElementById("userMessage")
             if (result == null) {
                 // do something
-                console.log("error posting comment");
                 commentFeedback.style.color = "red";
                 //commentFeedback.innerHTML = "Error posting comment";
             }
             else {
                 // do something
-                console.log("create post unsuccessful");
-                console.log(result);
                 location.reload();
                 //commentFeedback.style.color = "green";
                 //commentFeedback.innerHTML = "Comment Posted!";
