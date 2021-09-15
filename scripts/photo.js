@@ -35,7 +35,7 @@ function getPost(postIDUser) {
 
             userImgDoc.src = result.ImageURL;
             captionDoc.innerHTML = result.Caption +
-                                   "<br><br><span>PostedBy: " + result.Username + "</span>";
+                                   "<br><br><span>Posted By: " + result.Username + "</span>";
             likesDoc.innerHTML = result.Likes;                
 
         }
