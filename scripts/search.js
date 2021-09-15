@@ -1,5 +1,5 @@
 function getUser() {
-    var userSearch = document.getElementById("searchID").value;
+    var usernameSearch = document.getElementById("searchID").value;
     var xhttp = new XMLHttpRequest();
     xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
@@ -30,7 +30,7 @@ function getUser() {
                 }
 
                 let userFound = document.getElementById("foundUser");
-                let userLink = "../views/profile/" + result[Object.keys(result)[0]].UserName
+                let userLink = "../views/profile/" + result[Object.keys(result)[0]].Username
                 userFound.innerHTML =   "<div class=\"box\">" +
                                             "<div class=\"imgBox\">" +
                                                 "<a href=\"" + userLink + "\" >" +
@@ -38,7 +38,7 @@ function getUser() {
                                                 "</a>" +
                                             "</div>" +
                                             "<div class=\"content\">" +
-                                                "<h2>" + result[Object.keys(result)[0]].UserName + "</h2>" +
+                                                "<h2>" + result[Object.keys(result)[0]].Username + "</h2>" +
                                             "</div>" +
                                         "</div>"
                 console.log(result[Object.keys(result)[0]]);
@@ -46,7 +46,7 @@ function getUser() {
         }
     };
 
-    var params = "?" + "userName=" + userSearch;
+    var params = "?" + "username=" + usernameSearch;
     xhttp.open("GET", "http://localhost:8081/searchDataBase" + params, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     

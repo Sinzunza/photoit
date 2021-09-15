@@ -46,7 +46,7 @@ app.get('/GetUsersPosts', postsHandler.getUsersPosts);
 app.get('/GetCategoryPosts', postsHandler.getCategoryPosts);
 app.get('/GetUserAuthentication', userHandler.getUserAuthentication);
 app.get('/GetUserInfo', userHandler.getUserInfo);
-app.get('/GetUserName', userHandler.getUserName);
+app.get('/GetUserName', userHandler.getUsername);
 app.get('/getMostLike', userHandler.getMostLike);
 app.get('/getComments', commentHandler.getComments);
 app.get('/searchDataBase', userHandler.searchDataBase); 

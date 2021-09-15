@@ -41,7 +41,7 @@ function getUserInfo(request, response){
 
 }
 
-function getUserName(request, response){
+function getUsername(request, response){
 
   firebase.auth().onAuthStateChanged(function(user) {
 
@@ -153,9 +153,9 @@ function postSignOut(request, response){
 ///////////////////////////////////////////////////////////////////////// other functions
 
 function searchDataBase(request, response) {
-  var query = request.query.userName; 
+  var query = request.query.username; 
   var ref = firebase.database().ref('Users'); //.ref(target); 
-  ref.orderByChild("UserName").equalTo(query).once("value", function(snapshot){
+  ref.orderByChild("Username").equalTo(query).once("value", function(snapshot){
 
     const obj = snapshot.val();
 
@@ -174,7 +174,7 @@ function searchDataBase(request, response) {
 module.exports = {
   getMostLike,
   getUserInfo,
-  getUserName,
+  getUsername,
   getUserAuthentication,
   postRegister,
   postLogin,
