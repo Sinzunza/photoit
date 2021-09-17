@@ -6,11 +6,9 @@ var firebase = require('firebase/app');
 const sorting = require('../sorting.js');
 
 //////////////////////////////////////////////////////////////////////// get functions
-function getPost(request, response){
+function getPost(request, response) {
 
   var postID = request.query.postID;
-  console.log("postID = " + postID);
-
 
   var postDB = firebase.database().ref('Posts/' + postID);
 
@@ -34,7 +32,7 @@ function getPost(request, response){
 
 }
 
-function getUsersPosts(request, response){
+function getUsersPosts(request, response) {
 
   var username = request.query.username;
 
@@ -53,7 +51,7 @@ function getUsersPosts(request, response){
 
 }
 
-function getCategoryPosts(request, response){
+function getCategoryPosts(request, response) {
 
   var category = request.query.category;
   var filter = request.query.filter;
@@ -116,29 +114,43 @@ function getCategoryPosts(request, response){
 
 }
 
-//////////////////////////////////////////////////////////////////////////// posts functions
-function postCreatePost(request, response){
-  console.log("Create Post");
+//////////////////////////////////////////////////////////////////////////// post functions
+function postCreatePost(request, response) {
+
   var postsDB =  firebase.database().ref('Posts/');
   var userID = firebase.auth().currentUser.uid;
-  var ref = firebase.database().ref('Users/' + userID); //.ref(target); 
+  var ref = firebase.database().ref('Users/' + userID);
   var username; 
-  ref.once("value", function(snapshot){
+  
+  ref.once("value", function(snapshot) {
+
     username = snapshot.val().Username; 
-    postsDB.push().set({
+    var postsDBPush = postsDB.push();
+
+    postsDBPush.set({
       Username: username,
       ImageURL: request.body.imageURL,
       Category: request.body.category,
       Caption: request.body.caption,
       Date: Date.now(),
       Likes: '0'
+    }, function(error){
+      if (error) {
+       console.error(error)
+       console.log('Create post unsuccessful');
+       response.send(null);
+      }
+      else {
+        console.log('Create post successful');
+        //add upload function here
+        var newPostKey = postsDBPush.key;
+        response.send(newPostKey);
+      }
     });
-
-  response.send("successful");
-  }); 
+  });
 }
 
-function postLike(request, response){
+function postLike(request, response) {
 
   firebase.auth().onAuthStateChanged(function(user) {
 

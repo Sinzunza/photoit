@@ -18,29 +18,26 @@ function chooseFile(e) {
 }
 
 function uploadPicture() {
-    var createID = create_UUID(); 
-    var storageRef = firebase.storage().ref("posts/" + createID);
+    var postStorageID = create_UUID(); 
+    var storageRef = firebase.storage().ref("posts/" + postStorageID);
     var captionUser = document.getElementById("photoname").value; 
     var category = document.getElementById("categorymenu").value;
     var uploadMessage = document.getElementById("category_info");
     storageRef.put(file).then(function() {
         console.log("upload successful");
         // uploaded, get URL
-        firebase.storage().ref('posts/' + createID).getDownloadURL().then(imgUrl => {
+        firebase.storage().ref('posts/' + postStorageID).getDownloadURL().then(imgUrl => {
             
             // console.log(imgUrl, captionUser, category);
             postCreatePost(captionUser, imgUrl, category);
-        }); 
-        document.getElementById("uploadForm").remove()
-        uploadMessage.innerHTML = uploadMessage.innerHTML + "<p style=\"color: green;\"> Upload Successful </p>";
 
+        }); 
     }).catch(error => {
         console.log("upload failed");
         console.log("Error: " + error);
         document.getElementById("uploadForm").remove()
         uploadMessage.innerHTML = uploadMessage.innerHTML + "<p style=\"color: red;\"> Upload Unsuccessful </p>";
     })
-
 }
 
 function postCreatePost(captionUser, imageURLUser, categoryUser) {
@@ -48,13 +45,14 @@ function postCreatePost(captionUser, imageURLUser, categoryUser) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
-            if (result == "successful") {
-                // do something
-                console.log("create post successful");
+            if (result == null) {
+                console.log("Create post unsuccessful");
             }
-            else if (result == "unsuccessful") {
-                // do something
-                console.log("create post unsuccessful");
+            else {
+                console.log("Create post successful");
+                // open photo page
+                var postDbID = result;
+                window.location.href = "../views/photo.html?postID=" + postDbID;
             }
         }
     };
@@ -62,7 +60,6 @@ function postCreatePost(captionUser, imageURLUser, categoryUser) {
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     var data = {caption: captionUser, imageURL: imageURLUser, category: categoryUser};
-    
     xhttp.send(JSON.stringify(data));
 }
 

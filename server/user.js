@@ -181,5 +181,3 @@ module.exports = {
   postSignOut,
   searchDataBase
 };
-
-
