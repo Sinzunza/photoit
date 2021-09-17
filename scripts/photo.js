@@ -87,9 +87,16 @@ function getUserName() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
 
             var result = this.response;
-            console.log("Username = " + result);
-            var usernameDoc = document.getElementById("username");
-            usernameDoc.innerHTML = result;           
+            var usernameText = document.getElementById("commentName");
+            if(result != "false"){
+                usernameText.innerHTML = "Posting comment as: ";
+                var usernameDoc = document.getElementById("username");
+                usernameDoc.innerHTML = result;  
+            }
+            else{
+                usernameText.innerHTML = "Must be logged in to post comments!";
+            }
+            console.log("Username = " + result);         
 
         }
     };
