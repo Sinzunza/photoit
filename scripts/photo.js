@@ -124,8 +124,16 @@ function postLike() {
                 console.log("Error appreciating comment.\n");
             }
             else {
-                var likesDoc = document.getElementById("likes");
-                likesDoc.innerHTML = result; 
+                if(result == ""){
+                    var likesDoc = document.getElementById("appreciatedMessage");
+                    var likeButtonDoc = document.getElementById("likeBtn");
+                    likeButtonDoc.remove();
+                    likesDoc.innerHTML = "Must sign in to appreciate photo";
+                }
+                else{
+                    var likesDoc = document.getElementById("likes");
+                    likesDoc.innerHTML = result;
+                }
             }
         }
     };
