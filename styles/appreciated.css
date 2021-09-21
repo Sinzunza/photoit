@@ -80,6 +80,7 @@ body {
     max-width: 100%;
     opacity: 0.1;
     transition: 0.5s;
+    width: 280px;
 }
 
 .box:after {
@@ -120,17 +121,18 @@ body {
 
 .box:nth-child(3n):before,
 .box:nth-child(3n):after {
-    background:linear-gradient(235deg, #C0C0C0, #010615, #C0C0C0);
+    background:linear-gradient(235deg, #CD7F32, #010615, #CD7F32);;
+    
 }
 
 .box:nth-child(3n+1):before,
 .box:nth-child(3n+1):after {
-    background:linear-gradient(235deg, #CD7F32, #010615, #CD7F32);
+    background:linear-gradient(235deg, 	#FFD700, #010615, 	#FFD700);
 }
 
 .box:nth-child(3n+2):before,
 .box:nth-child(3n+2):after {
-    background:linear-gradient(235deg, 	#FFD700, #010615, 	#FFD700);
+    background:linear-gradient(235deg, #C0C0C0, #010615, #C0C0C0);
 }
 
 .btn-area {
@@ -196,4 +198,13 @@ img:hover {
 
 .user_info p {
     color: white;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-left:auto;
+    margin-right:auto;
 }
