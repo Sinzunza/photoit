@@ -5,7 +5,9 @@ var firebase = require('firebase/app');
 
 const sorting = require('../sorting.js');
 
+
 //////////////////////////////////////////////////////////////////////// get functions
+
 function getPost(request, response) {
 
   var postID = request.query.postID;
@@ -114,7 +116,9 @@ function getCategoryPosts(request, response) {
 
 }
 
+
 //////////////////////////////////////////////////////////////////////////// post functions
+
 function postCreatePost(request, response) {
 
   var postsDB =  firebase.database().ref('Posts/');
@@ -152,49 +156,50 @@ function postCreatePost(request, response) {
 
 function postLike(request, response) {
 
+  var postID = request.body.postID; 
+  var postUsername = request.body.postUsername;
+
   firebase.auth().onAuthStateChanged(function(user) {
 
     if (user) { // if a user is signed in
 
-        // get Username  
+        // get Username
         var userID = firebase.auth().currentUser.uid;
         var refUser = firebase.database().ref('Users/' + userID);
+
+        var oldLikes;
+        var incrDecr;
 
         refUser.once('value', function(snapshot){
 
           var username = snapshot.val().Username;
 
           // get number of likes
-          var tempPostID = request.body.postID; 
-          var refLikedByUser = firebase.database().ref('Posts/' + tempPostID + "/LikedBy/" + username);
+          var refLikedByUser = firebase.database().ref('Posts/' + postID + "/LikedBy/" + username);
 
           refLikedByUser.once('value', function(snapshot){
 
             if (snapshot.numChildren() >= 1) { // if is liked
 
               // get old likes
-              var postID = request.body.postID;
-
               var likesDB = firebase.database().ref('Posts/' + postID + "/Likes");
 
               likesDB.once('value', (snapshot) => {
 
-                var oldLikes = parseInt(snapshot.val());
+                oldLikes = parseInt(snapshot.val());
 
-                var newLikes = oldLikes - 1; // remove like
-
-                // post new likes
-                var updateData = {
-                  Likes: newLikes
-                };
-
-                var postDB = firebase.database().ref('Posts/' + postID);
-                postDB.update(updateData);
+                // get new likes
+                incrDecr = -1; // remove like
+                
+                // update Likes and send response
+                var newLikes = updateLikes(postID, oldLikes, incrDecr);
                 response.send(newLikes.toString());
 
+                // remove username from LikedBy
                 var refLikedBy = firebase.database().ref('Posts/' + postID + "/LikedBy");
-
-                refLikedBy.child(username).remove();                
+                refLikedBy.child(username).remove();
+                
+                updateAppreciationPoints(postUsername, incrDecr);
 
               }, (errorObject) => {
 
@@ -206,30 +211,26 @@ function postLike(request, response) {
             else { // if is not liked
 
               // get old likes
-              var postID = request.body.postID;
-
               var likesDB = firebase.database().ref('Posts/' + postID + "/Likes");
 
               likesDB.once('value', (snapshot) => {
 
-                var oldLikes = parseInt(snapshot.val());
+                oldLikes = parseInt(snapshot.val());
 
-                var newLikes = oldLikes + 1; // add like
+                // get new likes
+                incrDecr = 1; // add like
 
-                // post new likes
-                var updateData = {
-                  Likes: newLikes
-                };
-
-                var postDB = firebase.database().ref('Posts/' + postID);
-                postDB.update(updateData);
+                // update Likes and send response
+                var newLikes = updateLikes(postID, oldLikes, incrDecr);
                 response.send(newLikes.toString());
 
+                // add username to LikedBy
                 var refLikedBy = firebase.database().ref('Posts/' + postID + "/LikedBy");
-
                 refLikedBy.child(username).set({
                   Liked: ""
                 });
+
+                updateAppreciationPoints(postUsername, incrDecr);
 
               }, (errorObject) => {
 
@@ -248,6 +249,51 @@ function postLike(request, response) {
       console.log("user not signed in");
       response.send(null);
     }
+  });
+
+}
+
+
+//////////////////////////////////////////////////// helper functions
+
+function updateLikes(postID, oldLikes, incrDecr) {
+
+  var newLikes = oldLikes + incrDecr;
+
+  var updateLikes = {
+    Likes: newLikes
+  };
+
+  var postDB = firebase.database().ref('Posts/' + postID);
+  postDB.update(updateLikes);
+
+  return newLikes.toString();
+}
+
+function updateAppreciationPoints(postUsername, incrDecr) {
+
+  var refAllUsers = firebase.database().ref('Users/');
+  var queryPostUser = refAllUsers.orderByChild("Username").equalTo(postUsername);
+
+  queryPostUser.once('value', function(snapshot) {
+
+    var postUserID = Object.keys(snapshot.val())[0];
+
+    var refPostUser = firebase.database().ref("Users/" + postUserID);
+
+    refPostUser.once('value', (snapshot) => {
+
+      // get old appreciation points
+      var oldAppreciationPoints = parseInt(snapshot.child("AppreciationPoints").val());
+
+      var updateAppreciationPoints = {
+        AppreciationPoints: oldAppreciationPoints + incrDecr
+      };
+
+      refPostUser.update(updateAppreciationPoints);
+
+    });
+
   });
 
 }

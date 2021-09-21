@@ -1,4 +1,5 @@
 var postIDUser;
+var postUsernameUser;
 
 window.addEventListener("load", function(evt) {
     postIDUser = getPostID();
@@ -27,7 +28,7 @@ function getPost(postIDUser) {
                 }
             }
 
-
+            postUsernameUser = result.Username;
 
             var userImgDoc = document.getElementById("userImg");
             var captionDoc = document.getElementById("caption");
@@ -35,7 +36,7 @@ function getPost(postIDUser) {
 
             userImgDoc.src = result.ImageURL;
             captionDoc.innerHTML = result.Caption +
-                                   "<br><br><span>Posted By: " + result.Username + "</span>";
+                                   "<br><br><span>Posted By: " + postUsernameUser + "</span>";
             likesDoc.innerHTML = result.Likes;                
 
         }
@@ -118,7 +119,7 @@ function postLike() {
             }
             else {
                 // do something
-                location.reload();
+                //location.reload();
                 //commentFeedback.style.color = "green";
                 //commentFeedback.innerHTML = "Comment Posted!";
                 //commentVal.value = "";
@@ -128,7 +129,7 @@ function postLike() {
     xhttp.open("POST", "http://localhost:8081/PostLike", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
-    var data = {postID: postIDUser};
+    var data = {postID: postIDUser, postUsername: postUsernameUser};
     
     xhttp.send(JSON.stringify(data));
 }
