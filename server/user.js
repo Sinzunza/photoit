@@ -59,7 +59,7 @@ function getUsername(request, response){
     } else {
       // No user is signed in.
       console.log("user not signed in");
-      response.send("false");
+      response.send(null);
     }
   });
 
@@ -150,7 +150,7 @@ function postSignOut(request, response){
 
 }
 
-///////////////////////////////////////////////////////////////////////// other functions
+///////////////////////////////////////////////////////////////////////// helper functions
 
 function searchDataBase(request, response) {
   var query = request.query.username; 

@@ -1,10 +1,11 @@
 var postIDUser;
 var postUsernameUser;
+var username;
 
 window.addEventListener("load", function(evt) {
     postIDUser = getPostID();
     getPost(postIDUser);
-    getUserName();
+    username = getUsername();
 })
 
 function getPost(postIDUser) {
@@ -14,17 +15,16 @@ function getPost(postIDUser) {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;
 
-            if(result['comments'] == null){
+            if(result['Comments'] == null){
                 console.log("no comments")
             }
             else{
-                //console.log(result);
-                var comments = result['comments']
+                var comments = result['Comments']
                 var commentBox = document.getElementById("commentList");
                 comments = Object.values(comments)
                 console.log(comments)
                 for(let i = 0; i < comments.length; i++){
-                    commentBox.innerHTML += "<div class=\"comment\">" + comments[i].user + ": " + comments[i].content + "</div>";
+                    commentBox.innerHTML += "<div class=\"comment\">" + comments[i].Username + ": " + comments[i].Content + "</div>";
                 }
             }
 
@@ -56,6 +56,9 @@ function getPostID()
 }
 
 function postComment() {
+
+    var contentUser = document.getElementById("userMessage").value;
+
     var xhttp = new XMLHttpRequest();
     xhttp.responseType = 'json';
     xhttp.onreadystatechange = function() {
@@ -69,39 +72,41 @@ function postComment() {
                 // do something
                 console.log("create comment unsuccessful");
                 console.log(result);
+
+                var commentBox = document.getElementById("commentList");
+                commentBox.innerHTML += "<div class=\"comment\">" + username + ": " + contentUser + "</div>";
             }
         }
     };
     xhttp.open("POST", "http://localhost:8081/PostComments", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
-
-    var contentUser = document.getElementById("userMessage").value;
     
     var data = {postID: postIDUser, content: contentUser};
     
     xhttp.send(JSON.stringify(data));
 }
 
-function getUserName() {
+function getUsername() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
 
             var result = this.response;
             var usernameText = document.getElementById("commentName");
-            if(result != "false"){
+            if (result == null) {
+                usernameText.innerHTML = "Must be logged in to post comments!";
+                username = result;
+            }
+            else {
                 usernameText.innerHTML = "Posting comment as: ";
                 var usernameDoc = document.getElementById("username");
-                usernameDoc.innerHTML = result;  
-            }
-            else{
-                usernameText.innerHTML = "Must be logged in to post comments!";
-            }
-            console.log("Username = " + result);         
+                usernameDoc.innerHTML = result; 
+                username = result; 
+            }       
 
         }
     };
-    xhttp.open("GET", "http://localhost:8081/GetUserName", true);
+    xhttp.open("GET", "http://localhost:8081/GetUsername", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     xhttp.send();
@@ -112,24 +117,15 @@ function postLike() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+
             var result = this.response;
 
-            var likesDoc = document.getElementById("likes");
-            likesDoc.innerHTML = result; 
-            
-            var commentFeedback = document.getElementById("commentFeedback");
-            var commentVal = document.getElementById("userMessage")
             if (result == null) {
-                // do something
-                commentFeedback.style.color = "red";
-                //commentFeedback.innerHTML = "Error posting comment";
+                console.log("Error appreciating comment.\n");
             }
             else {
-                // do something
-                //location.reload();
-                //commentFeedback.style.color = "green";
-                //commentFeedback.innerHTML = "Comment Posted!";
-                //commentVal.value = "";
+                var likesDoc = document.getElementById("likes");
+                likesDoc.innerHTML = result; 
             }
         }
     };
