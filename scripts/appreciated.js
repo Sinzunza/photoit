@@ -26,7 +26,7 @@ function getTopUser()
             }
             else {
                 value = Object.values(result); 
-                value.sort(GetSortOrder("AppreciatedPoint")); 
+                value.sort((a, b) => b.AppreciationPoints - a.AppreciationPoints);
                 console.log(value); 
                 var container = document.getElementById("container");
                 container.innerHTML = "";
