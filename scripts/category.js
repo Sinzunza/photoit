@@ -1,17 +1,21 @@
-// call server to requst post of that category
+// call server to request post of that category
+
+var categoryUser;
+var filterUser;
 
 window.addEventListener("load", function(evt) {
-    var category = getCategoryType();
-    getCategoryPosts(category, "week");
+    categoryUser = getCategoryType();
+    getCategoryPosts();
 })
 
-function getCategoryPosts(categoryUser, filterUser)
-{
+function getCategoryPosts() {
+
+    // get filter value
+    filterUser = document.getElementById("filterMenu").value;
 
     var xhttp = new XMLHttpRequest();
     xhttp.responseType = 'json';
-    xhttp.onreadystatechange = function() 
-    {
+    xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
 
             var result = this.response; 
@@ -28,10 +32,11 @@ function getCategoryPosts(categoryUser, filterUser)
                 container.innerHTML = "";
                 var picturesID = Object.keys(this.response[0]); 
                 var pictures = Object.values(this.response[0]);
-                // console.log(pictures); 
+
                 var picHostedLink;
                 var picTitle;
-                var postID; 
+                var postID;
+
                 for(let i = 0; i < pictures.length; i++){
                     picHostedLink = pictures[i].ImageURL;
                     picTitle = pictures[i].Caption;
@@ -52,13 +57,14 @@ function getCategoryPosts(categoryUser, filterUser)
             }
         }
     };
+
     var params = "?" + "category=" + categoryUser + "&filter=" + filterUser; 
     xhttp.open("GET", "http://localhost:8081/GetCategoryPosts" + params, true); 
-    xhttp.send(); 
+    xhttp.send();
+
 }
 
-function getCategoryType()
-{
+function getCategoryType() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var categoryName = url.searchParams.get("categoryType");

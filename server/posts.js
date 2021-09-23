@@ -58,23 +58,28 @@ function getCategoryPosts(request, response) {
   var category = request.query.category;
   var filter = request.query.filter;
 
+  console.log("Filter = " + filter + "\n\n");
+
   var filterTime = 0;
   var currentDate = Date.now();
 
-  if (filter == "hour") {
+  if (filter == "Last Hour") {
     filterTime = currentDate - 3600000;
   }
-  else if (filter == "day") {
+  else if (filter == "Last Day") {
     filterTime = currentDate - 86400000;
   }
-  else if (filter == "week") {
+  else if (filter == "Last Week") {
     filterTime = currentDate - 604800000;
   }
-  else if (filter == "month") {
+  else if (filter == "Last Month") {
     filterTime = currentDate - 2592000000;
   }
-  else if (filter == "year") {
+  else if (filter == "Last Year") {
     filterTime = currentDate - 31556952000;
+  }
+  else if (filter == "All Time") {
+    // do something
   }
   else {
     console.log("Error: getCategoryPosts() - incorrect function call");
@@ -89,13 +94,16 @@ function getCategoryPosts(request, response) {
 
       var filteredJSON = snapshot.val();
 
-      for (var key in filteredJSON) {
-        if (filteredJSON.hasOwnProperty(key)) {
+      if (filter != "All Time") {
 
-          if (filteredJSON[key].date < filterTime) {
-            delete filteredJSON[key];
+        for (var key in filteredJSON) {
+          if (filteredJSON.hasOwnProperty(key)) {
+  
+            if (filteredJSON[key].Date < filterTime) {
+              delete filteredJSON[key];
+            }
+  
           }
-
         }
       }
       
