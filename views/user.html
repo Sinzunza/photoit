@@ -5,6 +5,9 @@
     <title>PhotoIT - Homepage</title>
     <link rel="stylesheet" type="text/css" href="../styles/user.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
     <script src="../scripts/user.js"></script>
 </head>
 <body>
@@ -23,10 +26,13 @@
             <button id="userStateBtn" class="btn-area">Login</button>
         </header>
         <div class="user_info">
-            <p id="user_name">UserName: </p>
-            <p id="num_photos">Number of Photos: </p>
-            <p id="num_likes">Appreciation Points: </p>
-            <p id="awards">Awards: </p>
+            <img id="profilePic" src="" alt="Profile Photo" width="175" height="175">
+            <button onclick="document.getElementById('myFile').click()">Change Photo</button>
+            <input type="file" id="myFile" name="filename" onchange="chooseFile(event)" style="display:none" accept="image/*">
+            <p class="user_stats" id="user_name">Username: </p>
+            <p class="user_stats" id="num_photos">Number of Photos: </p>
+            <p class="user_stats" id="num_likes">Appreciation Points: </p>
+            <p class="user_stats" id="awards">Awards: </p>
         </div>
     </div>
     <div id="container">
