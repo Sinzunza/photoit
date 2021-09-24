@@ -197,6 +197,9 @@ img:hover {
 
 .user_info {
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     margin-bottom: 50px;
     width: 50%;
 }
@@ -207,4 +210,11 @@ img:hover {
 
 .btn {
     border-style: none;
+}
+
+#photoBtn{
+    margin-top: 10px;
+    margin-bottom: 25px;
+    width: 125px;
+    margin-left: 25px;
 }

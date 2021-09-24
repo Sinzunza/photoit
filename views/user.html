@@ -27,7 +27,7 @@
         </header>
         <div class="user_info">
             <img id="profilePic" src="" alt="Profile Photo" width="175" height="175">
-            <button onclick="document.getElementById('myFile').click()">Change Photo</button>
+            <button onclick="document.getElementById('myFile').click()" id="photoBtn">Change Photo</button>
             <input type="file" id="myFile" name="filename" onchange="chooseFile(event)" style="display:none" accept="image/*">
             <p class="user_stats" id="user_name">Username: </p>
             <p class="user_stats" id="num_photos">Number of Photos: </p>
