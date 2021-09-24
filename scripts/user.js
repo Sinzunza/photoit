@@ -103,10 +103,10 @@ function chooseFile(e) {
 
     reader.readAsDataURL(file);
 
-    // add confirm changes or cancel changes button
-
-   // uploadPicture(file);
-
+    // add "confirm changes" and "cancel changes" button
+    // if confirm then call the uploadPicture() function
+    // if cancel then simply reload the page
+    
 }
 
 function uploadPicture(file) {
