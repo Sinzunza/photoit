@@ -1,6 +1,7 @@
-window.onload = function() {
-    getTopUser(); 
-}
+window.addEventListener("load", function(evt) {
+    getTopUser();
+})
+
 function GetSortOrder(prop) {    
     return function(a, b) {    
         if (a[prop] > b[prop]) {    

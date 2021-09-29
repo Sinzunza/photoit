@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
 }
 
 a {
@@ -18,8 +19,8 @@ body {
     min-height: 100vh;
     background: #010615;
     max-width: 1200px;
-    margin-left:auto;
-    margin-right:auto;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .box {
@@ -136,6 +137,7 @@ body {
 .btn-area {
     cursor: pointer;
     color: #fff;
+    font-size: 1.1rem;
     font-size: 16px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -150,9 +152,9 @@ header {
     display: -ms-flex;
     display: -o-flex;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 30px 70px;
+    margin: 30px 70px;
 }
 
 header img {
@@ -193,4 +195,18 @@ img:hover {
 
 .search {
     text-align:center;
+}
+
+@media screen and (max-width: 450px){
+    * {
+        font-size: .95rem;
+    }
+    header img {
+        width: 100px;
+        height: 100px;
+    }
+    .btn-area {
+        font-size: .95rem;
+        padding: 5px 20px;
+    }
 }
