@@ -88,7 +88,7 @@ function userState(){
 }
 
 function chooseFile(e) {
-
+    console.log("file is chosen");
     var file = {};
     file = e.target.files[0];
 
@@ -106,11 +106,13 @@ function chooseFile(e) {
     // add "confirm changes" and "cancel changes" button
     // if confirm then call the uploadPicture() function
     // if cancel then simply reload the page
+
+    uploadPicture(file);
     
 }
 
 function uploadPicture(file) {
-
+    console.log("uploading picture");
     var postStorageID = create_UUID(); 
     var storageRef = firebase.storage().ref("profilePhotos/" + postStorageID);
 
@@ -122,6 +124,7 @@ function uploadPicture(file) {
         firebase.storage().ref('profilePhotos/' + postStorageID).getDownloadURL().then(imgUrl => {
             
             //add url to firebase db
+            postChangeAvatar(imgUrl);
 
         });
 
@@ -223,4 +226,25 @@ function create_UUID(){
         return (c=='x' ? r :(r&0x3|0x8)).toString(16);
     });
     return uuid;
+}
+
+function postChangeAvatar(imageURLUser){
+    console.log("entered postChangeAvatar()");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+            var result = this.response;
+            if (result == null) {
+                console.log("Change avatar unsuccessful");
+            }
+            else {
+                console.log("Change avatar successful");
+            }
+        }
+    };
+    xhttp.open("POST", "http://localhost:8081/PostUserAvatar", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    
+    var data = {imageURL: imageURLUser};
+    xhttp.send(JSON.stringify(data));
 }

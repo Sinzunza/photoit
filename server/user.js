@@ -150,6 +150,28 @@ function postSignOut(request, response){
 
 }
 
+function postUserAvatar(request, response){
+  console.log("postuseravatar function");
+  var userID = firebase.auth().currentUser.uid;
+  var ref = firebase.database().ref('Users/' + userID);
+  var username;
+
+  ref.once("value", function(snapshot) {
+    ref.update({
+      ProfilePic: request.body.imageURL
+    }, function(error){
+      if (error) {
+       console.error(error)
+       console.log('Update avatar unsuccessful');
+       response.send(null);
+      }
+      else {
+        console.log('Update avatar successful');
+      }
+    });
+  });
+}
+
 ///////////////////////////////////////////////////////////////////////// helper functions
 
 function searchDataBase(request, response) {
@@ -179,5 +201,6 @@ module.exports = {
   postRegister,
   postLogin,
   postSignOut,
-  searchDataBase
+  postUserAvatar,
+  searchDataBase,
 };
