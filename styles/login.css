@@ -175,3 +175,10 @@ text{
         padding: 5px 20px;
     }
 }
+
+@media screen and (max-width: 440px){
+    #divLogReg{
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
