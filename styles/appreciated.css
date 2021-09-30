@@ -207,11 +207,11 @@ img:hover {
     justify-content: center;
     flex-wrap: wrap;
     max-width: 1200px;
-    margin-left:auto;
-    margin-right:auto;
+    margin: 0 auto;
+    width: 100%;
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 768px){
     * {
         font-size: .95rem;
     }
@@ -222,5 +222,8 @@ img:hover {
     .btn-area {
         font-size: .95rem;
         padding: 5px 20px;
+    }
+    .box .content {
+        opacity: 1;
     }
 }

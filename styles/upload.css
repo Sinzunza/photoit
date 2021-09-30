@@ -192,7 +192,7 @@ header img {
     width: 1200px;
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 768px){
     * {
         font-size: .95rem;
     }

@@ -221,7 +221,7 @@ img:hover {
     margin-left: 25px;
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 768px){
     * {
         font-size: .95rem;
     }
@@ -232,5 +232,8 @@ img:hover {
     .btn-area {
         font-size: .95rem;
         padding: 5px 20px;
+    }
+    .box .content {
+        opacity: 1;
     }
 }
