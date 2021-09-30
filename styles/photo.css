@@ -107,25 +107,15 @@ body {
     opacity: 1;
 }
 
-.box:nth-child(3n):before,
-.box:nth-child(3n):after {
-    background:linear-gradient(235deg, #89ff00, #010615, #00bcd4);
-}
-
 .box:nth-child(3n+1):before,
 .box:nth-child(3n+1):after {
-    background:linear-gradient(235deg, #ff005e, #010615, #fbff00);
-}
-
-.box:nth-child(3n+2):before,
-.box:nth-child(3n+2):after {
-    background:linear-gradient(235deg, #772aff, #010615, #2196f3);
+    background:linear-gradient(235deg, #f560f5, #010615, #56b3ff);
 }
 
 .btn-area {
     cursor: pointer;
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     padding: 10px 30px;
