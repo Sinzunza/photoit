@@ -3,6 +3,16 @@
 var isLogin = false;  // set false because initially isn't login, although isn't register either
 
 window.onload = function() {
+    var inputBox;
+
+    if (isLogin){
+        inputBox = document.getElementById("inputLogPassword");
+    }
+    else{
+        inputBox = document.getElementById("inputRegPassword");
+    }
+
+    console.log(inputBox);
 
     var pLogError = document.getElementById("pLogError");
     var pRegError = document.getElementById("pRegError");
@@ -13,6 +23,20 @@ window.onload = function() {
     showLogin();
 
 };
+
+//trigger a button click on keyboard enter key
+window.addEventListener("keyup", function(event){
+    if(event.keyCode === 13){
+        console.log("aye we did it");
+        event.preventDefault();
+        if (isLogin){
+            document.getElementById("loginBtn").click();
+        }
+        else{
+            document.getElementById("regBtn").click();
+        }
+    }
+});
 
 /* switch from displaying login to displaying registration */
 function showRegister(){
