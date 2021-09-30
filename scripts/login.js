@@ -12,8 +12,6 @@ window.onload = function() {
         inputBox = document.getElementById("inputRegPassword");
     }
 
-    console.log(inputBox);
-
     var pLogError = document.getElementById("pLogError");
     var pRegError = document.getElementById("pRegError");
 
@@ -27,7 +25,6 @@ window.onload = function() {
 //trigger a button click on keyboard enter key
 window.addEventListener("keyup", function(event){
     if(event.keyCode === 13){
-        console.log("aye we did it");
         event.preventDefault();
         if (isLogin){
             document.getElementById("loginBtn").click();

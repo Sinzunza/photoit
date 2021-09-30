@@ -1,3 +1,14 @@
+var inputBox;
+inputBox = document.getElementById("searchID");
+
+//trigger a button click on keyboard enter key
+window.addEventListener("keyup", function(event){
+    if(event.keyCode === 13){
+        event.preventDefault();
+        document.getElementById("submitBtn").click();
+    }
+});
+
 function getUser() {
     var usernameSearch = document.getElementById("searchID").value;
     var xhttp = new XMLHttpRequest();
