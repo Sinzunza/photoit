@@ -138,12 +138,15 @@ body {
     cursor: pointer;
     color: #fff;
     font-size: 1.1rem;
-    font-size: 16px;
     letter-spacing: 2px;
     text-transform: uppercase;
     padding: 10px 30px;
     border-radius: 5px;
     background: #75849d;
+    border: none;
+    outline: solid;
+    outline-width: .15rem;
+    outline-color: #4b5464;
 }
 
 header {
@@ -207,6 +210,7 @@ b{
 
 #submitBtn{
     border-radius: 8px;
+    font-size: .9rem;
 }
 
 @media screen and (max-width: 768px){
