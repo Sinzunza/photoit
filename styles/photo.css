@@ -20,12 +20,12 @@ a {
 
 body {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     min-height: 100vh;
     background: #010615;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .box {
@@ -33,22 +33,25 @@ body {
     width: 300px;
     height: 300px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    margin: 40px;
-    background: #060c21;
+    background: rgba(0,0,0,0.4);
     transition: 0.5s;
+    padding: 10px;
 }
 
 .box .content {
     position: relative;
     width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.4);
     display:flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     transition: 0.5s;
+    height: 90px;
 }
 
 .box .content h2 {
@@ -69,10 +72,9 @@ body {
 .box .imgBox {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
-    padding: 10px;
     overflow: hidden;
     box-sizing: border-box;
 }
@@ -139,15 +141,17 @@ body {
     padding:10px;
 }
 
-#commentBox {
-    display:flex;
+.comments {
+    max-width: 500px;
+    max-height: 300px;
+    background-color: rgba(45, 0, 150, 0.1);
+    overflow: hidden;
 }
 
-.comments {
-    margin: 10px;
-    width:500px;
-    height: 500px;
-    background-color: rgba(45, 0, 150, 0.1) ;
+#commentBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 header {
@@ -159,6 +163,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 30px 70px;
+    margin: 0 auto;
+    font-size: 1.1rem;
 }
 
 header img {
@@ -167,21 +173,16 @@ header img {
 }
 
 .like {
-    position:absolute;
-    bottom: -35px;
-    opacity:0.75;
-    background-color: rgba(172, 172, 172, 0.1);
-    color:white;
+    color: white;
+    position: relative;
+    background-color: rgba(117, 132, 157, 1);
+    border-radius: 12px;
+    height: 2rem;
+    width: 125px;
 }
 
 #likeBtn {
     cursor: pointer;
-}
-
-#likes {
-    position: relative;
-    bottom: -170px;
-    left: 135px;
 }
 
 .logo {
@@ -209,16 +210,24 @@ header img {
 
 #navbar {
     width: 1200px;
+    max-height: 300px;
+    font-size: 1.1rem;
 }
 
 #photoContainer {
+    margin: 0 auto;
+    width: 100%;
     display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 75px;
+    font-size: 1rem;
+    padding: 25px;
 }
 
 #textBox {
     color:white;
-    position: relative; 
-    bottom:0;
+    padding: 5px;
 }
 
 #textContainer {
@@ -237,4 +246,67 @@ header img {
 .content #caption{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+#commentBtn {
+    position: relative;
+    bottom: 12.5%;
+    border-radius: 6px;
+    background-color: rgba(117, 132, 157, 1);
+    color: white;
+    padding: 2px;
+}
+
+#commentName{
+    font-size: .8rem;
+}
+
+.leftContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.appreciatedContainer{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+#userMessage{
+    border-radius: 6px;
+}
+
+@media screen and (max-width: 800px){
+    * {
+        font-size: .95rem;
+    }
+    header img {
+        width: 100px;
+        height: 100px;
+    }
+    .btn-area {
+        font-size: .95rem;
+        padding: 5px 20px;
+    }
+    #photoContainer{
+        flex-direction: column;
+    }
+    .appreciatedContainer{
+        justify-content: space-around;
+    }
+    .comments{
+        max-width: 100%;
+    }
+    .box .imgBox img{
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 457px){
+    #commentBtn{
+        bottom: 0%;
+    }
 }

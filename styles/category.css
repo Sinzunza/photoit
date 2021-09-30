@@ -226,4 +226,7 @@ img:hover {
     .box .content {
         opacity: 1;
     }
+    .box .imgBox img{
+        opacity: 1;
+    }
 }

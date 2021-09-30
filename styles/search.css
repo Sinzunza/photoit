@@ -197,6 +197,18 @@ img:hover {
     text-align:center;
 }
 
+b{
+    margin: 0 auto;
+}
+
+#searchID{
+    border-radius: 8px;
+}
+
+#submitBtn{
+    border-radius: 8px;
+}
+
 @media screen and (max-width: 768px){
     * {
         font-size: .95rem;
@@ -210,6 +222,9 @@ img:hover {
         padding: 5px 20px;
     }
     .box .content {
+        opacity: 1;
+    }
+    .box .imgBox img{
         opacity: 1;
     }
 }
