@@ -43,7 +43,7 @@ function getUserInfo(request, response){
 
 function getUsername(request, response){
 
-  firebase.auth().onAuthStateChanged(function(user) {
+  var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
 
     if (user) {
       var userID = firebase.auth().currentUser.uid;
@@ -63,11 +63,13 @@ function getUsername(request, response){
     }
   });
 
+  unsubscribe();
+
 }
 
 function getUserAuthentication(request, response){
 
-  firebase.auth().onAuthStateChanged(function(user) {
+  var unsubscribe = firebase.auth().onAuthStateChanged( function(user) {
     if (user) {
       // User is signed in.
       console.log("user signed in");
@@ -76,9 +78,11 @@ function getUserAuthentication(request, response){
     } else {
       // No user is signed in.
       console.log("user not signed in");
-      response.send("false");
+      response.send(null);
     }
   });
+
+  unsubscribe();
 
 }
 

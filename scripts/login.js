@@ -52,6 +52,15 @@ function showLogin(){
 function postLogin() {
 
     var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "http://localhost:8081/PostLogin", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+
+    var inputLogEmail = document.getElementById("inputLogEmail").value;
+    var inputLogPassword = document.getElementById("inputLogPassword").value;
+    
+    var data = {email: inputLogEmail, password: inputLogPassword};
+    
+    xhttp.send(JSON.stringify(data));
 
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
@@ -70,16 +79,7 @@ function postLogin() {
 
         }
     };
-
-    xhttp.open("POST", "http://localhost:8081/PostLogin", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-
-    var inputLogEmail = document.getElementById("inputLogEmail").value;
-    var inputLogPassword = document.getElementById("inputLogPassword").value;
     
-    var data = {email: inputLogEmail, password: inputLogPassword};
-    
-    xhttp.send(JSON.stringify(data));
 }
 
 function postRegister() {

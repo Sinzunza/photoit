@@ -16,7 +16,7 @@ function getComments(request, response) {
 
 function postComments(request, response) {
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
 
         if (user) {
             // var tempUserID = 'qVBHZwRiRTZikdQbP7ZPhNPMGtA2'; 
@@ -52,6 +52,9 @@ function postComments(request, response) {
           response.send(null);
         }
     });
+
+    unsubscribe();
+
 }
 
 module.exports = {

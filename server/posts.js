@@ -167,7 +167,7 @@ function postLike(request, response) {
   var postID = request.body.postID; 
   var postUsername = request.body.postUsername;
 
-  firebase.auth().onAuthStateChanged(function(user) {
+  var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
 
     if (user) { // if a user is signed in
 
@@ -258,6 +258,8 @@ function postLike(request, response) {
       response.send(null);
     }
   });
+
+  unsubscribe();
 
 }
 
