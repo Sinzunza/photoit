@@ -142,12 +142,15 @@ body {
     cursor: pointer;
     color: #fff;
     font-size: 1.1rem;
-    font-size: 16px;
     letter-spacing: 2px;
     text-transform: uppercase;
     padding: 10px 30px;
     border-radius: 5px;
     background: #75849d;
+    border: none;
+    outline: solid;
+    outline-width: .15rem;
+    outline-color: #4b5464;
 }
 
 #container {
@@ -219,6 +222,11 @@ img:hover {
     margin-bottom: 25px;
     width: 125px;
     margin-left: 25px;
+    font-size: .8rem;
+}
+
+.user_stats{
+    font-size: 1rem;
 }
 
 @media screen and (max-width: 768px){

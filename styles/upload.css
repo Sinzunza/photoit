@@ -16,12 +16,15 @@ a {
     cursor: pointer;
     color: #fff;
     font-size: 1.1rem;
-    font-size: 16px;
     letter-spacing: 2px;
     text-transform: uppercase;
     padding: 10px 30px;
     border-radius: 5px;
     background: #75849d;
+    border: none;
+    outline: solid;
+    outline-width: .15rem;
+    outline-color: #4b5464;
 }
 
 body {
@@ -190,6 +193,102 @@ header img {
 
 #navbar {
     width: 1200px;
+}
+
+#uploadForm{
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color:rgb(65 83 112 / 58%);
+    max-width: 400px;
+    outline: solid;
+    outline-width: .2rem;
+    outline-color: white;
+}
+
+.formItem{
+    font-size: .8rem;
+}
+
+.flex-outer {
+  list-style-type: none;
+  padding: 0;
+}
+
+.flex-outer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.flex-outer li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.flex-outer > li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.flex-outer li label,
+.flex-outer li p {
+  padding: 8px;
+  font-weight: 300;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.flex-outer li p {
+  margin: 0;
+}
+
+.flex-outer li input:not([type='checkbox']),
+.flex-outer li textarea {
+  border: none;
+  font-size: 1rem;
+}
+
+.flex-outer li button {
+  margin: 0 auto;
+  padding: 8px 16px;
+  border: none;
+  background: #75849d;
+  color: #f2f2f2;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  border-radius: 2px;
+}
+
+#categorymenu {
+    border-radius: 6px;
+}
+
+#categorymenu option {
+        font-size: .8rem;
+}
+
+#myFile{
+    font-size: .9rem;
+    max-width: 150px;
+}
+
+#fileSelect{
+    background-color: #333333;
+    border-radius: 8px;
+    font-size: .75rem;
+    background-color: #75849d;
+}
+
+#uploadButton{
+    border-radius: 8px;
+}
+
+#photoname{
+    border-radius: 6px;
 }
 
 @media screen and (max-width: 768px){

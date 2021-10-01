@@ -138,12 +138,15 @@ body {
     cursor: pointer;
     color: #fff;
     font-size: 1.1rem;
-    font-size: 16px;
     letter-spacing: 2px;
     text-transform: uppercase;
     padding: 10px 30px;
     border-radius: 5px;
     background: #75849d;
+    border: none;
+    outline: solid;
+    outline-width: .15rem;
+    outline-color: #4b5464;
 }
 
 header {
@@ -195,6 +198,15 @@ img:hover {
 
 .search {
     text-align:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.textBox{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }
 
 b{
@@ -206,7 +218,17 @@ b{
 }
 
 #submitBtn{
-    border-radius: 8px;
+
+    border-radius: 6px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: .9rem;
+    background: #75849d;
+    color: white;
+    border:none;
+    outline: solid;
+    outline-width: .1rem;
+    outline-color: #4b5464;
 }
 
 @media screen and (max-width: 768px){

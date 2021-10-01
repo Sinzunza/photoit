@@ -15,29 +15,42 @@ var file = {};
 
 function chooseFile(e) {
     file = e.target.files[0];
+    let docFileName = document.getElementById("fileSelect");
+    if((file.name).length < 18){
+        docFileName.innerHTML = file.name;
+    } 
+    else{
+        docFileName.innerHTML = (file.name).substring(0,4) + "..." +(file.name).substring((file.name).length-8, (file.name).length);
+    }
 }
 
 function uploadPicture() {
-    var postStorageID = create_UUID(); 
-    var storageRef = firebase.storage().ref("posts/" + postStorageID);
-    var captionUser = document.getElementById("photoname").value; 
-    var category = document.getElementById("categorymenu").value;
-    var uploadMessage = document.getElementById("category_info");
-    storageRef.put(file).then(function() {
-        console.log("upload successful");
-        // uploaded, get URL
-        firebase.storage().ref('posts/' + postStorageID).getDownloadURL().then(imgUrl => {
-            
-            // console.log(imgUrl, captionUser, category);
-            postCreatePost(captionUser, imgUrl, category);
+    if(loggedIn){
+        var postStorageID = create_UUID(); 
+        var storageRef = firebase.storage().ref("posts/" + postStorageID);
+        var captionUser = document.getElementById("photoname").value; 
+        var category = document.getElementById("categorymenu").value;
+        var uploadMessage = document.getElementById("category_info");
+        storageRef.put(file).then(function() {
+            console.log("upload successful");
+            // uploaded, get URL
+            firebase.storage().ref('posts/' + postStorageID).getDownloadURL().then(imgUrl => {
+                
+                // console.log(imgUrl, captionUser, category);
+                postCreatePost(captionUser, imgUrl, category);
 
-        }); 
-    }).catch(error => {
-        console.log("upload failed");
-        console.log("Error: " + error);
-        document.getElementById("uploadForm").remove()
-        uploadMessage.innerHTML = uploadMessage.innerHTML + "<p style=\"color: red;\"> Upload Unsuccessful </p>";
-    })
+            }); 
+        }).catch(error => {
+            console.log("upload failed");
+            console.log("Error: " + error);
+            document.getElementById("uploadForm").remove()
+            uploadMessage.innerHTML = uploadMessage.innerHTML + "<p style=\"color: red;\"> Upload Unsuccessful </p>";
+        })
+    }
+    else{
+        let docUpload = document.getElementById("uploadButton");
+        docUpload.innerHTML = "User must be signed in to upload";
+    }
 }
 
 function postCreatePost(captionUser, imageURLUser, categoryUser) {

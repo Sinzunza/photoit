@@ -148,6 +148,10 @@ body {
     padding: 10px 30px;
     border-radius: 5px;
     background: #75849d;
+    border: none;
+    outline: solid;
+    outline-width: .15rem;
+    outline-color: #4b5464;
 }
 
 header {

@@ -23,7 +23,7 @@
                         <li><a href="../views/upload.html">Upload</a></li>
                     </ul>
                 </nav>
-                <a href="../views/login.html" id="aLogin">Login</a>
+                <a href="../views/login.html" class="btn-area">Login</a>
             </header>
         </div>
         <div id="divLogReg">
@@ -36,16 +36,18 @@
                 <p id="pLogError" class="pErrors"></p>
                 <input type="text" id="inputLogEmail" class="inputField" placeholder="E-mail" required>
                 <input type="password" id="inputLogPassword" class="inputField" placeholder="Password" required>
-                <input type="checkbox" onclick="showLoginPassword()">&ensp;Show Password
-                <button type="submit" class="btnSubmit" onclick="postLogin()">Login</button>
+                <input type="checkbox" class="checkBox" onclick="showLoginPassword()">
+                <text>Show Password</text>
+                <button type="submit" id="loginBtn" class="btnSubmit" onclick="postLogin()">Login</button>
             </div>
             <div id="registerDiv">
                 <p id="pRegError" class="pErrors">Blah</p>
                 <input type="text" id="inputRegUsername" class="inputField" placeholder="Username" required>
                 <input type="text" id="inputRegEmail" class="inputField" placeholder="E-mail" required>
                 <input type="password" id="inputRegPassword" class="inputField" placeholder="Password" required>
-                <input type="checkbox" onclick="showRegisterPassword()">&ensp;Show Password
-                <button type="submit" class="btnSubmit" onclick="postRegister()">Register</button>
+                <input type="checkbox" class="checkBox" onclick="showRegisterPassword()">
+                <text>Show Password</text>
+                <button type="submit" id="regBtn" class="btnSubmit" onclick="postRegister()">Register</button>
             </div>
         </div>
     </div>
