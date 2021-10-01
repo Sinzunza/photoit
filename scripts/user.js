@@ -4,7 +4,23 @@ var loggedIn;
 window.onload = function() {
 
     userStateBtn = document.getElementById("userStateBtn");
-    getUserAuthentication();
+
+    // check if there is a parameter in the url. If so, we are visiting another user's profile
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get("user");
+
+    if (username == null) {
+
+        getUserAuthentication();
+
+    }
+    else {
+
+       getUserID(username);
+
+    }
+
 }
 
 var firebaseConfig = {
@@ -144,6 +160,37 @@ function uploadPicture(file) {
         console.log("upload failed");
         console.log("Error: " + error);
     })
+
+}
+
+function getUserID(userUsername) {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+
+            var result = this.response;
+
+            var user_infoDiv= document.getElementById("user_info");
+            
+            user_infoDiv.innerHTML = "<img id=\"profilePic\" src=\"\" alt=\"Profile Photo\" width=\"175\" height=\"175\">" +
+                                         "<p class=\"user_stats\" id=\"user_name\">Username: </p>" +
+                                         "<p class=\"user_stats\" id=\"num_photos\">Number of Photos: </p>" +
+                                         "<p class=\"user_stats\" id=\"num_likes\">Appreciation Points: </p>" +
+                                         "<p class=\"user_stats\" id=\"awards\">Awards: </p>";
+
+            getUserInfo(result);
+
+        }
+    };
+
+    var params = "?username=" + userUsername;
+
+    xhttp.open("GET", "http://localhost:8081/GetUserID" + params, true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    
+    xhttp.send();
 
 }
 

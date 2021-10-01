@@ -38,7 +38,7 @@ function getTopUser()
                     for(let i = 0; i < 3; i++){
                         container.innerHTML += "<div class=\"box\">" + 
                                                     "<div class =\"imgBox\">" +
-                                                        "<a href=\"../views/profile/" + value[i].Username + "\">" +
+                                                        "<a href=\"../views/user.html?user=" + value[i].Username + "\">" +
                                                             "<img src=\"" + value[i].ProfilePic + "\">" +
                                                         "</a>" +
                                                     "</div>" +

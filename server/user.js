@@ -41,6 +41,31 @@ function getUserInfo(request, response){
 
 }
 
+function getUserID(request, response) {
+
+
+  var username = request.query.username;
+
+  console.log("\n\nUsername = " + username + "\n\n")
+  var userIDQuery = firebase.database().ref("Users").orderByChild("Username").equalTo(username).limitToLast(1);
+
+  userIDQuery.once('value', function(snapshot) {
+
+    if (snapshot.numChildren() >= 1) {
+
+      response.send(Object.keys(snapshot.val())[0]);
+    
+    }
+    else {
+    
+      response.send(null);
+    
+    }
+
+  });
+
+}
+
 function getUsername(request, response){
 
   var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
@@ -200,6 +225,7 @@ function searchDataBase(request, response) {
 module.exports = {
   getMostLike,
   getUserInfo,
+  getUserID,
   getUsername,
   getUserAuthentication,
   postRegister,
