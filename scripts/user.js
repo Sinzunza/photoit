@@ -1,4 +1,9 @@
+var userStateBtn;
+var loggedIn;
+
 window.onload = function() {
+
+    userStateBtn = document.getElementById("userStateBtn");
     getUserAuthentication();
 }
 
@@ -15,76 +20,87 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-var loggedIn = false;
-
 function getUserAuthentication() {
     
     var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "http://localhost:8081/GetUserAuthentication", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+
             var result = this.response;
 
-            if (result == "false") {
-                console.log("user not signed in");
-                loggedIn = false;
-                userState();
+            var user_infoDiv= document.getElementById("user_info");
+
+            if (result) {
+
+                console.log("user signed in");
+                userStateBtn.innerHTML = "Sign Out";
+                loggedIn = true;
+                
+                user_infoDiv.innerHTML = "<img id=\"profilePic\" src=\"\" alt=\"Profile Photo\" width=\"175\" height=\"175\">" +
+                                         "<button onclick=\"document.getElementById('myFile').click()\" id=\"photoBtn\">Change Photo</button>" +
+                                         "<input type=\"file\" id=\"myFile\" name=\"filename\" onchange=\"chooseFile(event)\" style=\"display:none\" accept=\"image/*\">" +
+                                         "<p class=\"user_stats\" id=\"user_name\">Username: </p>" +
+                                         "<p class=\"user_stats\" id=\"num_photos\">Number of Photos: </p>" +
+                                         "<p class=\"user_stats\" id=\"num_likes\">Appreciation Points: </p>" +
+                                         "<p class=\"user_stats\" id=\"awards\">Awards: </p>";
+
+                getUserInfo(result);
+
             }
             else {
-                console.log("user signed in");
-                loggedIn = true;
-                userState();
-                getUserInfo(result);
+
+                console.log("user not signed in");
+                userStateBtn.innerHTML = "Login";
+                loggedIn = false;
+
+                user_infoDiv.innerHTML = "<p style=\"text-align: center\"> You are not signed in! </p>";
+
             }
         }
     };
-    xhttp.open("GET", "http://localhost:8081/GetUserAuthentication", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    
-    xhttp.send();
     
 }
 
-function userState(){
-    var userStateBtn = document.getElementById("userStateBtn");
+function userState() {
+
     if(loggedIn){
-
-        userStateBtn.innerHTML = "Sign Out";
-
-        // sign out the user
-        userStateBtn.onclick = function() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
-                    var result = this.response;
-                    if (result == "true") {
-                        console.log("user signed out successfully");
-                        loggedIn = false;
-                        userState();
-                    }
-                    else {
-                        console.log("user sign out failed");
-                    }
-                }
-            };
-
-            xhttp.open("POST", "http://localhost:8081/SignOut", true);
-            xhttp.setRequestHeader("Content-Type", "application/json");
-            
-            xhttp.send();
-        }
-
-
-    }
-    else {
 
         userStateBtn.innerHTML = "Login";
 
-        // redirect to login.html
-        userStateBtn.onclick = function() {
-            window.location.href = "../views/login.html";
-        }
+        // sign out the user
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "http://localhost:8081/SignOut", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                var result = this.response;
+                if (result == "true") {
+
+                    console.log("user signed out successfully");
+                    location.reload();
+
+                }
+                else {
+
+                    console.log("user sign out failed");
+
+                }
+            }
+        };
 
     }
+    else {                                       
+
+        window.location.href = "../views/login.html";
+
+    }
+
 }
 
 function chooseFile(e) {
@@ -102,10 +118,6 @@ function chooseFile(e) {
     };
 
     reader.readAsDataURL(file);
-
-    // add "confirm changes" and "cancel changes" button
-    // if confirm then call the uploadPicture() function
-    // if cancel then simply reload the page
 
     uploadPicture(file);
     

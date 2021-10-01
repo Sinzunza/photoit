@@ -1,12 +1,11 @@
 var userStateBtn;
+var loggedIn;
 
 window.onload = function() {
 
     userStateBtn = document.getElementById("userStateBtn");
     getUserAuthentication();
 }
-
-var loggedIn = false;
 
 function getUserAuthentication() {
     
@@ -46,7 +45,6 @@ function userState() {
         userStateBtn.innerHTML = "Login";
 
         // sign out the user
-
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:8081/SignOut", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
@@ -58,7 +56,6 @@ function userState() {
                 if (result == "true") {
                     console.log("user signed out successfully");
                     loggedIn = false;
-                    //  userState();
                 }
                 else {
                     console.log("user sign out failed");

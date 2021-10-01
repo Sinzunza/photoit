@@ -200,7 +200,7 @@ img:hover {
     width: 1200px;
 }
 
-.user_info {
+#user_info {
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -209,7 +209,7 @@ img:hover {
     width: 50%;
 }
 
-.user_info p {
+#user_info p {
     color: white;
 }
 
