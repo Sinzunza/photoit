@@ -28,6 +28,8 @@ function getPost(postIDUser) {
                 }
             }
 
+            scrollToBottom();
+
             postUsernameUser = result.Username;
 
             var userImgDoc = document.getElementById("userImg");
@@ -59,31 +61,39 @@ function postComment() {
 
     var contentUser = document.getElementById("userMessage").value;
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.responseType = 'json';
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
-            var result = this.response;
-            if (result == null) {
-                // do something
-                console.log("error posting comment");
-            }
-            else {
-                // do something
-                console.log("create comment unsuccessful");
-                console.log(result);
+    if(contentUser == ' ' || contentUser == null || contentUser == ""){
+        console.log("Comments cannot be blank");
+    }
+    else{
+        var xhttp = new XMLHttpRequest();
+        xhttp.responseType = 'json';
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
+                var result = this.response;
+                if (result == null) {
+                    // do something
+                    console.log("error posting comment");
+                }
+                else {
+                    // do something
+                    console.log("create comment successful");
+                    console.log(result);
 
-                var commentBox = document.getElementById("commentList");
-                commentBox.innerHTML += "<div class=\"comment\">" + username + ": " + contentUser + "</div>";
+                    var commentBox = document.getElementById("commentList");
+                    commentBox.innerHTML += "<div class=\"comment\">" + username + ": " + contentUser + "</div>";
+                    contentUser.innerHTML = "";
+                    document.getElementById("userMessage").value = "";
+                    scrollToBottom();
+                }
             }
-        }
-    };
-    xhttp.open("POST", "http://localhost:8081/PostComments", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    
-    var data = {postID: postIDUser, content: contentUser};
-    
-    xhttp.send(JSON.stringify(data));
+        };
+        xhttp.open("POST", "http://localhost:8081/PostComments", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        
+        var data = {postID: postIDUser, content: contentUser};
+        
+        xhttp.send(JSON.stringify(data));
+    }
 }
 
 function getUsername() {
@@ -93,7 +103,8 @@ function getUsername() {
 
             var result = this.response;
             var usernameText = document.getElementById("commentName");
-            if (result == null) {
+            console.log(result);
+            if (result === null || result == "") {
                 usernameText.innerHTML = "Must be logged in to post comments!";
                 username = result;
             }
@@ -120,7 +131,7 @@ function postLike() {
 
             var result = this.response;
 
-            if (result == null) {
+            if (result === null || result == "") {
                 console.log("Error appreciating comment.\n");
             }
             else {
@@ -143,4 +154,10 @@ function postLike() {
     var data = {postID: postIDUser, postUsername: postUsernameUser};
     
     xhttp.send(JSON.stringify(data));
+}
+
+function scrollToBottom(){
+    //automatically scroll to bottom of chat
+    let chatBox = document.getElementById("commentList");
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
