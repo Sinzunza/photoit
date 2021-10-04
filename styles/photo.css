@@ -44,8 +44,9 @@ body {
 }
 
 .box .content {
-    position: relative;
-    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    width: 280px;
     background: rgba(0,0,0,0.4);
     display:flex;
     justify-content: center;

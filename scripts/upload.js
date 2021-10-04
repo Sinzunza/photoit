@@ -84,7 +84,7 @@ function getUserAuthentication() {
                                               "</ul>" +
                                               "</form>";
 
-                getUserInfo(result);
+                //getUserInfo(result);
 
             }
             else {

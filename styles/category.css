@@ -230,6 +230,14 @@ img:hover {
     font-size: .8rem;
 }
 
+.categoryForm:hover, .categoryBtn:hover, .content:hover{
+    cursor: pointer
+}
+
+.box form, input, button{
+    cursor: pointer
+}
+
 @media screen and (max-width: 768px){
     * {
         font-size: .95rem;

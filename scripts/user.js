@@ -255,17 +255,17 @@ function getUsersPosts(usernameUser) {
                     picTitle = pictures[i].Caption;
                     postID = picturesID[i]; 
                     container.innerHTML += "<div class=\"box\">" +
-                                                "<div class=\"imgBox\">" +
                                                     "<form action=\"../views/photo.html\">" + 
                                                         "<input type=\"hidden\" name=\"postID\" value=\"" + postID + "\"/>" +
-                                                            "<button class=\"btn\" type=\"submit\" id=\"categoryButton\">" + 
-                                                                "<img src=\"" + picHostedLink + "\">" + 
+                                                            "<button class=\"btn\" type=\"submit\" id=\"categoryButton\">" +
+                                                                "<div class=\"imgBox\">" +
+                                                                    "<img src=\"" + picHostedLink + "\">" + 
+                                                                "</div>" +
+                                                                "<div class=\"content\">" +
+                                                                    "<h2>" + picTitle + "</h2>" +
+                                                                "</div>" +
                                                             "</button>" + 
-                                                    "</form>" +
-                                                "</div>" +
-                                                "<div class=\"content\">" +
-                                                    "<h2>" + picTitle + "</h2>" +
-                                                "</div>";
+                                                    "</form>"
                 }
             }
         }

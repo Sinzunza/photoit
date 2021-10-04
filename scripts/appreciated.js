@@ -37,14 +37,14 @@ function getTopUser()
                 else{
                     for(let i = 0; i < 3; i++){
                         container.innerHTML += "<div class=\"box\">" + 
-                                                    "<div class =\"imgBox\">" +
-                                                        "<a href=\"../views/user.html?user=" + value[i].Username + "\">" +
+                                                    "<a href=\"../views/user.html?user=" + value[i].Username + "\">" +
+                                                        "<div class =\"imgBox\">" +
                                                             "<img src=\"" + value[i].ProfilePic + "\">" +
-                                                        "</a>" +
-                                                    "</div>" +
-                                                    "<div class=\"content\">" +
-                                                        "<h2>#" + (i+1) + ") " + value[i].Username + "<br><span>" + value[i].AppreciationPoints + " Appreciation Points</span></h2>" +
-                                                    "</div>" +
+                                                        "</div>" +
+                                                        "<div class=\"content\">" +
+                                                            "<h2>#" + (i+1) + ") " + value[i].Username + "<br><span>" + value[i].AppreciationPoints + " Appreciation Points</span></h2>" +
+                                                        "</div>" +
+                                                    "</a>" +
                                                 "</div>";
                     }
                 }

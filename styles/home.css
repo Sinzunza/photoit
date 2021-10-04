@@ -201,6 +201,10 @@ img:hover {
     border-style: none;
 }
 
+.box form, input, button{
+    cursor: pointer
+}
+
 @media screen and (max-width: 768px){
     * {
         font-size: .95rem;
