@@ -26,14 +26,17 @@
         <div class="category_info">
             <b id="category_name" style="color:white;"></b>
         </div>
-        <select id="filterMenu" name="categories" onchange="getCategoryPosts()">
-            <option value="Last Hour">Last Hour</option>
-            <option value="Last Day">Last Day</option>
-            <option value="Last Week">Last Week</option>
-            <option value="Last Month">Last Month</option>
-            <option value="Last Year">Last Year</option>
-            <option value="All Time" selected="selected">All Time</option>
-        </select>
+        <div class="filterContainer">
+            <p id="filterText">Filter by:&nbsp</p>
+            <select id="filterMenu" name="categories" onchange="getCategoryPosts()">
+                <option class="filterOption" value="Last Hour">Last Hour</option>
+                <option class="filterOption" value="Last Day">Last Day</option>
+                <option class="filterOption" value="Last Week">Last Week</option>
+                <option class="filterOption" value="Last Month">Last Month</option>
+                <option class="filterOption" value="Last Year">Last Year</option>
+                <option class="filterOption" value="All Time" selected="selected">All Time</option>
+            </select>
+        </div>
     </div>
     <div id="container">
     </div>

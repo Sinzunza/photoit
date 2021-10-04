@@ -209,9 +209,25 @@ img:hover {
     border-style: none;
 }
 
-#filterMenu {
+.filterContainer{
+    display: flex;
     position: relative;
+    align-items: center;
     left: 15%;
+    font-size: .6rem;
+    color: white;
+}
+
+#filterText{
+    font-size: 1rem;
+}
+
+#filterMenu{
+    font-size: .8rem;
+}
+
+.filterOption{
+    font-size: .8rem;
 }
 
 @media screen and (max-width: 768px){

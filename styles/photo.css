@@ -177,6 +177,10 @@ header img {
     border-radius: 12px;
     height: 2rem;
     width: 125px;
+    border: none;
+    outline: solid;
+    outline-width: .15rem;
+    outline-color: #4b5464;
 }
 
 #likeBtn {
