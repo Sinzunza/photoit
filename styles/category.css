@@ -163,8 +163,7 @@ img:hover {
 .filterContainer{
     display: flex;
     position: relative;
-    align-items: center;
-    left: 15%;
+    margin: 0 auto;
     font-size: .6rem;
     color: white;
 }

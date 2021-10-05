@@ -65,7 +65,7 @@ function getUserAuthentication() {
                 userStateBtn.innerHTML = "Login";
                 loggedIn = false;
 
-                user_infoDiv.innerHTML = "<p style=\"text-align: center\"> You are not signed in! </p>";
+                user_infoDiv.innerHTML = "<p style=\"text-align: center\"> Must be signed in to view profile! </p>";
 
             }
         }
