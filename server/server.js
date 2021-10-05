@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 var cors = require('cors')
+require('dotenv').config();
 
 // firebase
 var firebase = require('firebase/app');
@@ -21,7 +22,7 @@ firebase.initializeApp({
 
 // create server
 const app = express();
-const port = 8081;
+const port = process.env.PORT || 3000;
 
 // add stuff to server
 app.use(express.json());
