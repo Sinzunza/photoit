@@ -8,11 +8,10 @@
 }
 
 a {
-text-decoration: none;
+    text-decoration: none;
 }
     
 .btnSubmit {
-    width: 35%;
     padding: 10px 30px;
     cursor: pointer;
     display: block;
@@ -70,7 +69,7 @@ text-decoration: none;
 #divLogReg {
     opacity: .90;
     max-width: 350px;
-    max-height: 300px;
+    max-height: 450px;
     position: relative;
     margin: 0 auto;
     margin-top: 50px;
@@ -104,22 +103,22 @@ text-decoration: none;
 }
 
 #divNavBar {
-list-style: none;
+    list-style: none;
 }
 
 #divNavBar li {
-display: inline-block;
-padding: 0 15px;
-text-transform: uppercase;
+    display: inline-block;
+    padding: 0 15px;
+    text-transform: uppercase;
 }
 
 #divNavBar li a {
-transition: .3s;
-color: #fff;
+    transition: .3s;
+    color: #fff;
 }
 
 #divNavBar li a:hover {
-color: #75849d
+    color: #75849d
 }
 
 .pErrors {
