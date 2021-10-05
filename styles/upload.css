@@ -119,6 +119,17 @@ body {
 
 .category_info {
     text-align:center;
+    display: flex;
+    justify-content: center;
+}
+
+.category_info p{
+    width: 50%;
+    outline: solid;
+    outline-width: .2rem;
+    outline-color: white;
+    border-radius: 12px;
+    align-items: center;
 }
 
 .logo {

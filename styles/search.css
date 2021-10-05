@@ -31,6 +31,7 @@ body {
     margin: 40px;
     background: #060c21;
     transition: 0.5s;
+    border-radius: 12px;
 }
 
 .box .content {
@@ -47,6 +48,7 @@ body {
     text-align: center;
     opacity: 0;
     transition: 0.5s;
+    border-radius: 12px;
 }
 
 .box .content h2 {
@@ -79,6 +81,7 @@ body {
     max-width: 100%;
     opacity: 0.1;
     transition: 0.5s;
+    border-radius: 12px;
 }
 
 .box:before {
@@ -90,6 +93,7 @@ body {
     bottom: -2px;
     background: #fff;
     z-index: -1;
+    border-radius: 12px;
 }
 
 .box:hover {

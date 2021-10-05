@@ -95,7 +95,7 @@ function getUserAuthentication() {
                 userStateBtn.innerHTML = "Login";
                 loggedIn = false;
 
-                category_infoDiv.innerHTML = "<p style=\"text-align: center; color: #fff;\"> You are not signed in! </p>";
+                category_infoDiv.innerHTML = "<p style=\"text-align: center; color: #fff;\"> Must be signed in to upload! </p>";
 
             }
         }
