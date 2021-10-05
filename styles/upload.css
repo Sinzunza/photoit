@@ -238,6 +238,16 @@ body {
     border-radius: 6px;
 }
 
+#loginAlert{
+    width: 50%;
+    outline: solid;
+    outline-width: .2rem;
+    outline-color: white;
+    border-radius: 12px;
+    align-items: center;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 768px){
     * {
         font-size: .95rem;
