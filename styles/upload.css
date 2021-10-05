@@ -120,16 +120,8 @@ body {
 .category_info {
     text-align:center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-}
-
-.category_info p{
-    width: 50%;
-    outline: solid;
-    outline-width: .2rem;
-    outline-color: white;
-    border-radius: 12px;
-    align-items: center;
 }
 
 .logo {
@@ -170,52 +162,52 @@ body {
 }
 
 .flex-outer {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 .flex-outer {
-  max-width: 800px;
-  margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .flex-outer li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .flex-outer > li:not(:last-child) {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .flex-outer li label,
 .flex-outer li p {
-  padding: 8px;
-  font-weight: 300;
-  letter-spacing: .09em;
-  text-transform: uppercase;
+    padding: 8px;
+    font-weight: 300;
+    letter-spacing: .09em;
+    text-transform: uppercase;
 }
 
 .flex-outer li p {
-  margin: 0;
+    margin: 0;
 }
 
 .flex-outer li input:not([type='checkbox']),
 .flex-outer li textarea {
-  border: none;
-  font-size: 1rem;
+    border: none;
+    font-size: 1rem;
 }
 
 .flex-outer li button {
-  margin: 0 auto;
-  padding: 8px 16px;
-  border: none;
-  background: #75849d;
-  color: #f2f2f2;
-  text-transform: uppercase;
-  letter-spacing: .09em;
-  border-radius: 2px;
+    margin: 0 auto;
+    padding: 8px 16px;
+    border: none;
+    background: #75849d;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
 }
 
 #categorymenu {
@@ -223,7 +215,7 @@ body {
 }
 
 #categorymenu option {
-        font-size: .8rem;
+    font-size: .8rem;
 }
 
 #myFile{
