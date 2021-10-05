@@ -81,7 +81,9 @@ function getUserAuthentication() {
                                               "</select>" +
                                               "</li>" +
                                               "<li id=\"uploadBtnContainer\"><button id=\"uploadButton\" class=\"formItem\" type=\"button\" onclick=\"uploadPicture()\">Upload</button></li>" +
-                                              "<div id=\"loading\" class=\"loader\">Loading...</div>" +
+                                              "<div id=\"loadingContainer\">" +
+                                                "<div id=\"loading\" class=\"loader\">Loading...</div>" +
+                                              "</div>" +
                                               "</ul>" +
                                               "</form>";
 

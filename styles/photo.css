@@ -255,6 +255,7 @@ body {
     }
     #photoContainer{
         flex-direction: column;
+        align-items: center;
     }
     .appreciatedContainer{
         justify-content: space-around;
@@ -270,5 +271,11 @@ body {
 @media screen and (max-width: 457px){
     #commentBtn{
         bottom: 0%;
+    }
+    #textBox{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
     }
 }

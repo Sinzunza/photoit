@@ -254,6 +254,12 @@ body {
     justify-content: center;
 }
 
+#loadingContainer{
+    max-width: 11em;
+    max-height: 11em;
+    overflow: hidden;
+}
+
 .loader {
     font-size: 2px;
     text-indent: -9999em;
