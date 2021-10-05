@@ -80,7 +80,8 @@ function getUserAuthentication() {
                                               "<option value=\"Gaming\">Gaming</option>" +
                                               "</select>" +
                                               "</li>" +
-                                              "<li><button id=\"uploadButton\" class=\"formItem\" type=\"button\" onclick=\"uploadPicture()\">Upload</button></li>" +
+                                              "<li id=\"uploadBtnContainer\"><button id=\"uploadButton\" class=\"formItem\" type=\"button\" onclick=\"uploadPicture()\">Upload</button></li>" +
+                                              "<div id=\"loading\" class=\"loader\">Loading...</div>" +
                                               "</ul>" +
                                               "</form>";
 
@@ -148,21 +149,28 @@ function uploadPicture() {
         var captionUser = document.getElementById("photoname").value; 
         var category = document.getElementById("categorymenu").value;
         var uploadMessage = document.getElementById("category_info");
-        storageRef.put(file).then(function() {
-            console.log("upload successful");
-            // uploaded, get URL
-            firebase.storage().ref('posts/' + postStorageID).getDownloadURL().then(imgUrl => {
-                
-                // console.log(imgUrl, captionUser, category);
-                postCreatePost(captionUser, imgUrl, category);
+        if(file.name !== undefined){
+            //display loading animation
+            document.getElementById("loading").style.visibility = "visible";
+            storageRef.put(file).then(function() {
+                console.log("upload successful");
+                // uploaded, get URL
+                firebase.storage().ref('posts/' + postStorageID).getDownloadURL().then(imgUrl => {
+                    
+                    // console.log(imgUrl, captionUser, category);
+                    postCreatePost(captionUser, imgUrl, category);
 
-            }); 
-        }).catch(error => {
-            console.log("upload failed");
-            console.log("Error: " + error);
-            document.getElementById("uploadForm").remove()
-            uploadMessage.innerHTML = uploadMessage.innerHTML + "<p style=\"color: red;\"> Upload Unsuccessful </p>";
-        })
+                }); 
+            }).catch(error => {
+                console.log("upload failed");
+                console.log("Error: " + error);
+                document.getElementById("uploadForm").remove()
+                uploadMessage.innerHTML = uploadMessage.innerHTML + "<p style=\"color: red;\"> Upload Unsuccessful </p>";
+            })
+        }
+        else{
+            console.log("File cannot be blank");
+        }
     }
     else{
         let docUpload = document.getElementById("uploadButton");
