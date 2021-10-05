@@ -8,9 +8,7 @@
     font-size: 1.1rem;
 }
 
-a {
-    text-decoration: none;
-}
+
 
 body {
     display: flex;
@@ -83,18 +81,6 @@ body {
     transition: 0.5s;
 }
 
-.box:after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: #fff;
-    z-index: -2;
-    filter: blur(40px);
-}
-
 .box:before {
     content: '';
     position: absolute;
@@ -134,37 +120,6 @@ body {
     background:linear-gradient(235deg, #772aff, #010615, #2196f3);
 }
 
-.btn-area {
-    cursor: pointer;
-    color: #fff;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 10px 30px;
-    border-radius: 5px;
-    background: #75849d;
-    border: none;
-    outline: solid;
-    outline-width: .15rem;
-    outline-color: #4b5464;
-}
-
-header {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 30px 70px;
-}
-
-header img {
-    width: 150px;
-    height: 150px;
-}
-
 img:hover {
     cursor: pointer;
 }
@@ -173,19 +128,10 @@ img:hover {
     width: 280px;
 }
 
-.nav-area {
-    list-style: none;
-}
-
 .nav-area li {
     display: inline-block;
     padding: 0 15px;
     text-transform: uppercase;
-}
-
-.nav-area li a {
-    transition: .3s;
-    color: #fff;
 }
 
 .nav-area li a:hover {
@@ -201,6 +147,7 @@ img:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
 }
 
 .textBox{

@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PhotoIT - Homepage</title>
     <link rel="stylesheet" type="text/css" href="../styles/user.css">
+    <link rel="stylesheet" type="text/css" href="../styles/globalStyles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
@@ -26,6 +27,18 @@
             <button id="userStateBtn" class="btn-area" onclick="userState()">Login</button>
         </header>
         <div id="user_info">
+            <div id="user_left">
+                <button onclick="document.getElementById('myFile').click()" id="photoBtn"></button>
+                <input type="file" id="myFile" name="filename" onchange="chooseFile(event)" style="display:none" accept="image/*">
+            </div> 
+            <div id="user_right">
+                <p id="user_name"></p>
+                <div class="stats_container">
+                    <p class="user_stats" id="num_photos">Number of Photos: </p>
+                    <p class="user_stats" id="num_likes">Appreciation Points: </p>
+                </div>
+                <p class="user_stats" id="awards">Awards: </p>
+            </div>
         </div>
     </div>
     <div id="container">

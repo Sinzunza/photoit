@@ -35,20 +35,6 @@ text-decoration: none;
     font-size: .8rem;
 }
 
-.btn-area {
-    cursor: pointer;
-    color: #fff;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 10px 30px;
-    border-radius: 5px;
-    background: #75849d;
-    outline: solid;
-    outline-width: .15rem;
-    outline-color: #4b5464;
-}
-
 #divBody {
     height: 100%;
     width: 100%;
@@ -98,22 +84,6 @@ text-decoration: none;
 #divNavBar {
     max-width: 1200px;
     margin:auto;
-}
-
-header {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 30px 70px;
-}
-
-header img {
-width: 150px;
-height: 150px;
 }
 
 .inputField {

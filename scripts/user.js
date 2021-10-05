@@ -55,14 +55,6 @@ function getUserAuthentication() {
                 console.log("user signed in");
                 userStateBtn.innerHTML = "Sign Out";
                 loggedIn = true;
-                
-                user_infoDiv.innerHTML = "<img id=\"profilePic\" src=\"\" alt=\"Profile Photo\" width=\"175\" height=\"175\">" +
-                                         "<button onclick=\"document.getElementById('myFile').click()\" id=\"photoBtn\">Change Photo</button>" +
-                                         "<input type=\"file\" id=\"myFile\" name=\"filename\" onchange=\"chooseFile(event)\" style=\"display:none\" accept=\"image/*\">" +
-                                         "<p class=\"user_stats\" id=\"user_name\">Username: </p>" +
-                                         "<p class=\"user_stats\" id=\"num_photos\">Number of Photos: </p>" +
-                                         "<p class=\"user_stats\" id=\"num_likes\">Appreciation Points: </p>" +
-                                         "<p class=\"user_stats\" id=\"awards\">Awards: </p>";
 
                 getUserInfo(result);
 
@@ -174,12 +166,6 @@ function getUserID(userUsername) {
 
             var user_infoDiv= document.getElementById("user_info");
             
-            user_infoDiv.innerHTML = "<img id=\"profilePic\" src=\"\" alt=\"Profile Photo\" width=\"175\" height=\"175\">" +
-                                         "<p class=\"user_stats\" id=\"user_name\">Username: </p>" +
-                                         "<p class=\"user_stats\" id=\"num_photos\">Number of Photos: </p>" +
-                                         "<p class=\"user_stats\" id=\"num_likes\">Appreciation Points: </p>" +
-                                         "<p class=\"user_stats\" id=\"awards\">Awards: </p>";
-
             getUserInfo(result);
 
         }
@@ -202,12 +188,12 @@ function getUserInfo(userIDUser) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // call is complete and call is successful
             var result = this.response;            
-            var profilePic = document.getElementById("profilePic");
+            var profilePic = document.getElementById("photoBtn");
             var userName = document.getElementById("user_name");
             var numLikes = document.getElementById("num_likes");
             var awards = document.getElementById("awards");
 
-            profilePic.src = result.ProfilePic;
+            profilePic.style.backgroundImage = "url('" + result.ProfilePic + "')";
             userName.innerHTML += result.Username;
             numLikes.innerHTML += result.AppreciationPoints;
             

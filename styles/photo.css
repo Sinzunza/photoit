@@ -8,9 +8,7 @@
     font-size: 1.1rem;
 }
 
-a {
-    text-decoration: none;
-}
+
 
 #appreciatedMessage {
     color: red;
@@ -41,6 +39,7 @@ body {
     background: rgba(0,0,0,0.4);
     transition: 0.5s;
     padding: 10px;
+    border-radius: 12px;
 }
 
 .box .content {
@@ -54,6 +53,7 @@ body {
     text-align: center;
     transition: 0.5s;
     height: 90px;
+    border-radius: 12px;
 }
 
 .box .content h2 {
@@ -85,18 +85,7 @@ body {
     max-width: 100%;
     opacity: 1;
     transition: 0.5s;
-}
-
-.box:after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: #fff;
-    z-index: -2;
-    filter: blur(40px);
+    border-radius: 12px;
 }
 
 .box:hover .content {
@@ -111,21 +100,6 @@ body {
 .box:nth-child(3n+1):before,
 .box:nth-child(3n+1):after {
     background:linear-gradient(235deg, #f560f5, #010615, #56b3ff);
-}
-
-.btn-area {
-    cursor: pointer;
-    color: #fff;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 10px 30px;
-    border-radius: 5px;
-    background: #75849d;
-    border: none;
-    outline: solid;
-    outline-width: .15rem;
-    outline-color: #4b5464;
 }
 
 .category_info {
@@ -155,27 +129,11 @@ body {
     gap: 10px;
 }
 
-header {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 30px 70px;
-}
-
-header img {
-    width: 150px;
-    height: 150px;
-}
-
 .like {
     color: white;
     position: relative;
     background-color: rgba(117, 132, 157, 1);
-    border-radius: 12px;
+    border-radius: 8px;
     height: 2rem;
     width: 125px;
     border: none;
@@ -193,20 +151,11 @@ header img {
     cursor: pointer;
 }
 
-.nav-area {
-    list-style: none;
-}
-
 .nav-area li {
     display: inline-block;
     padding: 0 15px;
     text-transform: uppercase;
     font-size: 1.1rem;
-}
-
-.nav-area li a {
-    transition: .3s;
-    color: #fff;
 }
 
 .nav-area li a:hover {
@@ -243,10 +192,6 @@ header img {
     cursor: default;
 }
 
-#userImg{
-    width: 100%;
-}
-
 .content #caption{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
@@ -265,6 +210,12 @@ header img {
     color: white;
     padding: 2px;
     font-size: .9rem;
+    border-style: solid;
+    background: #75849d;
+    border: none;
+    outline: solid;
+    outline-width: .15rem;
+    outline-color: #4b5464;
 }
 
 #commentName{
