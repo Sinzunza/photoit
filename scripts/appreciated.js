@@ -51,6 +51,6 @@ function getTopUser()
             }
         }
     };
-    xhttp.open("GET", "http://localhost:8081/getMostLike", true); 
+    xhttp.open("GET", "https://photoit110.herokuapp.com/getMostLike", true); 
     xhttp.send(); 
 }
