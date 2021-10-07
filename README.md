@@ -1,4 +1,4 @@
-Website: https://photoit.netlify.app/views/home.html
+Website: https://photoit.netlify.app
 
 ## Developers
 ---
