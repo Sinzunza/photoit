@@ -73,7 +73,7 @@ function showLogin(){
 function postLogin() {
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://localhost:8081/PostLogin", true);
+    xhttp.open("POST", "https://photoit110.herokuapp.com/PostLogin", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
 
     var inputLogEmail = document.getElementById("inputLogEmail").value;
@@ -124,7 +124,7 @@ function postRegister() {
         }
     };
 
-    xhttp.open("POST", "http://localhost:8081/PostRegister", true);
+    xhttp.open("POST", "https://photoit110.herokuapp.com/PostRegister", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
 
     var inputRegUsername = document.getElementById("inputRegUsername").value;

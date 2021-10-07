@@ -38,7 +38,7 @@ function chooseFile(e) {
 function getUserAuthentication() {
     
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost:8081/GetUserAuthentication", true);
+    xhttp.open("GET", "https://photoit110.herokuapp.com/GetUserAuthentication", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send();
 
@@ -114,7 +114,7 @@ function userState() {
 
         // sign out the user
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "http://localhost:8081/SignOut", true);
+        xhttp.open("POST", "https://photoit110.herokuapp.com/SignOut", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send();
 
@@ -196,7 +196,7 @@ function postCreatePost(captionUser, imageURLUser, categoryUser) {
             }
         }
     };
-    xhttp.open("POST", "http://localhost:8081/CreatePost", true);
+    xhttp.open("POST", "https://photoit110.herokuapp.com/CreatePost", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     var data = {caption: captionUser, imageURL: imageURLUser, category: categoryUser};

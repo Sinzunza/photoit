@@ -59,7 +59,7 @@ function getCategoryPosts() {
     };
 
     var params = "?" + "category=" + categoryUser + "&filter=" + filterUser; 
-    xhttp.open("GET", "http://localhost:8081/GetCategoryPosts" + params, true); 
+    xhttp.open("GET", "https://photoit110.herokuapp.com/GetCategoryPosts" + params, true); 
     xhttp.send();
 
 }

@@ -58,7 +58,7 @@ function getUser() {
     };
 
     var params = "?" + "username=" + usernameSearch;
-    xhttp.open("GET", "http://localhost:8081/searchDataBase" + params, true);
+    xhttp.open("GET", "https://photoit110.herokuapp.com/searchDataBase" + params, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     xhttp.send();

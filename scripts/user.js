@@ -39,7 +39,7 @@ firebase.initializeApp(firebaseConfig);
 function getUserAuthentication() {
     
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost:8081/GetUserAuthentication", true);
+    xhttp.open("GET", "https://photoit110.herokuapp.com/GetUserAuthentication", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send();
 
@@ -81,7 +81,7 @@ function userState() {
 
         // sign out the user
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "http://localhost:8081/SignOut", true);
+        xhttp.open("POST", "https://photoit110.herokuapp.com/SignOut", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send();
 
@@ -173,7 +173,7 @@ function getUserID(userUsername) {
 
     var params = "?username=" + userUsername;
 
-    xhttp.open("GET", "http://localhost:8081/GetUserID" + params, true);
+    xhttp.open("GET", "https://photoit110.herokuapp.com/GetUserID" + params, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     xhttp.send();
@@ -208,7 +208,7 @@ function getUserInfo(userIDUser) {
 
     var params = "?userID=" + userIDUser;
 
-    xhttp.open("GET", "http://localhost:8081/GetUserInfo" + params, true);
+    xhttp.open("GET", "https://photoit110.herokuapp.com/GetUserInfo" + params, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     xhttp.send();
@@ -257,7 +257,7 @@ function getUsersPosts(usernameUser) {
         }
     };
     var params = "?username=" + usernameUser;
-    xhttp.open("GET", "http://localhost:8081/GetUsersPosts" + params, true);
+    xhttp.open("GET", "https://photoit110.herokuapp.com/GetUsersPosts" + params, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     xhttp.send();
@@ -287,7 +287,7 @@ function postChangeAvatar(imageURLUser){
             }
         }
     };
-    xhttp.open("POST", "http://localhost:8081/PostUserAvatar", true);
+    xhttp.open("POST", "https://photoit110.herokuapp.com/PostUserAvatar", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     var data = {imageURL: imageURLUser};
