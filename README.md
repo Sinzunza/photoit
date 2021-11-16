@@ -40,3 +40,5 @@ Front-end was built using pure HTML, CSS, and Javascript. The scope of the proje
 * Google Firebase
 
 The Back-end was built using Node JS as the web-server. To handle requests the express framework was used. The database chosen was Google Firebase, as we had experience with it and felt it was the easiest to work with. The majority of the Firebase interaction was done on the Back-end, with only user authentication being done on the Front-end.
+
+9/2021
